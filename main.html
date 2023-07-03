@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1"
+    />
+    <title>시장에 가면</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/8e32291ca2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="main.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <input type="checkbox" id="sidebar-toggle" />
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3 class="brand">
+          <span class="ti-logo"></span>
+          <span>시장에 가면</span>
+        </h3>
+        <label for="sidebar-toggle" class="ti-menu-alt"></label>
+      </div>
+      <!-- 각 경로에 파일 연결해서 하시면 됩니다 (main) -->
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-cookie-bite"></i>
+              <span>분식</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-bacon"></i>
+              <span>반찬</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-leaf"></span>
+              <span>농산물</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-fish"></span>
+              <span>수산/횟집</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-drumstick-bite"></span>
+              <span>축산물</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-apple-alt"></span>
+              <span>과일</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-birthday-cake"></span>
+              <span>떡집</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-hospital"></span>
+              <span>방앗간/건강원</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-shopping-cart"></span>
+              <span>마트</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-tshirt"></span>
+              <span>의류</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa-solid fa-paintbrush"></i>
+              <span>화장품/잡화</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-ring"></span>
+              <span>꽃집/귀금속</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-fish"></span>
+              <span>건어물/젓갈</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <span class="fas fa-ellipsis-h"></span>
+              <span>기타</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <header>
+        <div class="social-icons">
+          <span class="ti-bell"></span>
+          <span class="ti-comment"></span>
+          <div></div>
+        </div>
+        <div class="login-wrapper">
+          <button class="login-button">로그인 / 회원가입</button>
+        </div>
+      </header>
+
+      <!-- 매장 정보 확인하기 누르면 해당하는 점포 설명 (수정) -->
+      <main>
+        <h2 class="dash-title">Best 점포</h2>
+        <div class="dash-cards">
+          <div class="card-single">
+            <div class="card-body">
+              <i class="fa-solid fa-medal" style="color: #ffd700"></i>
+              <div>
+                <h4>1. 망원 닭강정</h4>
+                <h5>⭐️⭐️⭐️⭐️⭐️</h5>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="">매장 정보 확인하기(수정 - 1등 세부 매장 정보)</a>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div class="card-body">
+              <i class="fa-solid fa-medal" style="color: #c0c0c0"></i>
+              <div>
+                <h4>2. 고려왕족발</h4>
+                <h5>⭐️⭐️⭐️⭐️⭐️</h5>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="">매장 정보 확인하기(수정 - 2등 ;;)</a>
+            </div>
+          </div>
+
+          <div class="card-single">
+            <div class="card-body">
+              <i class="fa-solid fa-medal" style="color: #cd7f32"></i>
+              <div>
+                <h4>3. 망원시장손칼국수</h4>
+                <h5>⭐️⭐️⭐️⭐️⭐️</h5>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a href="">매장 정보 확인하기(수정 - 3등 ;;)</a>
+            </div>
+          </div>
+        </div>
+
+        <section class="recent">
+          <div class="activity-grid">
+            <div class="activity-card">
+              <h3>현재 HOT한 점포 정보</h3>
+
+              <div class="table-responsive">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>카테고리</th>
+                      <th>점포명</th>
+                      <th>점포 평점</th>
+                      <th>리뷰 수</th>
+                      <th>운영 여부</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>닭강정</td>
+                      <td>오공찬</td>
+                      <td>⭐️⭐️⭐️⭐️</td>
+                      <td class="td-team">
+                        <div class="img-1"></div>
+                        <div class="img-2"></div>
+                        <div class="img-3"></div>
+                      </td>
+                      <td>
+                        <span class="badge success">운영중</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>닭강정</td>
+                      <td>오공찬</td>
+                      <td>⭐️⭐️⭐️⭐️</td>
+                      <td class="td-team">
+                        <div class="img-1"></div>
+                        <div class="img-2"></div>
+                        <div class="img-3"></div>
+                      </td>
+                      <td>
+                        <span class="badge success">운영중</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>닭강정</td>
+                      <td>오공찬</td>
+                      <td>⭐️⭐️⭐️⭐️</td>
+                      <td class="td-team">
+                        <div class="img-1"></div>
+                        <div class="img-2"></div>
+                        <div class="img-3"></div>
+                      </td>
+                      <td>
+                        <span class="badge success">운영중</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>닭강정</td>
+                      <td>오공찬</td>
+                      <td>⭐️⭐️⭐️⭐️</td>
+                      <td class="td-team">
+                        <div class="img-1"></div>
+                        <div class="img-2"></div>
+                        <div class="img-3"></div>
+                      </td>
+                      <td>
+                        <span class="badge warning">휴가</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>닭강정</td>
+                      <td>오공찬</td>
+                      <td>⭐️⭐️⭐️⭐️</td>
+                      <td class="td-team">
+                        <div class="img-1"></div>
+                        <div class="img-2"></div>
+                        <div class="img-3"></div>
+                      </td>
+                      <td>
+                        <span class="badge warning">휴가</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 이부분도 수정님 파트입니다. -->
+                <div class="card-footer">
+                  <a href="./JumpoPage/jumpo.html"
+                    >더 많은 매장 정보 확인하기 (누르면 수정님 파트) 해당하는
+                    카테고리의 점포 매장 나열시켜주고 -> 그 점포누르면 세부 점포
+                    정보로 갈 수 있게 구현</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- 카카오 지도 부분 (인겸) -->
+            <div class="summary">
+              <div class="summary-card">
+                <div class="summary-single">
+                  <span class="ti-id-badge"></span>
+                  <div>
+                    <h5>카카오</h5>
+                    <small>카카오 지도</small>
+                  </div>
+                </div>
+                <div class="summary-single">
+                  <span class="ti-calendar"></span>
+                  <div>
+                    <h5>카카오</h5>
+                    <small>카카오 지도</small>
+                  </div>
+                </div>
+                <div class="summary-single">
+                  <span class="ti-face-smile"></span>
+                  <div>
+                    <h5>카카오</h5>
+                    <small>카카오 지도</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bday-card">
+                <div class="bday-flex">
+                  <div class="bday-img"></div>
+                  <div class="bday-info">
+                    <h5>카카오 지도</h5>
+                    <small>카카오 지도</small>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button>
+                    <span class="ti-gift"></span>
+                    카카오 지도
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
