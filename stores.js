@@ -3,91 +3,91 @@ const mockData = [
   {
     category: '분식',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 4.8,
     reviewCount: 3,
     operatingStatus: '운영중',
   },
   {
     category: '반찬',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 4.9,
     reviewCount: 3,
     operatingStatus: '운영중',
   },
   {
     category: '농산물',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 4.7,
     reviewCount: 3,
     operatingStatus: '운영중',
   },
   {
     category: '수산/횟집',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 3.5,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '축산물',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 2,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '과일',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 1.6,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '떡집',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 1.7,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '방앗간/건강원',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 3.8,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '마트',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 5,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '의류',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 4,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '화장품/잡화',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 3,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '꽃집/귀금속',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 4,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
   {
     category: '건어물/젓갈',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 5,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
@@ -95,16 +95,42 @@ const mockData = [
   {
     category: '기타',
     storeName: '오공찬',
-    storeRating: '⭐️⭐️⭐️⭐️',
+    storeRating: 5,
     reviewCount: 3,
     operatingStatus: '휴가',
   },
 ];
 
+function generateStarRating(rating) {
+  const maxRating = 5;
+  const fullStar = '⭐️';
+  const emptyStar = '☆';
+
+  let fullStars = Math.floor(rating);
+  let hasHalfStar = rating - fullStars >= 0.5;
+  let emptyStars = maxRating - fullStars - (hasHalfStar ? 1 : 0);
+
+  let starRating = '';
+
+  for (let i = 0; i < fullStars; i++) {
+    starRating += fullStar;
+  }
+
+  if (hasHalfStar) {
+    starRating += emptyStar;
+  }
+
+  for (let i = 0; i < emptyStars; i++) {
+    starRating += emptyStar;
+  }
+
+  return starRating;
+}
+
 // 페이지가 로드되면 실행되는 함수
 $(document).ready(function () {
-  renderTable(mockData); // 초기에는 모든 데이터를 테이블에 출력
-  attachMenuClickEvent(); // 사이드바 메뉴 항목에 클릭 이벤트 연결
+  renderTable(mockData);
+  attachMenuClickEvent();
 });
 
 function renderTable(data) {
@@ -115,7 +141,7 @@ function renderTable(data) {
     let row = $('<tr>');
     row.append($('<td>').text(store.category));
     row.append($('<td>').text(store.storeName));
-    row.append($('<td>').text(store.storeRating));
+    row.append($('<td>').text(generateStarRating(store.storeRating)));
     row.append($('<td>').text(store.reviewCount));
     row.append($('<td>').text(store.operatingStatus));
     tableBody.append(row);
