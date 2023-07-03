@@ -17,6 +17,8 @@
     ></script>
     <link rel="stylesheet" href="main.css" />
     <script src="./main.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="stores.js" defer></script>
   </head>
   <body>
     <input type="checkbox" id="sidebar-toggle" />
@@ -178,10 +180,10 @@
         <section class="recent">
           <div class="activity-grid">
             <div class="activity-card">
-              <h3>현재 HOT한 점포 정보</h3>
+              <h3 id="table-heading">현재 HOT한 점포 정보</h3>
 
               <div class="table-responsive">
-                <table>
+                <table id="stores-table">
                   <thead>
                     <tr>
                       <th>카테고리</th>
@@ -191,82 +193,8 @@
                       <th>운영 여부</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge success">운영중</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge success">운영중</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge success">운영중</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge warning">휴가</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge warning">휴가</span>
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tbody></tbody>
                 </table>
-                <!-- 이부분도 수정님 파트입니다. -->
-                <div class="card-footer">
-                  <a href="./JumpoPage/jumpo.html"
-                    >더 많은 매장 정보 확인하기 (누르면 수정님 파트) 해당하는
-                    카테고리의 점포 매장 나열시켜주고 -> 그 점포누르면 세부 점포
-                    정보로 갈 수 있게 구현</a
-                  >
-                </div>
               </div>
             </div>
 
