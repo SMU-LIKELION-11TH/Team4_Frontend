@@ -3,7 +3,6 @@ const obj = {
   store_image: "",
   store_desc: "",
   store_roadAddress: "",
-  store_jibunAddress:"",
   store_detailAddress: "",
   store_select: "",
   store_time_start: "",
@@ -96,7 +95,6 @@ function submit(){
   var store_name = document.getElementById("store_name").value;
   var store_desc = document.getElementById("store_desc").value;
   var store_roadAddress= document.getElementById("sample4_roadAddress").value;
-  var store_jibunAddress = document.getElementById("sample4_jibunAddress").value;
   var store_detailAddress = document.getElementById("sample4_detailAddress").value;
   var store_select = document.getElementById('store_select').value;
   var store_time_start = document.getElementById('store_time_start').value;
@@ -106,7 +104,6 @@ function submit(){
   obj.store_name = store_name;
   obj.store_desc = store_desc;
   obj.store_roadAddress = store_roadAddress;
-  obj.store_jibunAddress = store_jibunAddress;
   obj.store_detailAddress = store_detailAddress;
   obj.store_select = store_select;
   obj.store_time_start = store_time_start;
@@ -118,7 +115,6 @@ function submit(){
   formData.append('store_desc', store_desc);
   formData.append('store_image', store_image[0]);
   formData.append('store_roadAddress', store_roadAddress);
-  formData.append('store_jibunAddress', store_jibunAddress);
   formData.append('store_detailAddress', store_detailAddress);
   formData.append('store_select', store_select);
   formData.append('store_time_start', store_time_start);
