@@ -15,7 +15,6 @@ function addPlaceholders() {
   addPlaceholder("store_name","점포명");
   addPlaceholder("store_desc","점포설명$%$%$%$%$%");
   addPlaceholder("sample4_roadAddress","입력된 도로명주소");
-  addPlaceholder("sample4_jibunAddress","입력된 지번주소");
   addPlaceholder("sample4_detailAddress","입력된 상세주소");
   addPlaceholder("store_phone1","010");
   addPlaceholder("store_phone2","1234");
@@ -104,9 +103,7 @@ function sample4_execDaumPostcode() {
 function submit(){
   var store_desc = document.getElementById("store_desc").value;
   var store_roadAddress= document.getElementById("sample4_roadAddress").value;
-  var sample4_jibunAddress = document.getElementById("sample4_jibunAddress").value;
   var store_detailAddress = document.getElementById("sample4_detailAddress").value;
-  var store_select = document.getElementById('store_select').value;
   var store_time_start = document.getElementById('store_time_start').value;
   var store_time_end = document.getElementById('store_time_end').value;
   var store_phone = document.getElementById('store_phone1').value+document.getElementById('store_phone2').value+document.getElementById('store_phone3').value;

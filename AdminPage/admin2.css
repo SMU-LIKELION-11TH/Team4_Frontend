@@ -101,22 +101,6 @@ main {
 
 /* 여기서부터 작성하시면 됩니다. */
 .owner-sidebar {
-  width: 60px;
-  z-index: 150;
-}
-
-.owner-sidebar .owner-sidebar-header h3 span,
-.owner-sidebar li span:last-child {
-  display: none;
-}
-
-.owner-sidebar .owner-sidebar-header,
-.owner-sidebar li {
-  display: flex;
-  justify-content: center;
-}
-
-.owner-sidebar {
   height: 100%;
   width: 240px;
   position: fixed;
@@ -153,47 +137,20 @@ main {
 .owner-sidebar a i:last-child {
   padding-left: 0.6rem;
 }
-#sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header h3 span,
-#sidebar-toggle:checked ~ .owner-sidebar li span:last-child {
+
+#owner-sidebar-toggle:checked ~ .owner-sidebar {
+  width: 60px;
+}
+
+#owner-sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header h3 span,
+#owner-sidebar-toggle:checked ~ .owner-sidebar li span:last-child {
   display: none;
 }
 
-#sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header,
-#sidebar-toggle:checked ~ .owner-sidebar li {
+#owner-sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header,
+#owner-sidebar-toggle:checked ~ .owner-sidebar li {
   display: flex;
   justify-content: center;
-}
-
-#sidebar-toggle:checked ~ .owner-sidebar {
-  width: 240px;
-}
-
-#sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header h3 span,
-#sidebar-toggle:checked ~ .owner-sidebar li span:last-child {
-  display: inline;
-}
-
-#sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-#sidebar-toggle:checked ~ .owner-sidebar li {
-  display: block;
-}
-
-.owenr-hi{
-  justify-content: center;
-  margin-top: 80px;
-  text-align: center;
-}
-.owenr-hi>p{
-  font-size : 2vw;
-}
-
-.owenr-img{
-  width:10%;
-  height:10%;
 }
 .input-content {
   
@@ -346,6 +303,46 @@ main {
 
 /* 반응형 부분 */
 @media only screen and (max-width: 860px) {
+  .owner-sidebar {
+    width: 60px;
+    z-index: 150;
+  }
+
+  .owner-sidebar .owner-sidebar-header h3 span,
+  .owner-sidebar li span:last-child {
+    display: none;
+  }
+
+  .owner-sidebar .owner-sidebar-header,
+  .owner-sidebar li {
+    display: flex;
+    justify-content: center;
+  }
+  #owner-sidebar-toggle:checked ~ .owner-sidebar {
+    width: 240px;
+  }
+
+  #sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header h3 span,
+  #sidebar-toggle:checked ~ .owner-sidebar li span:last-child {
+    display: inline;
+  }
+
+  #sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #sidebar-toggle:checked ~ .owner-sidebar li {
+    display: block;
+  }
+
+  #sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+  }
+
+  #sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+  }
   .dash-cards {
     grid-template-columns: repeat(2, 1fr);
   }
