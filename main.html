@@ -26,6 +26,8 @@
     <script src="./main.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="stores.js" defer></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdeb846f848ee28339377e99853e2028&libraries=services"></script>
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico">
   </head>
   <body>
     <input type="checkbox" id="sidebar-toggle" />
@@ -225,45 +227,7 @@
 
             <!-- 카카오 지도 부분 (인겸) -->
             <div class="summary">
-              <div class="summary-card">
-                <div class="summary-single">
-                  <span class="ti-id-badge"></span>
-                  <div>
-                    <h5>카카오</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-                <div class="summary-single">
-                  <span class="ti-calendar"></span>
-                  <div>
-                    <h5>카카오</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-                <div class="summary-single">
-                  <span class="ti-face-smile"></span>
-                  <div>
-                    <h5>카카오</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bday-card">
-                <div class="bday-flex">
-                  <div class="bday-img"></div>
-                  <div class="bday-info">
-                    <h5>카카오 지도</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-
-                <div class="text-center">
-                  <button>
-                    <span class="ti-gift"></span>
-                    카카오 지도
-                  </button>
-                </div>
+              <div class="summary-card" id = "map">
               </div>
             </div>
           </div>
