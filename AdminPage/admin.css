@@ -100,8 +100,7 @@ main {
 }
 
 /* 여기서부터 작성하시면 됩니다. */
-
-.owner-sidebar {
+.sidebar {
   height: 100%;
   width: 240px;
   position: fixed;
@@ -114,7 +113,7 @@ main {
   transition: width 500ms;
 }
 
-.owner-sidebar-header {
+.sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,39 +121,46 @@ main {
   padding: 0rem 1rem;
 }
 
-.owner-sidebar-menu {
+.sidebar-menu {
   padding: 1rem;
 }
 
-.owner-sidebar li {
+.sidebar li {
   margin-bottom: 1.5rem;
 }
 
-.owner-sidebar a {
+.sidebar a {
   color: #fff;
   font-size: 0.8rem;
 }
 
-.owner-sidebar a i:last-child {
+.sidebar a i:last-child {
   padding-left: 0.6rem;
 }
 
-#owner-sidebar-toggle:checked ~ .owner-sidebar {
+#sidebar-toggle:checked ~ .sidebar {
   width: 60px;
 }
 
-#owner-sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header h3 span,
-#owner-sidebar-toggle:checked ~ .owner-sidebar li span:last-child {
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar li span:last-child {
   display: none;
 }
 
-#owner-sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header,
-#owner-sidebar-toggle:checked ~ .owner-sidebar li {
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li {
   display: flex;
   justify-content: center;
 }
-/*--------------------------*/
 
+#sidebar-toggle:checked ~ .main-content {
+  margin-left: 60px;
+}
+
+#sidebar-toggle:checked ~ .main-content header {
+  left: 60px;
+  width: calc(100% - 60px);
+}
 .owner-hi{
   justify-content: center;
   margin-top: 80px;
@@ -304,47 +310,6 @@ main {
 
 @media only screen and (max-width: 1200px) {
 
-  /*------------------------------------*/
-  .owner-sidebar {
-    width: 60px;
-    z-index: 150;
-  }
-
-  .owner-sidebar .owner-sidebar-header h3 span,
-  .owner-sidebar li span:last-child {
-    display: none;
-  }
-
-  .owner-sidebar .owner-sidebar-header,
-  .owner-sidebar li {
-    display: flex;
-    justify-content: center;
-  }
-  #owner-sidebar-toggle:checked ~ .owner-sidebar {
-    width: 240px;
-  }
-
-  #sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header h3 span,
-  #sidebar-toggle:checked ~ .owner-sidebar li span:last-child {
-    display: inline;
-  }
-
-  #sidebar-toggle:checked ~ .owner-sidebar .owner-sidebar-header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #sidebar-toggle:checked ~ .owner-sidebar li {
-    display: block;
-  }
-
-  #sidebar-toggle:checked ~ .main-content {
-    margin-left: 60px;
-  }
-
-  #sidebar-toggle:checked ~ .main-content header {
-    left: 60px;
-  }
 
   .main-content {
     margin-left: 60px;
@@ -364,8 +329,59 @@ main {
   }
 }
 /* 본인이 작성하신 코드 CSS 아래부터 작성해주시면 됩니다. 다른 부분은 건들이시면 안됩니다. */
-
 /* 반응형 부분 */
+@media only screen and (max-width: 1200px) {
+  .sidebar {
+    width: 60px;
+    z-index: 150;
+  }
+
+  .sidebar .sidebar-header h3 span,
+  .sidebar li span:last-child {
+    display: none;
+  }
+
+  .sidebar .sidebar-header,
+  .sidebar li {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-content {
+    margin-left: 60px;
+  }
+
+  .main-content header {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  #sidebar-toggle:checked ~ .sidebar {
+    width: 240px;
+  }
+
+  #sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+  #sidebar-toggle:checked ~ .sidebar li span:last-child {
+    display: inline;
+  }
+
+  #sidebar-toggle:checked ~ .sidebar .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #sidebar-toggle:checked ~ .sidebar li {
+    display: block;
+  }
+
+  #sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+  }
+
+  #sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+  }
+}
 @media only screen and (max-width: 860px) {
   .dash-cards {
     grid-template-columns: repeat(2, 1fr);
