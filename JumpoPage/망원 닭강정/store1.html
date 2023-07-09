@@ -137,10 +137,9 @@
 
         <!-- 가게 정보 -->
         <div class="store-info">
-
           <!-- 점포 이미지 -->
           <div class="store-image">
-            <img src="./firstMarket.jpeg" class="store-img" alt="firstImage">
+            <img src="./firstMarket.jpeg" class="store-img" alt="firstImage" />
           </div>
 
           <div class="store-details">
@@ -151,9 +150,12 @@
             <!-- 매장번호 & 영업시간 -->
             <p>02-3142-9952</p>
             <!-- 가게설명 -->
-            <p>저희 가게는 매일 새 기름을 사용해서 건강한 닭강정을 만듭니다. 맛이 다양하고, 고기가 담백한 것이 저희 가게의 특징입니다. </p>
+            <p>
+              저희 가게는 매일 새 기름을 사용해서 건강한 닭강정을 만듭니다. 맛이
+              다양하고, 고기가 담백한 것이 저희 가게의 특징입니다.
+            </p>
             <!-- 리뷰 / id, reviewer, stars, content -->
-            <div class="reviews" style="overflow: auto;">
+            <div class="reviews" style="overflow: auto">
               <table id="review-table">
                 <thead style="display: none">
                   <tr>
@@ -165,13 +167,18 @@
                 <tbody></tbody>
               </table>
             </div>
-            
+
             <form class="write-review">
-              <!-- 리뷰 작성 / id: content에 push -->            
-              <input type="text" id="content" name="content" placeholder="한 줄 리뷰를 작성해주세요!">
+              <!-- 리뷰 작성 / id: content에 push -->
+              <input
+                type="text"
+                id="content"
+                name="content"
+                placeholder="한 줄 리뷰를 작성해주세요!"
+              />
               <!-- 별점 등록 / id: stars -->
               <div class="myStars" id="myStars" name="myStars">
-                <span class="rating_result"></span> 
+                <span class="rating_result"></span>
                 <i class="rating_star far fa-star"></i>
                 <i class="rating_star far fa-star"></i>
                 <i class="rating_star far fa-star"></i>
@@ -179,39 +186,41 @@
                 <i class="rating_star far fa-star"></i>
               </div>
               <!-- 리뷰 저장 -->
-              <input id="reviewSubmit" type="submit" onclick="reviewSubmit()" value="저장"></input>
-            </form>                                
+              <input
+                id="reviewSubmit"
+                type="submit"
+                onclick="reviewSubmit()"
+                value="저장"
+              />
+            </form>
           </div>
-
         </div>
 
         <!-- 메뉴 정보 -->
         <div class="menu-info">
           <ul role="list" class="divide-y divide-gray-100">
             <li class="menu_details">
-                <img class="menu_image" src="./menu-img1.png" alt="">
-                <div class="menu_text">
-                  <h2 class="menu_name" id="menu_name">간장 닭강정</h2>
-                  <p class="menu_price">10000원</p>
-                  <p class="menu_desc" id="menu_desc">메뉴설명~</p>
-                </div>              
+              <img class="menu_image" src="./menu-img1.png" alt="" />
+              <div class="menu_text">
+                <h2 class="menu_name" id="menu_name">간장 닭강정</h2>
+                <p class="menu_price">10000원</p>
+                <p class="menu_desc" id="menu_desc">메뉴설명~</p>
+              </div>
             </li>
             <li class="menu_details">
-              <img class="menu_image" src="./menu-img2.png" alt="">
+              <img class="menu_image" src="./menu-img2.png" alt="" />
               <div class="menu_text">
                 <h2 class="menu_name" id="menu_name">매운 닭강정</h2>
                 <p class="menu_price">11000원</p>
                 <p class="menu_desc" id="menu_desc">메뉴설명~</p>
-              </div>              
+              </div>
             </li>
           </ul>
-          
-        </div>      
+        </div>
 
         <!-- 위치 정보(인겸님이 이 자리에 카카오맵 구현해 주시면 됩니다.) -->
         <h2>위치 정보</h2>
       </main>
     </div>
   </body>
-
 </html>

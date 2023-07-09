@@ -126,19 +126,119 @@ function renderReviewTable(data) {
 
 // 리뷰 작성
 const ratingStars = [...document.getElementsByClassName('rating_star')];
-let reviewData = [];
-console.log(ratingStars);
+const ratingResult = document.querySelector('.rating_result');
+executeRating(ratingStars, ratingResult);
 
-function reviewSubmit() {
-  const content = document.getElementById('content').value;
-  let stars = 0;
+const reviewData = [];
 
-  ratingStars.map((star, index) => {
+function executeRating(stars) {
+  const starClassActive = 'rating_star fas fa-star';
+  const starClassInactive = 'rating_star far fa-star';
+  const starsLength = stars.length;
+  let selectedStars = 0;
+
+  stars.forEach((star, index) => {
     star.onclick = () => {
-      stars = index + 1;
-      console.log(stars);
+      for (let i = 0; i < starsLength; i++) {
+        if (i <= index) {
+          stars[i].className = starClassActive;
+        } else {
+          stars[i].className = starClassInactive;
+        }
+      }
+
+      selectedStars = index + 1;
+      printRatingResult(selectedStars);
     };
   });
+
+  function printRatingResult(num = 0) {
+    ratingResult.textContent = `${num}`;
+    console.log(num);
+  }
+}
+
+const reviewForm = document.querySelector('.write-review');
+reviewForm.addEventListener('submit', reviewSubmit);
+
+function reviewSubmit(e) {
+  e.preventDefault(); // 기본 동작을 막음
+
+  const content = document.getElementById('content').value;
+  const stars = parseInt(ratingResult.textContent);
+
+  const newReview = {
+    content: content,
+    stars: stars,
+  };
+
+  reviewData.push(newReview);
+  console.log(reviewData);
+}
+
+//--------------------------------통신용------------------------------------
+// function reviewSubmit(){
+//   var content = $('#content').val();
+//   var stars = $('#stars').val();
+
+//   $("#reivewSubmit").on('click',function() {
+//     $.ajax({
+//       type: 'POST',
+//       url:'???'                ,  //백엔드에서 받아오기
+//       contentType : 'application/json',
+//       data: JSON.stringify({
+//         'content': content,
+//         'stars': stars
+//       }),
+//       success : function(data){
+//         alert('Success');
+//       },
+//       error: function(request, status, error){
+//         alert('Error');
+//       }
+//     })
+//   })
+// }
+//-------------------------------------------------------------------------
+
+// executeRating(ratingStars, ratingResult);
+// printRatingResult(ratingResult);
+
+// 별점 세는 함수
+function executeRating(stars) {
+  const starClassActive = 'rating_star fas fa-star';
+  const starClassInactive = 'rating_star far fa-star';
+  const starsLength = stars.length;
+  let selectedStars = 0;
+
+  stars.forEach((star, index) => {
+    star.onclick = () => {
+      for (let i = 0; i < starsLength; i++) {
+        if (i <= index) {
+          stars[i].className = starClassActive;
+        } else {
+          stars[i].className = starClassInactive;
+        }
+      }
+
+      selectedStars = index + 1;
+      printRatingResult(selectedStars);
+    };
+  });
+
+  function printRatingResult(num = 0) {
+    ratingResult.textContent = `${num}`;
+    console.log(num);
+  }
+}
+
+reviewForm.addEventListener('submit', reviewSubmit);
+
+function reviewSubmit(e) {
+  e.preventDefault(); // 기본 동작을 막음
+
+  const content = document.getElementById('content').value;
+  const stars = parseInt(ratingResult.textContent);
 
   const newReview = {
     content: content,
@@ -182,8 +282,9 @@ function executeRating(stars) {
   const starClassActive = 'rating_star fas fa-star';
   const starClassInactive = 'rating_star far fa-star';
   const starsLength = stars.length;
+  let selectedStars = 0;
 
-  stars.map((star, index) => {
+  stars.forEach((star, index) => {
     star.onclick = () => {
       for (let i = 0; i < starsLength; i++) {
         if (i <= index) {
@@ -193,15 +294,32 @@ function executeRating(stars) {
         }
       }
 
-      const selectedStars = index + 1;
+      selectedStars = index + 1;
       printRatingResult(selectedStars);
     };
   });
+
+  function printRatingResult(num = 0) {
+    ratingResult.textContent = `${num}`;
+    console.log(num);
+  }
 }
 
-function printRatingResult(result, num = 0) {
-  result.textContent = `${num}`;
-  console.log(result);
+reviewForm.addEventListener('submit', reviewSubmit);
+
+function reviewSubmit(e) {
+  e.preventDefault(); // 기본 동작을 막음
+
+  const content = document.getElementById('content').value;
+  const stars = parseInt(ratingResult.textContent);
+
+  const newReview = {
+    content: content,
+    stars: stars,
+  };
+
+  reviewData.push(newReview);
+  console.log(reviewData);
 }
 
 executeRating(ratingStars);
