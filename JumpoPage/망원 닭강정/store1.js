@@ -21,6 +21,21 @@ const mockDataReview = [
     reviewer: '야아',
     stars: 4,
     content: '맛있어요'
+  },
+  {
+    reviewer: '아이디',
+    stars: 5,
+    content: '맛있는듯'
+  },
+  {
+    reviewer: '뭐로',
+    stars: 5,
+    content: '튀김이 빠삭해요'
+  },
+  {
+    reviewer: '하지',
+    stars: 2,
+    content: '양념 매워요'
   }
 ];
 
@@ -34,7 +49,21 @@ const mockDataReview = [
 //   $.ajax({
 //     url: '/api/data', // 백엔드에서 제공하는 url 넣는 곳
 //     method: 'GET',
-//     success: function(data) {
+//     dataType: 'JSON',
+//     success: function(response) {
+//       const storeId = response.storeId;
+//       const storeName = response.storeName;
+//       const storeDesc = response.storeDesc;
+//       const storeAddress = response.storeAddress;
+//       const storeTime = response.storeTime;
+//       const storeTel = response.storeTel;
+//
+//       $('#storeId').text(storeId);
+//       $('#storeName').text(storeName);
+//       $('#storeDesc').text(storeDesc);
+//       $('#storeAddress').text(storeAddress);
+//       $('#storeTime').text(storeTime);
+//       $('#storeTel').text(storeTel);
 //     },
 //     error: function(error) {
 //       console.log('Error:', error);
@@ -54,7 +83,15 @@ function renderReviewTable(data) {
 
   data.forEach(function (review) {
     let row = $('<tr>');
-    row.append($('<td>').text(review.stars));
+    let starRating = review.stars; // 리뷰의 별점
+
+    // 별을 그리는 기능 추가
+    let stars = $('<span>').addClass('stars');
+    for (let i = 0; i < starRating; i++) {
+      stars.append($('<i>').addClass('fas fa-star').css('color', '#ffd700'));
+    }
+
+    row.append($(stars));
     row.append($('<td>').text(review.content));
     row.append($('<td>').text('('+review.reviewer+')'));
     tableBody.append(row);
@@ -92,7 +129,34 @@ function renderReviewTable(data) {
 
 
 // 리뷰 작성
-// function onSubmitReview(){
+const ratingStars = [...document.getElementsByClassName("rating_star")];
+let reviewData = [];
+console.log(ratingStars);
+
+function reviewSubmit() {
+  const content = document.getElementById("content");
+  let i;
+
+  ratingStars.map((star) => {
+    star.onclick = () => {
+      i = ratingStars.indexOf(star);
+      console.log(i);
+    }
+  }) 
+  const stars = i+1;
+
+  const newReview = {
+    content: content,
+    stars: stars
+  }
+
+  reviewData.append(newReview);
+  console.log(reviewData);
+}
+
+
+//--------------------------------통신용------------------------------------
+// function reviewSubmit(){
 //   var content = $('#content').val();
 //   var stars = $('#stars').val();   
 
@@ -114,33 +178,37 @@ function renderReviewTable(data) {
 //     })
 //   })
 // }
-
+//-------------------------------------------------------------------------
 
 // executeRating(ratingStars, ratingResult);
 // printRatingResult(ratingResult);
 
 // 별점 세는 함수
-function executeRating(stars, result) {
-  const starClassActive = "rating_star far fa-star";
-  const starClassUnactive = "rating_star far fa-star";
+function executeRating(stars) {
+  const starClassActive = "rating_star fas fa-star";
+  const starClassInactive = "rating_star far fa-star";
   const starsLength = stars.length;
   let i;
-  stars.map((star) => {
-     star.onclick = () => {
-        i = stars.indexOf(star);
-        console.log(i);
 
-        if (star.className.indexOf(starClassUnactive) !== -1) {
-           printRatingResult(result, i + 1);
-           for (i; i >= 0; --i) stars[i].className = starClassActive;
-        } else {
-           printRatingResult(result, i);
-           for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
-        }
-     };
+  stars.map((star) => {
+    star.onclick = () => {
+      i = stars.indexOf(star);
+
+      if (star.className===starClassInactive) {
+        for (i; i >= 0; --i) stars[i].className = starClassActive;
+      } else {
+        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+      }
+    };
   });
 }
 
 function printRatingResult(result, num = 0) {
   result.textContent = `${num}/5`;
 }
+
+executeRating(ratingStars);
+
+//---------------------------통신용-------------------------------------
+
+//--------------------------------------------------------------------

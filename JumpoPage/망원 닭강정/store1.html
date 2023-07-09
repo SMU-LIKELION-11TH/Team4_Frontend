@@ -153,11 +153,11 @@
             <!-- 가게설명 -->
             <p>저희 가게는 매일 새 기름을 사용해서 건강한 닭강정을 만듭니다. 맛이 다양하고, 고기가 담백한 것이 저희 가게의 특징입니다. </p>
             <!-- 리뷰 / id, reviewer, stars, content -->
-            <div class="reviews">
+            <div class="reviews" style="overflow: auto;">
               <table id="review-table">
                 <thead style="display: none">
                   <tr>
-                    <th>별점</th>
+                    <th id="stars">별점</th>
                     <th>리뷰</th>
                     <th>작성자</th>
                   </tr>
@@ -166,11 +166,11 @@
               </table>
             </div>
             
-            <form class="write-review" method="post">
+            <form class="write-review">
               <!-- 리뷰 작성 / id: content에 push -->            
-              <input type="text" id="content" name="content" placeholder="리뷰를 작성해주세요!">
+              <input type="text" id="content" name="content" placeholder="한 줄 리뷰를 작성해주세요!">
               <!-- 별점 등록 / id: stars -->
-              <div class="stars" id="stars" name="stars">
+              <div class="myStars" id="myStars" name="myStars">
                 <span class="rating_result"></span> 
                 <i class="rating_star far fa-star"></i>
                 <i class="rating_star far fa-star"></i>
@@ -179,7 +179,7 @@
                 <i class="rating_star far fa-star"></i>
               </div>
               <!-- 리뷰 저장 -->
-              <input id="reviewSubmit" type="button" value="저장">            
+              <input id="reviewSubmit" type="submit" onclick="reviewSubmit()" value="저장"></input>
             </form>                                
           </div>
 
@@ -210,7 +210,6 @@
 
         <!-- 위치 정보(인겸님이 이 자리에 카카오맵 구현해 주시면 됩니다.) -->
         <h2>위치 정보</h2>
-
       </main>
     </div>
   </body>
