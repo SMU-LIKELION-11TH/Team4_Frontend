@@ -130,23 +130,22 @@ let reviewData = [];
 console.log(ratingStars);
 
 function reviewSubmit() {
-  const content = document.getElementById('content');
-  let i;
+  const content = document.getElementById('content').value;
+  let stars = 0;
 
-  ratingStars.map((star) => {
+  ratingStars.map((star, index) => {
     star.onclick = () => {
-      i = ratingStars.indexOf(star);
-      console.log(i);
+      stars = index + 1;
+      console.log(stars);
     };
   });
-  const stars = i + 1;
 
   const newReview = {
     content: content,
     stars: stars,
   };
 
-  reviewData.append(newReview);
+  reviewData.push(newReview);
   console.log(reviewData);
 }
 
@@ -183,24 +182,26 @@ function executeRating(stars) {
   const starClassActive = 'rating_star fas fa-star';
   const starClassInactive = 'rating_star far fa-star';
   const starsLength = stars.length;
-  let i;
 
-  stars.map((star) => {
+  stars.map((star, index) => {
     star.onclick = () => {
-      i = stars.indexOf(star);
-      console.log(i);
-
-      if (star.className === starClassInactive) {
-        for (i; i >= 0; --i) stars[i].className = starClassActive;
-      } else {
-        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+      for (let i = 0; i < starsLength; i++) {
+        if (i <= index) {
+          stars[i].className = starClassActive;
+        } else {
+          stars[i].className = starClassInactive;
+        }
       }
+
+      const selectedStars = index + 1;
+      printRatingResult(selectedStars);
     };
   });
 }
 
 function printRatingResult(result, num = 0) {
-  result.textContent = `${num}/5`;
+  result.textContent = `${num}`;
+  console.log(result);
 }
 
 executeRating(ratingStars);
