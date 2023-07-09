@@ -3,6 +3,7 @@ const obj = {
   store_image: "",
   store_desc: "",
   store_roadAddress: "",
+  store_jibunAddress:"",
   store_detailAddress: "",
   store_select: "",
   store_time_start: "",
@@ -95,26 +96,43 @@ function submit(){
   var store_name = document.getElementById("store_name").value;
   var store_desc = document.getElementById("store_desc").value;
   var store_roadAddress= document.getElementById("sample4_roadAddress").value;
+  var store_jibunAddress = document.getElementById("sample4_jibunAddress").value;
   var store_detailAddress = document.getElementById("sample4_detailAddress").value;
   var store_select = document.getElementById('store_select').value;
   var store_time_start = document.getElementById('store_time_start').value;
   var store_time_end = document.getElementById('store_time_end').value;
   var store_phone = document.getElementById('store_phone1').value+document.getElementById('store_phone2').value+document.getElementById('store_phone3').value;
+
+  store_time_start = String(store_time_start);
+  store_time_end = String(store_time_end);
+
+  // if (store_name === "" || store_desc === "" || store_roadAddress === "" || store_select === "" || store_time_start === "" || store_time_end === "" || store_phone === "") {
+  //   alert("모든 필드를 채워주세요.");
+  //   return;
+  // }
   
-  obj.store_name = store_name;
-  obj.store_desc = store_desc;
-  obj.store_roadAddress = store_roadAddress;
-  obj.store_detailAddress = store_detailAddress;
-  obj.store_select = store_select;
-  obj.store_time_start = store_time_start;
-  obj.store_time_end = store_time_end;
-  obj.store_phone = store_phone;
+  // obj.store_name = store_name;
+  // obj.store_desc = store_desc;
+  // obj.store_roadAddress = store_roadAddress;
+  // obj.store_jibunAddress = store_jibunAddress;
+  // obj.store_detailAddress = store_detailAddress;
+  // obj.store_select = store_select;
+  // obj.store_time_start = store_time_start;
+  // obj.store_time_end = store_time_end;
+  // obj.store_phone = store_phone;
 
   var formData = new FormData();
+
+
   formData.append('store_name', store_name);
   formData.append('store_desc', store_desc);
-  formData.append('store_image', store_image[0]);
+  formData.append('store_image', obj.store_image);
+  formData.append(
+    "key",
+    new Blob([JSON.stringify(obj.store_image.info)], { type: "application/json" })
+  );
   formData.append('store_roadAddress', store_roadAddress);
+  formData.append('store_jibunAddress', store_jibunAddress);
   formData.append('store_detailAddress', store_detailAddress);
   formData.append('store_select', store_select);
   formData.append('store_time_start', store_time_start);
@@ -146,5 +164,7 @@ function submit(){
   for (var pair of formData.entries()) {
     console.log(pair[1]);
     }
-  console.log(formData);
+
+  alert("등록이 완료되었습니다.");
+  location.reload();
 }
