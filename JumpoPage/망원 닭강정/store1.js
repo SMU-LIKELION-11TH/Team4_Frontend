@@ -10,39 +10,23 @@ const mockDataReview = [
   {
     reviewer: 'soo',
     stars: 5,
-    content: '친절해요'
+    content: '친절해요',
   },
   {
     reviewer: '예에',
     stars: 3,
-    content: '평범해요'
+    content: '평범해요',
   },
   {
     reviewer: '야아',
     stars: 4,
-    content: '맛있어요'
+    content: '맛있어요',
   },
-  {
-    reviewer: '아이디',
-    stars: 5,
-    content: '맛있는듯'
-  },
-  {
-    reviewer: '뭐로',
-    stars: 5,
-    content: '튀김이 빠삭해요'
-  },
-  {
-    reviewer: '하지',
-    stars: 2,
-    content: '양념 매워요'
-  }
 ];
 
 // -------------------------------------------------------------------------
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
-
 
 //--------------------------------통신용------------------------------
 // $(document).ready(function() {
@@ -93,7 +77,7 @@ function renderReviewTable(data) {
 
     row.append($(stars));
     row.append($('<td>').text(review.content));
-    row.append($('<td>').text('('+review.reviewer+')'));
+    row.append($('<td>').text('(' + review.reviewer + ')'));
     tableBody.append(row);
   });
 }
@@ -123,42 +107,38 @@ function renderReviewTable(data) {
 // }
 //-----------------------------------------------------------------------
 
-
 // 3. 메뉴 사진, 메뉴 이름, 메뉴 설명
 
-
-
 // 리뷰 작성
-const ratingStars = [...document.getElementsByClassName("rating_star")];
+const ratingStars = [...document.getElementsByClassName('rating_star')];
 let reviewData = [];
 console.log(ratingStars);
 
 function reviewSubmit() {
-  const content = document.getElementById("content");
+  const content = document.getElementById('content');
   let i;
 
   ratingStars.map((star) => {
     star.onclick = () => {
       i = ratingStars.indexOf(star);
       console.log(i);
-    }
-  }) 
-  const stars = i+1;
+    };
+  });
+  const stars = i + 1;
 
   const newReview = {
     content: content,
-    stars: stars
-  }
+    stars: stars,
+  };
 
   reviewData.append(newReview);
   console.log(reviewData);
 }
 
-
 //--------------------------------통신용------------------------------------
 // function reviewSubmit(){
 //   var content = $('#content').val();
-//   var stars = $('#stars').val();   
+//   var stars = $('#stars').val();
 
 //   $("#reivewSubmit").on('click',function() {
 //     $.ajax({
@@ -167,7 +147,7 @@ function reviewSubmit() {
 //       contentType : 'application/json',
 //       data: JSON.stringify({
 //         'content': content,
-//         'stars': stars     
+//         'stars': stars
 //       }),
 //       success : function(data){
 //         alert('Success');
@@ -178,26 +158,28 @@ function reviewSubmit() {
 //     })
 //   })
 // }
-//-------------------------------------------------------------------------
 
 // executeRating(ratingStars, ratingResult);
 // printRatingResult(ratingResult);
 
 // 별점 세는 함수
-function executeRating(stars) {
-  const starClassActive = "rating_star fas fa-star";
-  const starClassInactive = "rating_star far fa-star";
+function executeRating(stars, result) {
+  const starClassActive = 'rating_star far fa-star';
+  const starClassUnactive = 'rating_star far fa-star';
   const starsLength = stars.length;
   let i;
 
   stars.map((star) => {
     star.onclick = () => {
       i = stars.indexOf(star);
+      console.log(i);
 
-      if (star.className===starClassInactive) {
+      if (star.className.indexOf(starClassUnactive) !== -1) {
+        printRatingResult(result, i + 1);
         for (i; i >= 0; --i) stars[i].className = starClassActive;
       } else {
-        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+        printRatingResult(result, i);
+        for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
       }
     };
   });
@@ -206,9 +188,3 @@ function executeRating(stars) {
 function printRatingResult(result, num = 0) {
   result.textContent = `${num}/5`;
 }
-
-executeRating(ratingStars);
-
-//---------------------------통신용-------------------------------------
-
-//--------------------------------------------------------------------
