@@ -149,218 +149,141 @@ main {
   padding: 1rem 3rem;
 }
 
-.dash-title {
-  color: var(--color-dark);
-  margin-bottom: 1rem;
+/* 여기서부터 작성하시면 됩니다. */
+.store-img {
+  width: 708px;
+  height: 487px;
+  top: 79px;
+  left: 296px;
+  border-radius: 10px;
 }
 
-.dash-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 3rem;
-}
-
-.card-single {
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-.card-body {
-  padding: 1.3rem 1rem;
+.store-info {
   display: flex;
-  align-items: center;
+  margin-bottom: 15px;
+  gap: 15px;
 }
 
-.card-body i {
-  font-size: 1.5rem;
-  color: #777;
-  padding-right: 1.4rem;
+.store-image {
+  margin: 10px;
+  width: 708px;
+  height: 494px;
 }
 
-.card-body h5 {
-  color: var(--text-grey);
-  font-size: 1rem;
-}
-
-.card-body h4 {
-  color: var(--color-dark);
-  font-size: 1.1rem;
-  margin-top: 0.2rem;
-}
-
-.card-footer {
-  padding: 0.2rem 1rem;
-  background: #f9fafc;
-}
-
-.card-footer a {
-  color: var(--main-color);
-}
-
-.recent {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.activity-grid {
-  display: grid;
-  grid-template-columns: 75% 25%;
-  grid-column-gap: 1.5rem;
-}
-
-.activity-card,
-.summary-card{
-  top: 10px;
-  height: 900px;
-}
-.bday-card {
-  background: #fff;
-  border-radius: 7px;
-}
-
-.activity-card h3 {
-  color: var(--text-grey);
-  margin: 1rem;
-}
-
-.activity-card table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.activity-card thead {
-  background: #efefef;
-  text-align: left;
-}
-
-th,
-td {
-  font-size: 0.9rem;
-  padding: 1rem 1rem;
-  color: var(--color-dark);
-}
-
-td {
-  font-size: 0.8rem;
-}
-
-tbody tr:nth-child(even) {
-  background: #f9fafc;
-}
-
-.badge {
-  padding: 0.2rem 1rem;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.7rem;
-}
-
-.badge.success {
-  background: #def7ec;
-  color: var(--main-color);
-}
-
-.badge.warning {
-  background: #f0f6b2;
-  color: orange;
-}
-
-.td-team {
-  display: flex;
-  align-items: center;
-}
-
-.img-1,
-.img-2,
-.img-3 {
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  margin-left: -15px;
-  border: 3px solid #efefef;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.img-1 {
-  background-image: url(img/1.jpg);
-}
-
-.img-2 {
-  background-image: url(img/2.jpg);
-}
-
-.img-3 {
-  background-image: url(img/3.jpeg);
-}
-
-.summary-card {
-  margin-bottom: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.summary-single {
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.summary-single span {
-  font-size: 1.5rem;
-  color: #777;
-  padding-right: 1rem;
-}
-
-.summary-single h5 {
-  color: var(--main-color);
-  font-size: 1.1rem;
-  margin-bottom: 0rem !important;
-}
-
-.summary-single small {
-  font-weight: 700;
-  color: var(--text-grey);
-}
-
-.bday-flex {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.3rem;
-}
-
-.bday-card {
-  padding: 1rem;
-}
-
-.bday-img {
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  border: 3px solid #efefef;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(img/3.jpeg);
-  margin-right: 0.7rem;
-}
-
-.text-center {
+.store-details {
   text-align: center;
+  display: grid;
+  align-self: center;
+  grid-row-gap: 5px;
 }
 
-.text-center button {
-  background: var(--main-color);
-  color: #fff;
-  border: 1px solid var(--main-color);
-  border-radius: 4px;
-  padding: 0.4rem 1rem;
+.write-review {
+  text-align: -webkit-center;
+  margin-top: 10px;
 }
 
-.table-responsive {
-  overflow-x: auto;
+.reviews {
+  height: 80px;
+  margin: 10px 10px 0px 10px;
+  background-color: white;
+  border: 1px solid gray;
 }
 
+tr {
+  display: grid;
+  grid-template-columns: 117px 510px 153px;
+}
+
+.submit {
+  float: right;
+  margin-right: 180px;
+}
+
+.write-review #content {
+  margin: 10px;
+  padding: 10px;
+  width: -webkit-fill-available;
+  height: 80px
+}
+
+#myStars {
+  position: relative;
+  width: 200px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+#review-table td:nth-child(2) {
+  text-align: left;
+  color: rgb(75 85 99);
+}
+
+#review-table td:nth-child(3) {
+  text-align: left;
+  color: rgb(75 85 99);
+}
+
+.rating_result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-10px) translateX(-5px);
+  z-index: -9;
+  font: 3em Arial, Helvetica, sans-serif;
+  color: #ebebeb8e;
+  pointer-events: none;
+}
+
+.rating_star {
+  cursor: pointer;
+  color: #dabd18b2;
+}
+
+#reviewSubmit {  
+  border-radius: 50px;
+  border: none;
+  width: 50px;
+  height: 30px;
+  background-color: #027581;
+  color: white;
+}
+
+.menu_details {
+  display: flex;
+  box-shadow: gray;
+  border-radius: 10px;
+  background-color: rgb(229 229 229);
+  margin-bottom: 10px;
+}
+
+.menu_text {
+  margin: 10px;
+}
+
+.menu_image {
+  border-radius: 10px;
+  margin: 10px;
+  height: 150px;
+  width: 300px;
+}
+
+.menu_text {
+  display: grid;
+  grid-gap: 10px;
+  align-content: center;
+}
+
+
+
+
+/* 반응형 */
 @media only screen and (max-width: 1200px) {
   .sidebar {
     width: 60px;
@@ -414,19 +337,20 @@ tbody tr:nth-child(even) {
   }
 }
 
+/* 반응형 부분 */
 @media only screen and (max-width: 860px) {
   .dash-cards {
     grid-template-columns: repeat(2, 1fr);
   }
-
+  
   .card-single {
     margin-bottom: 1rem;
   }
-
+  
   .activity-grid {
     display: block;
   }
-
+  
   .summary {
     margin-top: 1.5rem;
   }
@@ -442,5 +366,23 @@ tbody tr:nth-child(even) {
   main {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+
+/* 본인이 작성하신 코드 CSS 아래부터 작성해주시면 됩니다. 다른 부분은 건들이시면 안됩니다. */
+@media screen and (max-width: 1200px) {
+  .store-details {
+      float: none;
+      width: auto;
+  }
+  .menu-info {
+      float: none;
+      width: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .store-info {
+    flex: none;
+    display: grid;
   }
 }

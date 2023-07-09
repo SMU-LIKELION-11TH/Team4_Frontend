@@ -100,7 +100,6 @@ main {
 }
 
 /* 여기서부터 작성하시면 됩니다. */
-
 .owner-sidebar {
   height: 100%;
   width: 240px;
@@ -153,22 +152,6 @@ main {
   display: flex;
   justify-content: center;
 }
-/*--------------------------*/
-
-.owner-hi{
-  justify-content: center;
-  margin-top: 80px;
-  text-align: center;
-}
-.owner-hi>p{
-  font-size : 2vw;
-}
-
-.owner-img{
-  width:10%;
-  height:10%;
-}
-
 .input-content {
   
   background : white;
@@ -196,7 +179,6 @@ main {
   border: none;
   border-bottom: solid #aaaaaa 1px;
 }
-
 .store_address_box>input{
   width : 24%;
   height :32px;
@@ -210,20 +192,26 @@ main {
   border-width:1px;
 }
 
+.submit{
+  margin: auto;
+  display:block;
+  text-align : center;
+  width : 200px;
+  font-size : 16px;
+  font-weight: bold;
+  border:none;
+  padding:10px 15px;
+  color : white;
+  background-color: #027581;
+  clear:left;
 
+}
 .store_title{
   font-weight:bold;
   font-size:1.5vw;
   margin-top:12px;
   margin-bottom : 12px;
   text-align: left;
-}
-
-.store_select{
-  width : 100%;
-  height: 36px;
-  text-align: left;
-  border: solid #aaaaaa 1px;
 }
 
 .search_postcode_button{
@@ -237,29 +225,6 @@ main {
   background-color: #8390a2;
   border : none;
 }
-.sample4_postcode{
-  display:none;
-}
-.sample4_extraAddress{
-  display:none;
-}
-
-.store_desc_box{
-  clear:left;
-}
-
-
-.store_time>input{
-  width : 48%;
-  height:32px;
-  border: solid #aaaaaa 1px;
-}
-.store_phonenumber>input{
-  width:30%;
-  height:32px;
-  border: solid #aaaaaa 1px;
-}
-
 .store_image{
   display: none;
 
@@ -286,25 +251,58 @@ main {
   margin-bottom:20px;
 }
 
-.submit{
-  margin: auto;
-  display:block;
-  text-align : center;
-  width : 200px;
-  font-size : 16px;
-  font-weight: bold;
-  border:none;
-  padding:10px 15px;
-  color : white;
-  background-color: #027581;
-  clear:left;
+.sample4_postcode{
+  display:none;
+}
+.sample4_extraAddress{
+  display:none;
+}
 
+.store_desc_box{
+  clear:left;
+}
+
+.store_select{
+  width : 100%;
+  height: 36px;
+  text-align: left;
+  border: solid #aaaaaa 1px;
+}
+.store_time>input{
+  width : 48%;
+  height:32px;
+  border: solid #aaaaaa 1px;
+}
+.store_phonenumber>input{
+  width:30%;
+  height:32px;
+  border: solid #aaaaaa 1px;
 }
 /* 반응형 */
 
 @media only screen and (max-width: 1200px) {
 
-  /*------------------------------------*/
+  .main-content {
+    margin-left: 60px;
+  }
+
+  .main-content header {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  #sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+  }
+
+  #sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+  }
+}
+/* 본인이 작성하신 코드 CSS 아래부터 작성해주시면 됩니다. 다른 부분은 건들이시면 안됩니다. */
+
+/* 반응형 부분 */
+@media only screen and (max-width: 860px) {
   .owner-sidebar {
     width: 60px;
     z-index: 150;
@@ -345,28 +343,6 @@ main {
   #sidebar-toggle:checked ~ .main-content header {
     left: 60px;
   }
-
-  .main-content {
-    margin-left: 60px;
-  }
-
-  .main-content header {
-    left: 60px;
-    width: calc(100% - 60px);
-  }
-
-  #sidebar-toggle:checked ~ .main-content {
-    margin-left: 60px;
-  }
-
-  #sidebar-toggle:checked ~ .main-content header {
-    left: 60px;
-  }
-}
-/* 본인이 작성하신 코드 CSS 아래부터 작성해주시면 됩니다. 다른 부분은 건들이시면 안됩니다. */
-
-/* 반응형 부분 */
-@media only screen and (max-width: 860px) {
   .dash-cards {
     grid-template-columns: repeat(2, 1fr);
   }

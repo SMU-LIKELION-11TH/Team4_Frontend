@@ -9,14 +9,25 @@
     <title>시장에 가면</title>
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-+Zd/QjhXXqE+YzG+AOEhgRSo5n2NZU61Dy0eqRmyzjsOO/Em3cs+39cGKs6oK9q8SypRlAL+ngK5EVuKv5X/Iw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
     />
     <script
       src="https://kit.fontawesome.com/8e32291ca2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="main.css" /> 
     <script src="./main.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./stores.js" defer></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdeb846f848ee28339377e99853e2028&libraries=services"></script>
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico">
   </head>
   <body>
     <input type="checkbox" id="sidebar-toggle" />
@@ -140,11 +151,17 @@
               <i class="fa-solid fa-medal" style="color: #ffd700"></i>
               <div>
                 <h4>1. 망원 닭강정</h4>
-                <h5>⭐️⭐️⭐️⭐️⭐️</h5>
+                <h5>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star-half-alt" style="color: #ffd700"></i>
+                </h5>
               </div>
             </div>
             <div class="card-footer">
-              <a href="">매장 정보 확인하기(수정 - 1등 세부 매장 정보)</a>
+              <a href="./JumpoPage/망원 닭강정/store1.html">매장 정보 확인하기</a>
             </div>
           </div>
 
@@ -153,7 +170,13 @@
               <i class="fa-solid fa-medal" style="color: #c0c0c0"></i>
               <div>
                 <h4>2. 고려왕족발</h4>
-                <h5>⭐️⭐️⭐️⭐️⭐️</h5>
+                <h5>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star-half-alt" style="color: #ffd700"></i>
+                </h5>
               </div>
             </div>
             <div class="card-footer">
@@ -166,7 +189,13 @@
               <i class="fa-solid fa-medal" style="color: #cd7f32"></i>
               <div>
                 <h4>3. 망원시장손칼국수</h4>
-                <h5>⭐️⭐️⭐️⭐️⭐️</h5>
+                <h5>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star" style="color: #ffd700"></i>
+                  <i class="fas fa-star-half-alt" style="color: #ffd700"></i>
+                </h5>
               </div>
             </div>
             <div class="card-footer">
@@ -178,10 +207,10 @@
         <section class="recent">
           <div class="activity-grid">
             <div class="activity-card">
-              <h3>현재 HOT한 점포 정보</h3>
+              <h3 id="table-heading">현재 HOT한 점포 정보</h3>
 
               <div class="table-responsive">
-                <table>
+                <table id="stores-table">
                   <thead>
                     <tr>
                       <th>카테고리</th>
@@ -191,126 +220,14 @@
                       <th>운영 여부</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge success">운영중</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge success">운영중</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge success">운영중</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge warning">휴가</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>닭강정</td>
-                      <td>오공찬</td>
-                      <td>⭐️⭐️⭐️⭐️</td>
-                      <td class="td-team">
-                        <div class="img-1"></div>
-                        <div class="img-2"></div>
-                        <div class="img-3"></div>
-                      </td>
-                      <td>
-                        <span class="badge warning">휴가</span>
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tbody></tbody>
                 </table>
-                <!-- 이부분도 수정님 파트입니다. -->
-                <div class="card-footer">
-                  <a href="./JumpoPage/jumpo.html"
-                    >더 많은 매장 정보 확인하기 (누르면 수정님 파트) 해당하는
-                    카테고리의 점포 매장 나열시켜주고 -> 그 점포누르면 세부 점포
-                    정보로 갈 수 있게 구현</a
-                  >
-                </div>
               </div>
             </div>
 
             <!-- 카카오 지도 부분 (인겸) -->
             <div class="summary">
-              <div class="summary-card">
-                <div class="summary-single">
-                  <span class="ti-id-badge"></span>
-                  <div>
-                    <h5>카카오</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-                <div class="summary-single">
-                  <span class="ti-calendar"></span>
-                  <div>
-                    <h5>카카오</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-                <div class="summary-single">
-                  <span class="ti-face-smile"></span>
-                  <div>
-                    <h5>카카오</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bday-card">
-                <div class="bday-flex">
-                  <div class="bday-img"></div>
-                  <div class="bday-info">
-                    <h5>카카오 지도</h5>
-                    <small>카카오 지도</small>
-                  </div>
-                </div>
-
-                <div class="text-center">
-                  <button>
-                    <span class="ti-gift"></span>
-                    카카오 지도
-                  </button>
-                </div>
+              <div class="summary-card" id = "map">
               </div>
             </div>
           </div>

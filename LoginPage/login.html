@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>시장에 가면</title>
     <link rel="stylesheet" href="./login.css" />
-    <script src="login.js" defer></script>
+    <script src="./login.js" defer></script>
   </head>
   <body>
     <div id="container" class="container">
@@ -13,45 +13,80 @@
         <!-- 회원가입 -->
         <div class="col align-items-center flex-col sign-up">
           <div class="form-wrapper align-items-center">
-            <div class="form sign-up">
+            <form class="form sign-up">
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="사용자명" />
+                <input
+                  id="signUpUsername"
+                  type="text"
+                  placeholder="사용자명"
+                  autocomplete="username"
+                />
               </div>
               <div class="input-group">
                 <i class="bx bx-mail-send"></i>
-                <input type="email" placeholder="이메일" />
+                <input
+                  id="signUpEmail"
+                  type="email"
+                  placeholder="이메일"
+                  autocomplete="email"
+                />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" />
+                <input
+                  id="signUpPassword"
+                  type="password"
+                  placeholder="비밀번호"
+                  autocomplete="new-password"
+                />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호 확인" />
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="비밀번호 확인"
+                  autocomplete="new-password"
+                />
+                <label for="adminCheck"
+                  >점포 관리자 계정으로 가입하시겠습니까?</label
+                >
+                <input id="adminCheck" type="checkbox" />
               </div>
-              <button>회원가입</button>
+              <p id="passwordError" class="error-message"></p>
+              <button onclick="signUp()">회원가입</button>
               <p>
                 <span> 이미 계정이 있으신가요? </span>
                 <b onclick="toggle()" class="pointer"> 로그인 </b>
               </p>
-            </div>
+            </form>
           </div>
         </div>
         <!-- 회원 가입 끝 -->
         <!-- 로그인 -->
         <div class="col align-items-center flex-col sign-in">
           <div class="form-wrapper align-items-center">
-            <div class="form sign-in">
+            <form class="form sign-in">
               <div class="input-group">
                 <i class="bx bxs-user"></i>
-                <input type="text" placeholder="아이디" />
+                <input
+                  id="signInUsername"
+                  type="text"
+                  placeholder="아이디"
+                  autocomplete="username"
+                />
               </div>
               <div class="input-group">
                 <i class="bx bxs-lock-alt"></i>
-                <input type="password" placeholder="비밀번호" />
+                <input
+                  id="signInPassword"
+                  type="password"
+                  placeholder="비밀번호"
+                  autocomplete="current-password"
+                />
               </div>
-              <button>로그인</button>
+              <button onclick="login()">로그인</button>
               <p>
                 <b> 비밀번호를 잃어버리셨나요? </b>
               </p>
@@ -61,7 +96,7 @@
                   새 계정을 만들어보세요
                 </b>
               </p>
-            </div>
+            </form>
           </div>
           <div class="form-wrapper"></div>
         </div>
