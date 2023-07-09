@@ -210,7 +210,7 @@ main {
 }
 
 .activity-card,
-.summary-card{
+.summary-card {
   top: 10px;
   height: 900px;
 }
@@ -285,14 +285,6 @@ tbody tr:nth-child(even) {
 
 .img-1 {
   background-image: url(img/1.jpg);
-}
-
-.img-2 {
-  background-image: url(img/2.jpg);
-}
-
-.img-3 {
-  background-image: url(img/3.jpeg);
 }
 
 .summary-card {
