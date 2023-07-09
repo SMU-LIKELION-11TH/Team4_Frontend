@@ -138,7 +138,6 @@ header {
   width: 38px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(img/1.jpg);
   border-radius: 50%;
 }
 
@@ -203,7 +202,7 @@ tr {
   margin: 10px;
   padding: 10px;
   width: -webkit-fill-available;
-  height: 80px
+  height: 80px;
 }
 
 #myStars {
@@ -213,7 +212,7 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: .5em;
+  gap: 0.5em;
   padding: 5px;
   overflow: hidden;
   border-radius: 20px;
@@ -246,7 +245,7 @@ tr {
   color: #dabd18b2;
 }
 
-#reviewSubmit {  
+#reviewSubmit {
   border-radius: 50px;
   border: none;
   width: 50px;
@@ -279,9 +278,6 @@ tr {
   grid-gap: 10px;
   align-content: center;
 }
-
-
-
 
 /* 반응형 */
 @media only screen and (max-width: 1200px) {
@@ -342,15 +338,15 @@ tr {
   .dash-cards {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .card-single {
     margin-bottom: 1rem;
   }
-  
+
   .activity-grid {
     display: block;
   }
-  
+
   .summary {
     margin-top: 1.5rem;
   }
@@ -372,12 +368,12 @@ tr {
 /* 본인이 작성하신 코드 CSS 아래부터 작성해주시면 됩니다. 다른 부분은 건들이시면 안됩니다. */
 @media screen and (max-width: 1200px) {
   .store-details {
-      float: none;
-      width: auto;
+    float: none;
+    width: auto;
   }
   .menu-info {
-      float: none;
-      width: auto;
+    float: none;
+    width: auto;
   }
 }
 @media screen and (max-width: 768px) {
