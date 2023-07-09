@@ -182,16 +182,17 @@ main {
   display: block;
 }
 
-.owenr-hi{
+.owner-hi{
   justify-content: center;
   margin-top: 80px;
   text-align: center;
 }
-.owenr-hi>p{
+
+.owner-hi>p{
   font-size : 2vw;
 }
 
-.owenr-img{
+.owner-img{
   width:10%;
   height:10%;
 }

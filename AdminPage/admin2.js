@@ -21,7 +21,7 @@ function addPlaceholders() {
   addPlaceholder("store_phone2","1234");
   addPlaceholder("store_phone3","5678");
   var imageElement = document.getElementById("image_element")
-  imageElement.setAttribute("src","/img/3.jpeg");
+  imageElement.setAttribute("src","../img/3.jpeg");
 }
 window.addEventListener("load", addPlaceholders);
 
@@ -102,6 +102,7 @@ function sample4_execDaumPostcode() {
 }
 
 function submit(){
+  var store_name = document.getElementById("store_name").value;
   var store_desc = document.getElementById("store_desc").value;
   var store_roadAddress= document.getElementById("sample4_roadAddress").value;
   var sample4_jibunAddress = document.getElementById("sample4_jibunAddress").value;
@@ -110,12 +111,58 @@ function submit(){
   var store_time_start = document.getElementById('store_time_start').value;
   var store_time_end = document.getElementById('store_time_end').value;
   var store_phone = document.getElementById('store_phone1').value+document.getElementById('store_phone2').value+document.getElementById('store_phone3').value;
+  
+  // obj.store_name = store_name;
+  // obj.store_desc = store_desc;
+  // obj.store_roadAddress = store_roadAddress;
+  // obj.store_detailAddress = store_detailAddress;
+  // obj.store_select = store_select;
+  // obj.store_time_start = store_time_start;
+  // obj.store_time_end = store_time_end;
+  // obj.store_phone = store_phone;
 
-  obj.store_desc = store_desc;
-  obj.store_roadAddress = store_roadAddress;
-  obj.store_detailAddress = store_detailAddress;
-  obj.store_time_start = store_time_start;
-  obj.store_time_end = store_time_end;
-  obj.store_phone = store_phone;
+  var formData = new FormData();
 
+
+  formData.append('store_name', store_name);
+  formData.append('store_desc', store_desc);
+  formData.append('store_image', obj.store_image);
+  formData.append(
+    "key",
+    new Blob([JSON.stringify(obj.store_image.info)], { type: "application/json" })
+  );
+  formData.append('store_roadAddress', store_roadAddress);
+  formData.append('store_detailAddress', store_detailAddress);
+  formData.append('store_select', store_select);
+  formData.append('store_time_start', store_time_start);
+  formData.append('store_time_end', store_time_end);
+  formData.append('store_phone', store_phone);
+  // $.ajax({
+  //   type:'POST',
+  //   url : 'http://127.0.0.1:8000/api/stores',
+  //   contentType : 'application/json',
+  //   headers:{
+  //       'X-CSRFToken' : getCookie('csrftoken')
+  //   },
+  //   data:formData,
+  //   success: function(data){
+  //     if(data.code === 200 && data.httpStatus === "OK"){
+  //       alert("생성에 성공하였습니다.")
+  //     }
+  //   },
+  //   error: function(request, status, error) {
+  //     if (request.status === "Bad Request" && error === 400) {
+  //         alert("잘못된 요청입니다.");
+  //     } else if(request.status === "Forbidden" && error === 403){
+  //         alert("권한이 없습니다.");
+  //     }
+  // }
+    
+
+  // })
+  for (var pair of formData.entries()) {
+    console.log(pair[1]);
+    }
+  alert("수정이 완료되었습니다.");
 }
+
