@@ -9,70 +9,79 @@ setTimeout(() => {
   container.classList.add('sign-in');
 }, 200);
 
-// // 서버 통신 로그인 구현
+// 로그인 기능
+function login() {
+  const id = document.querySelector('#signInUsername').value;
+  const password = document.querySelector('#signInPassword').value;
 
-// function login() {
-//   let username = document.getElementById('signInUsername').value;
-//   let password = document.getElementById('signInPassword').value;
+  const data = {
+    id: id,
+    password: password,
+  };
 
-//   let loginData = {
-//     username: username,
-//     password: password,
-//   };
+  fetch('http://localhost:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    mode: 'cors',
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.success == true) {
+        alert(data.message);
+        // Save user information in localStorage
+        localStorage.setItem('user', JSON.stringify(data.data));
+        window.location = 'http://127.0.0.1:5500/html/main.html';
+      } else {
+        alert(data.message);
+        return null;
+      }
+    });
+}
 
-//   // Send the login request
-//   fetch('/api/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(loginData),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // Handle the response from the server
-//       console.log(data);
-//       // Additional login logic here
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//     });
-// }
+// 회원가입
+function signUp() {
+  const username = document.getElementById('signUpUsername').value;
+  const email = document.getElementById('signUpEmail').value;
+  const password = document.getElementById('signUpPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const isAdmin = document.getElementById('adminCheck').checked;
 
-// // 회원가입 로직
-// function signUp() {
-//   let password = document.getElementById('signUpPassword').value;
-//   let confirmPassword = document.getElementById('confirmPassword').value;
-//   let isAdmin = document.getElementById('adminCheck').checked;
-//   let passwordError = document.getElementById('passwordError');
+  const role = isAdmin ? 'CEO' : 'USER';
 
-//   if (password !== confirmPassword) {
-//     passwordError.textContent = '비밀번호가 일치하지 않습니다.';
-//     return;
-//   }
+  const data = {
+    email: email,
+    password: password,
+    nickname: username,
+    role: role,
+  };
 
-//   passwordError.textContent = '';
+  $.ajax({
+    type: 'POST',
+    url: '/api/register',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    success: function (response) {
+      // 회원가입 성공 시 처리 로직
+      console.log('회원가입 성공:', response);
+      window.location.href = '/LoginPage/login.html';
+    },
+    error: function (error) {
+      // 회원가입 실패 시 처리 로직
+      console.log('회원가입 실패:', error);
+      window.location.href = '/LoginPage/login.html';
+    },
+  });
+}
 
-//   let signUpData = {
-//     password: password,
-//     isAdmin: isAdmin,
-//   };
-
-//   // Send the sign-up request
-//   fetch('/api/register', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(signUpData),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // Handle the response from the server
-//       console.log(data);
-//       // Additional sign-up logic here
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//     });
-// }
+// 가상의 데이터
+const mockData = {
+  username: 'pmsu2008',
+  email: 'pmsu2008@gmail.com',
+  password: 'A123456789!',
+  confirmPassword: 'A123456789!',
+  isAdmin: true,
+};
