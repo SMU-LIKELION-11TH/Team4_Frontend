@@ -22,6 +22,21 @@ const mockDataReview = [
     stars: 4,
     content: '맛있어요',
   },
+  {
+    reviewer: '아이디',
+    stars: 5,
+    content: '맛있는듯',
+  },
+  {
+    reviewer: '뭐로',
+    stars: 5,
+    content: '튀김이 빠삭해요',
+  },
+  {
+    reviewer: '하지',
+    stars: 2,
+    content: '양념 매워요',
+  },
 ];
 
 // -------------------------------------------------------------------------
@@ -158,14 +173,15 @@ function reviewSubmit() {
 //     })
 //   })
 // }
+//-------------------------------------------------------------------------
 
 // executeRating(ratingStars, ratingResult);
 // printRatingResult(ratingResult);
 
 // 별점 세는 함수
-function executeRating(stars, result) {
-  const starClassActive = 'rating_star far fa-star';
-  const starClassUnactive = 'rating_star far fa-star';
+function executeRating(stars) {
+  const starClassActive = 'rating_star fas fa-star';
+  const starClassInactive = 'rating_star far fa-star';
   const starsLength = stars.length;
   let i;
 
@@ -174,12 +190,10 @@ function executeRating(stars, result) {
       i = stars.indexOf(star);
       console.log(i);
 
-      if (star.className.indexOf(starClassUnactive) !== -1) {
-        printRatingResult(result, i + 1);
+      if (star.className === starClassInactive) {
         for (i; i >= 0; --i) stars[i].className = starClassActive;
       } else {
-        printRatingResult(result, i);
-        for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
       }
     };
   });
@@ -188,3 +202,9 @@ function executeRating(stars, result) {
 function printRatingResult(result, num = 0) {
   result.textContent = `${num}/5`;
 }
+
+executeRating(ratingStars);
+
+//---------------------------통신용-------------------------------------
+
+//--------------------------------------------------------------------
