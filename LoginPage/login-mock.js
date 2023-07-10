@@ -31,13 +31,12 @@ function login() {
         updatedAt: '2023-07-09T00:08:59.474536',
       },
     };
+    // 메인페이지로 이동
+    window.location.href = 'http://localhost:5501/main.html';
 
     // 로컬스토리지에 정보저장
     localStorage.setItem('user', JSON.stringify(data.data));
     alert(data.message);
-
-    // 메인페이지로 이동
-    window.location.href = '../main.html';
   } else {
     // 로그인 실패
     const data = {
