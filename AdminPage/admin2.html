@@ -15,78 +15,67 @@
       src="https://kit.fontawesome.com/8e32291ca2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="admin.css" />
-    <script src="./admin.js" defer></script>
+    <link rel="stylesheet" href="admin2.css" />
+    <script src="./admin2.js" defer></script>
   </head>
   <body>
     <input type="checkbox" id="sidebar-toggle" />
-      <main>
-        <div class="sidebar">
-          <div class="sidebar-header">
-            
-            <h3 class="list">
-              <span class="ti-logo"></span>
-              <span>점주 페이지</span>
-            </h3>
-            <label for="sidebar-toggle" class="ti-menu-alt"></label>
-          </div>
-          <div class="sidebar-menu">
-            <ul>
-              <li>
-                <a href="admin.html">
-                  <span>점포 추가 등록</span>
-                </a>
-              </li>
-              <li>
-                <a href="admin2.html">
-                  <span>점포 수정</span>
-                </a>
-              </li>     
-            </ul>
-          </div>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        
+        <h3 class="list">
+          <span class="ti-logo"></span>
+          <span>점주 페이지</span>
+        </h3>
+        <label for="sidebar-toggle" class="ti-menu-alt"></label>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="admin.html">
+              <span>점포 추가 등록</span>
+            </a>
+          </li>
+          <li>
+            <a href="admin2.html">
+              <span>점포 수정</span>
+            </a>
+          </li>     
+        </ul>
+      </div>
+    </div>
+    <div class="main-content">
+      <header>
+        <div class="social-icons">
+          <span class="ti-bell"></span>
+          <span class="ti-comment"></span>
+          <div></div>
         </div>
-        <div class="main-content">
-          <header>
-            <div class="social-icons">
-              <span class="ti-bell"></span>
-              <span class="ti-comment"></span>
-              <div></div>
-            </div>
-            <div class="login-wrapper">
-              <button class="login-button">로그인 / 회원가입</button>
-            </div>
-          </header>
+        <div class="login-wrapper">
+          <button class="login-button">로그인 / 회원가입</button>
+        </div>
+      </header>
+
+    
+      <!-- main태그 내부에서 담당하시는 파트 작업 진행해주시면 됩니다. -->
+      
+      <main>
         <div class = "owner-hi">
-          <img class = "owner-img" src = '../img/owner.png'>
-          <p class id = 'owner-nickname' class = 'ownenr-nickname'>_____ 사장님</p>
+          <img class = "owner-img"src = '../img/owner.png'>
+          <p class id = 'owner-nickname' class = 'owner-nickname'>_____ 사장님</p>
         </div>
 
         <div class = "input-content">
           <div class = "input-content-box">
-            <div class = "store_name_box">
+            <div class = "store_title_box">
               <p class = "store_title">점포명</p>
               <input type = "text" id = "store_name" class = "field" reandonly><br>
             </div>
-            <div class = "store_select_box">
-              <p class = "store_title">업종 선택</p>
-              <select name="업종선택" class="store_select" id = "store_select">
-                <option disabled selected>업종 선택</option>
-                <option value="분식">분식</option>
-                <option value="반찬">반찬</option>
-                <option value="농산물">농산물</option>
-                <option value="수산/횟집">수산/횟집</option>
-                <option value="축산물">축산물</option>
-                <option value="과일">과일</option>
-                <option value="떡집">떡집</option>
-                <option value="방앗간/건강원">방앗간/건강원</option>
-                <option value="마트">마트</option>
-                <option value="의류">의류</option>
-                <option value="화장품/잡화">화장품/잡화</option>
-                <option value="꽃집/귀금속">꽃집/귀금속</option>
-                <option value="건어물/젓갈">건어물/젓갈</option>
-                <option value="기타">기타</option>
-              </select>
-            </div>
+           
+            <!--<button type="button" class="search_postcode_button" onclick="openHomeSearch()">
+                  <span class="search_postcode_button">우편번호검색</span>
+            </button>
+          -->
             <div class = "store_address_box">
               <p class = "store_title">점포 주소</p>
               <input type="text" class = "sample4_postcode" id="sample4_postcode" placeholder="우편번호">
@@ -118,11 +107,11 @@
             </div>
             <div class = "store_image_box">
               <p class = "store_title">이미지등록</p>
-              <div id="image_container" class="image_container"></div><br>
+              <img id="image_element" class="image_container" src="" alt="Image"><br>
               <label for = "store_image" class = "upload-image">사진선택</label>
               <input type = "file" id = "store_image" class = "store_image" name = "image" accenpt = "image/*" onchange="loadFile(event)" required><br>
             </div><br>
-            <button type = "submit" class = "submit" onclick="submit()">등록하기</button>
+            <button type = "submit" class = "submit" onclick="submit()">저장하기</button>
           </div>
         </div>
       </main>

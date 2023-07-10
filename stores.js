@@ -172,6 +172,20 @@ function updateTableHeading(category) {
   }
 }
 
+// 내가 추가한 부분
+$("#stores-table").on("click", "tr", function () {
+  var trNum = $(this).index();
+  var storeArr = Array.from(document.querySelectorAll('#stores-table tbody tr td:nth-child(2)'));
+
+  console.log(storeArr[trNum].textContent);
+  if (storeArr[trNum].textContent === "오공찬") {
+    var link = './JumpoPage/망원 닭강정/store1.html';
+    // location.href = link;
+    window.open(link);
+  }
+});
+
+
 // 실제 스프링 통신시 (Ajax)
 
 // 페이지가 로드되면 실행되는 함수

@@ -1,15 +1,29 @@
 const obj = {
-  store_name:"",
-  store_image: "",
+  imageSrc: "",
   store_desc: "",
   store_roadAddress: "",
-  store_jibunAddress:"",
   store_detailAddress: "",
-  store_select: "",
   store_time_start: "",
   store_time_end: "",
   store_phone: ""
 };
+function addPlaceholder(elementId, placeholderText) {
+  var element = document.getElementById(elementId);
+    element.placeholder = placeholderText;
+}
+function addPlaceholders() {
+  addPlaceholder("store_name","점포명");
+  addPlaceholder("store_desc","점포설명$%$%$%$%$%");
+  addPlaceholder("sample4_roadAddress","입력된 도로명주소");
+  addPlaceholder("sample4_jibunAddress","입력된 지번주소");
+  addPlaceholder("sample4_detailAddress","입력된 상세주소");
+  addPlaceholder("store_phone1","010");
+  addPlaceholder("store_phone2","1234");
+  addPlaceholder("store_phone3","5678");
+  var imageElement = document.getElementById("image_element")
+  imageElement.setAttribute("src","../img/3.jpeg");
+}
+window.addEventListener("load", addPlaceholders);
 
 function loadFile(event){
   console.log("file load");
@@ -22,20 +36,15 @@ function loadFile(event){
     var image_container = document.getElementById("image_container");
     image_container.innerHTML = ''
     image_container.appendChild(img);
-    
+
     var storeImageBox = document.querySelector('.store_image_box');
 
+    obj.imageSrc = img;
   }
-  obj.store_image = event.target.files[0];
   reader.readAsDataURL(event.target.files[0]);
-  
 }
 
-function onLoading(){
-  var ownername = document.getElementById("owner-nickname");
-  var getownername = "~~~사장님";
-  ownername.textContent = getownername + "사장님";
-}
+
 
 function sample4_execDaumPostcode() {
   new daum.Postcode({
@@ -96,25 +105,18 @@ function submit(){
   var store_name = document.getElementById("store_name").value;
   var store_desc = document.getElementById("store_desc").value;
   var store_roadAddress= document.getElementById("sample4_roadAddress").value;
-  var store_jibunAddress = document.getElementById("sample4_jibunAddress").value;
+  var sample4_jibunAddress = document.getElementById("sample4_jibunAddress").value;
   var store_detailAddress = document.getElementById("sample4_detailAddress").value;
   var store_select = document.getElementById('store_select').value;
   var store_time_start = document.getElementById('store_time_start').value;
   var store_time_end = document.getElementById('store_time_end').value;
   var store_phone = document.getElementById('store_phone1').value+document.getElementById('store_phone2').value+document.getElementById('store_phone3').value;
-
+  
   store_time_start = String(store_time_start);
   store_time_end = String(store_time_end);
-
-  // if (store_name === "" || store_desc === "" || store_roadAddress === "" || store_select === "" || store_time_start === "" || store_time_end === "" || store_phone === "") {
-  //   alert("모든 필드를 채워주세요.");
-  //   return;
-  // }
-  
   // obj.store_name = store_name;
   // obj.store_desc = store_desc;
   // obj.store_roadAddress = store_roadAddress;
-  // obj.store_jibunAddress = store_jibunAddress;
   // obj.store_detailAddress = store_detailAddress;
   // obj.store_select = store_select;
   // obj.store_time_start = store_time_start;
@@ -132,7 +134,6 @@ function submit(){
     new Blob([JSON.stringify(obj.store_image.info)], { type: "application/json" })
   );
   formData.append('store_roadAddress', store_roadAddress);
-  formData.append('store_jibunAddress', store_jibunAddress);
   formData.append('store_detailAddress', store_detailAddress);
   formData.append('store_select', store_select);
   formData.append('store_time_start', store_time_start);
@@ -164,7 +165,7 @@ function submit(){
   for (var pair of formData.entries()) {
     console.log(pair[1]);
     }
-
-  alert("등록이 완료되었습니다.");
+  alert("수정이 완료되었습니다.");
   location.reload();
 }
+
