@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1,maximum-scale=1"
-    />  
+    />
     <title>시장에 가면</title>
     <link
       rel="stylesheet"
@@ -15,15 +15,9 @@
       src="https://kit.fontawesome.com/8e32291ca2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="store1.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/Team4_Frontend/storesMock.js" defer></script>
-    <script src="./store1.js" defer></script>
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdeb846f848ee28339377e99853e2028&libraries=services"
-    ></script>
-    <link rel="apple-touch-icon-precomposed" href="favicon.ico" />
+    <link rel="stylesheet" href="my.css" />
+    <script src="./my.js" defer></script>
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico">
   </head>
   <body>
     <input type="checkbox" id="sidebar-toggle" />
@@ -137,77 +131,26 @@
           <button class="login-button">로그인 / 회원가입</button>
         </div>
       </header>
-      <!-- 1등 매장 세부 정보 -->
+
+      <!-- main태그 내부에서 담당하시는 파트 작업 진행해주시면 됩니다. -->
       <main>
-        <!-- 북마크 부분 백엔드 DB에서 받아와야(관리자 페이지에서 입력한 사항이 유저 페이지에서 반영되도록) -->
-
-        <!-- 가게 정보 -->
-        <div class="store-info">
-          <!-- 점포 이미지 -->
-          <div class="store-image">
-            <ul id="storeImageList"></ul>
-          </div>
-
-          <div class="store-details">
-            <h1 id="storeName"></h1>
-            <!-- 별점 -->
-            <h2>⭐️⭐️⭐️⭐️⭐️</h2>
-            <p id="storeTel"></p>
-            <p id="storeTime">영업시간</p>
-            <p id="storeDesc"></p>
-            <!-- 리뷰 / id, reviewer, stars, content -->
-            <div class="reviews" style="overflow: auto">
-              <table id="review-table">
-                <thead style="display: none">
-                  <tr>
-                    <th id="stars">별점</th>
-                    <th>리뷰</th>
-                    <th>작성자</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-
-            <form class="write-review">
-              <!-- 리뷰 작성 / id: content에 push -->
-              <input
-                type="text"
-                id="content"
-                name="content"
-                placeholder="한 줄 리뷰를 작성해주세요!"
-              />
-              <!-- 별점 등록 / id: stars -->
-              <div class="myStars" id="myStars" name="myStars">
-                <span class="rating_result"></span>
-                <i class="rating_star far fa-star"></i>
-                <i class="rating_star far fa-star"></i>
-                <i class="rating_star far fa-star"></i>
-                <i class="rating_star far fa-star"></i>
-                <i class="rating_star far fa-star"></i>
-              </div>
-              <!-- 리뷰 저장 -->
-              <input
-                id="reviewSubmit"
-                type="submit"
-                onclick="reviewPost()"
-                value="저장"
-              />
-            </form>
+        <div class="my">
+          <h1 class="pagetitle">마이페이지</h1> 
+        </div>
+        <div class="profile">
+          <img src="/img/owner.png" id="profileimg" alt="프로필" class="profileimg">
+          <div id="user"></div>
+          <p class="profilename">----- 님</p>
+        </div>
+        <div class="review">
+          <div class="myreview">
+            <p class="reviewdata">남긴 리뷰</p>
+            <div id="reviewbox"></div>
           </div>
         </div>
-
-        <!-- 메뉴 정보 -->
-        <div class="menu-info">
-          <ul role="list" id="menuList" class="divide-y divide-gray-100">
-            <li class="menu_details"></li>
-          </ul>
-        </div>
-
-        <!-- 위치 정보(인겸님이 이 자리에 카카오맵 구현해 주시면 됩니다.) —> -->
-        <h2>위치 정보</h2>
-        <div class="summary">
-          <div class="summary-card" id="map"></div>
+        <div class="imgbutton">
+          <label for="image" class="pb">(프로필 편집)</label>
+          <input type="file" id="image" class="image">
         </div>
       </main>
     </div>

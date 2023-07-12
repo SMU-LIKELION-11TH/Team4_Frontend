@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 여기서부터 카카오 맵 로직 구현 부탁드립니다.
+
 var mapContainer = document.getElementById('map');
 var mapOption = {
   center: new kakao.maps.LatLng(33.450701, 126.570667),
