@@ -1,16 +1,141 @@
+var popupWindow;
+
 const obj = {
-  store_name:"",
-  store_image: "",
-  store_desc: "",
-  store_roadAddress: "",
-  store_jibunAddress:"",
-  store_detailAddress: "",
-  store_select: "",
-  store_time_start: "",
-  store_time_end: "",
-  store_phone: ""
+  storeIamgeUrl: "",
+  imageUrl:"",
+  storeName:"",
+  storeDesc: "",
+  roadAddress: "",
+  detailAddress: "",
+  startTime: "",
+  endTime: "",
+  storeTel: "",
+  categoryName:"",
+  nickname:"!@##$",
+  store_id:0
 };
 
+function addPlaceholder(elementId, placeholderText) {
+  var element = document.getElementById(elementId);
+    element.placeholder = placeholderText;
+}
+function addPlaceholders() {
+  addPlaceholder("store_name",obj.storeName);
+  addPlaceholder("store_desc",obj.storeDesc);
+  addPlaceholder("sample4_roadAddress",obj.roadAddress);
+  addPlaceholder("sample4_detailAddress",obj.detailAddress);
+  addPlaceholder("store_phone1",obj.storeTel.slice(0,3));
+  addPlaceholder("store_phone2",obj.storeTel.slice(3,7));
+  addPlaceholder("store_phone3",obj.storeTel.slice(7,11));
+
+  var imageElement = document.getElementById("image_element");
+  imageElement.setAttribute("src",obj.storeIamgeUrl);
+  var ownerImg = document.getElementById("owner-img");
+  // ownerImg.setAttribute("src",obj.imageUrl);
+
+  var element = document.getElementById("owner-nickname");
+  element.textContent=obj.nickname;
+}
+
+function onLoad(){
+  addPlaceholders();
+  // $.ajax({
+  //     type: 'GET',
+  //     url: "http://127.0.0.1:8000/api/stores{obj.store_id}",
+  //     contentType: 'application/json',
+  //     success: function(data){
+  //         obj.storeIamgeUrl=storeIamgeUrl;
+  //         obj.imageUrl=imageUrl;
+  //         obj.storeDesc=storeDesc;
+  //         obj.roadAddress=roadAddress;
+  //         obj.detailAddress=detailAddress;
+  //         obj.startTime=startTime;
+  //         obj.endTime=endTime;
+  //         obj.storeTel=storeTel;
+  //         obj.categoryName=categoryName;
+  //         obj.nickname=nickname;
+  //         obj.store_id=store_id;
+  //     }
+  // })
+  fetchMenuList();
+}
+function fetchMenuList() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://example.com/api/menus", true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var menuData = JSON.parse(xhr.responseText);
+        displayMenuList(menuData);
+      } else {
+        alert("메뉴 정보를 가져오는 데 실패했습니다.");
+      }
+    }
+  };
+  xhr.send();
+}
+
+function displayMenuList(menuData) {
+  var storeMenuListBox = document.querySelector(".store_menu_list_box");
+  storeMenuListBox.innerHTML = "";
+
+  if (menuData.length === 0) {
+    var noMenuMsg = document.createElement("p");
+    noMenuMsg.textContent = "등록된 메뉴가 없습니다.";
+    storeMenuListBox.appendChild(noMenuMsg);
+    return;
+  }
+
+  menuData.forEach(function(menu) {
+    var menuElement = createMenuElement(menu.menuName, menu.menuPrice, menu.menuDesc, menu.menuImage);
+    storeMenuListBox.appendChild(menuElement);
+  });
+
+  function createMenuElement(menuName, menuPrice, menuDesc, menuImage) {
+    var menuElement = document.createElement("div");
+    menuElement.setAttribute("class","menuElement")
+
+    var menuImageElem = document.createElement("img");
+    menuImageElem.setAttribute("class","menuImageElem");
+    menuImageElem.src = menuImage;
+    menuImageElem.alt = "메뉴 이미지";
+    menuElement.appendChild(menuImageElem);
+
+    var menuNameElem = document.createElement("p");
+    menuNameElem.textContent = "메뉴 이름: " + menuName;
+    menuNameElem.setAttribute("class","menuNameElem");
+    menuElement.appendChild(menuNameElem);
+
+    var menuPriceElem = document.createElement("p");
+    menuPriceElem.setAttribute("class","menuPriceElem");
+    menuPriceElem.textContent = "메뉴 가격: " + menuPrice + "원";
+    menuElement.appendChild(menuPriceElem);
+
+    var menuDescElem = document.createElement("p");
+    menuDescElem.setAttribute("class","menuDescElem");
+    menuDescElem.textContent = "메뉴 설명: " + menuDesc;
+    menuElement.appendChild(menuDescElem);
+
+    
+
+    return menuElement;
+  }
+
+  
+}
+
+
+function openPopup(){
+  var popupWindow = window.open("popup.html", "popup", "width=400,height=680");
+  var dataToSend = obj.store_id;
+  popupWindow.dataToSend = dataToSend;
+
+  fetchMenuList();
+}
+
+function receiveDataFromPopup(store_id) {
+  console.log("부모 창에서 팝업 창으로부터 전달받은 데이터:", store_id);
+}
 function loadFile(event){
   console.log("file load");
   var reader = new FileReader();
@@ -22,20 +147,15 @@ function loadFile(event){
     var image_container = document.getElementById("image_container");
     image_container.innerHTML = ''
     image_container.appendChild(img);
-    
+
     var storeImageBox = document.querySelector('.store_image_box');
 
+    obj.storeIamgeUrl = img;
   }
-  obj.store_image = event.target.files[0];
   reader.readAsDataURL(event.target.files[0]);
-  
 }
 
-function onLoading(){
-  var ownername = document.getElementById("owner-nickname");
-  var getownername = "~~~사장님";
-  ownername.textContent = getownername + "사장님";
-}
+
 
 function sample4_execDaumPostcode() {
   new daum.Postcode({
@@ -93,28 +213,20 @@ function sample4_execDaumPostcode() {
 }
 
 function submit(){
-  var store_name = document.getElementById("store_name").value;
-  var store_desc = document.getElementById("store_desc").value;
-  var store_roadAddress= document.getElementById("sample4_roadAddress").value;
-  var store_jibunAddress = document.getElementById("sample4_jibunAddress").value;
-  var store_detailAddress = document.getElementById("sample4_detailAddress").value;
-  var store_select = document.getElementById('store_select').value;
-  var store_time_start = document.getElementById('store_time_start').value;
-  var store_time_end = document.getElementById('store_time_end').value;
-  var store_phone = document.getElementById('store_phone1').value+document.getElementById('store_phone2').value+document.getElementById('store_phone3').value;
-
-  store_time_start = String(store_time_start);
-  store_time_end = String(store_time_end);
-
-  // if (store_name === "" || store_desc === "" || store_roadAddress === "" || store_select === "" || store_time_start === "" || store_time_end === "" || store_phone === "") {
-  //   alert("모든 필드를 채워주세요.");
-  //   return;
-  // }
+  var storeName = document.getElementById("store_name").value;
+  var storeDesc = document.getElementById("store_desc").value;
+  var roadAddress= document.getElementById("sample4_roadAddress").value;
+  var detailAddress = document.getElementById("sample4_detailAddress").value;
+  var categoryName = document.getElementById('store_select').value;
+  var startTime = document.getElementById('store_time_start').value;
+  var endTime = document.getElementById('store_time_end').value;
+  var storeTel = document.getElementById('store_phone1').value+document.getElementById('store_phone2').value+document.getElementById('store_phone3').value;
   
+  startTime = String(startTime);
+  endTime = String(endTime);
   // obj.store_name = store_name;
   // obj.store_desc = store_desc;
   // obj.store_roadAddress = store_roadAddress;
-  // obj.store_jibunAddress = store_jibunAddress;
   // obj.store_detailAddress = store_detailAddress;
   // obj.store_select = store_select;
   // obj.store_time_start = store_time_start;
@@ -124,23 +236,22 @@ function submit(){
   var formData = new FormData();
 
 
-  formData.append('store_name', store_name);
-  formData.append('store_desc', store_desc);
-  formData.append('store_image', obj.store_image);
+  formData.append('storeName', storeName);
+  formData.append('storeDesc', storeDesc);
+  formData.append('storeIamgeUrl', obj.storeIamgeUrl);
   formData.append(
     "key",
-    new Blob([JSON.stringify(obj.store_image.info)], { type: "application/json" })
+    new Blob([JSON.stringify(obj.storeIamgeUrl.info)], { type: "application/json" })
   );
-  formData.append('store_roadAddress', store_roadAddress);
-  formData.append('store_jibunAddress', store_jibunAddress);
-  formData.append('store_detailAddress', store_detailAddress);
-  formData.append('store_select', store_select);
-  formData.append('store_time_start', store_time_start);
-  formData.append('store_time_end', store_time_end);
-  formData.append('store_phone', store_phone);
+  formData.append('store_roadAddress', roadAddress);
+  formData.append('store_detailAddress', detailAddress);
+  formData.append('store_select', categoryName);
+  formData.append('store_time_start', startTime);
+  formData.append('store_time_end', endTime);
+  formData.append('store_phone', storeTel);
   // $.ajax({
   //   type:'POST',
-  //   url : 'http://127.0.0.1:8000/api/stores',
+  //   url : 'http://127.0.0.1:8000/api/stores{obj.store_id}',
   //   contentType : 'application/json',
   //   headers:{
   //       'X-CSRFToken' : getCookie('csrftoken')
@@ -164,7 +275,7 @@ function submit(){
   for (var pair of formData.entries()) {
     console.log(pair[1]);
     }
-
-  alert("등록이 완료되었습니다.");
+  alert("수정이 완료되었습니다.");
   location.reload();
 }
+

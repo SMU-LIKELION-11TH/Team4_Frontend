@@ -1,0 +1,51 @@
+.upload-image{
+    color:white;
+    padding:8px 16px;
+    background-color:#8390a2;
+    font-size : 12px;
+    float:left;
+    clear:left;
+    margin-left : 2px;
+    margin-bottom : 64px;
+  }
+  
+  .image_container{
+    width: 150px;
+    height: 150px;
+    background-color:#DCDCDC;
+    margin-bottom:20px;
+  }
+  .menu_image{
+    display: none;
+  }
+  .enroll{
+    margin: auto;
+    display:block;
+    text-align : center;
+    width : 120px;
+    font-size : 16px;
+    font-weight: bold;
+    border:none;
+    padding:10px 15px;
+    color : white;
+    background-color: #027581;
+    clear:left;
+  
+  }
+  body{
+
+    margin:30px;
+  }
+.field{
+    width:380px;
+    height:32px;
+}
+.menu_desc_field{
+    width:380px;
+}
+.menu-option{
+    font-weight:bold;
+    font-size:16px;
+    margin-top:12px;
+    margin-bottom : 12px;
+}
