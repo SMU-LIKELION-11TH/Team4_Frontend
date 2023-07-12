@@ -5,102 +5,135 @@ document.querySelector('.login-button').addEventListener('click', function () {
 
 // 아래부터 작성해주세요
 
-// 저장된 리뷰 임시 mockdata
 const mockDataReview = [
   {
-    reviewer: '면킬러',
-    stars: 5,
-    content: '국물 맛있어요',
-  },
-  {
-    reviewer: '예에',
-    stars: 3,
-    content: '평범해요',
-  },
-  {
-    reviewer: '야아',
-    stars: 4,
-    content: '맛있어요',
-  },
-  {
-    reviewer: '아이디',
-    stars: 5,
-    content: '맛있는듯',
-  },
-  {
-    reviewer: '뭐로',
-    stars: 5,
-    content: '면이 맛있어요',
-  },
-  {
-    reviewer: '하지',
-    stars: 2,
-    content: '양념 매워요',
-  },
+    code: 200,
+    httpStatus: "OK",
+    message: "요청에 성공하였습니다.",
+    data: [
+		    {
+		        id: 2,
+		        stars: 5,
+		        content: "최고에요요",
+		        reviewer: "ceo",
+		        storeName: "윤가네",
+		        createdAt: "2023-07-10 03:41:57",
+		        updatedAt: "2023-07-10 03:41:57"
+		    },
+		    {
+		        id: 4,
+		        stars: 5,
+		        content: "미쳤다 미쳤어",
+		        reviewer: "admin",
+		        storeName: "윤가네",
+		        createdAt: "2023-07-10 03:46:15",
+		        updatedAt: "2023-07-10 03:46:15"
+		    },
+		    {
+		        id: 3,
+		        stars: 4,
+		        content: "맛있어요",
+		        reviewer: "ceo",
+		        storeName: "윤가네",
+		        createdAt: "2023-07-10 03:42:15",
+		        updatedAt: "2023-07-10 03:42:15"
+		    },
+		    {
+		        id: 5,
+		        stars: 4,
+		        content: "미쳤다",
+		        reviewer: "admin",
+		        storeName: "윤가네",
+		        createdAt: "2023-07-10 03:48:15",
+		        updatedAt: "2023-07-10 03:48:15"
+		    },
+		    {
+		        id: 1,
+		        stars: 3,
+		        content: "보통이에요요",
+		        reviewer: "ceo",
+		        storeName: "윤가네",
+		        createdAt: "2023-07-10 03:39:07",
+		        updatedAt: "2023-07-10 03:39:07"
+		    }
+		]
+}
 ];
 
-const storeData = () => [
+const mockDataStore = [
   {
-    storeId: 1,
-    storeName: "망원시장손칼국수",
-    storeDesc: "국물이 시원합니다",
-    storeTime: "8:00-21:00",
-    storeTel: "02-3142-9952",
+    storeId: 8,
+    storeName: "수정중입니다3",
+    storeDesc: "테스트중입니다.",
+    storeAddress: "storeAddress입니다",
+    storeTime: "storeTime",
+    storeTel: "storeTel",
     menuList: [
       {
-        id: 1,
-        menuName: "손칼국수",
-        menuPrice: 9000,
-        menuDesc: "메뉴설명~",
-        imageName: "menu-img1.png",
-        imageUrl: "./menu1.jpg"
-      },
-      {
-        id: 2,
-        menuName: "콩국수",
-        menuPrice: 10000,
-        menuDesc: "메뉴설명~",
-        imageName: "menu-img2.png",
-        imageUrl: "./menu2.jpg"
+        id : 2,
+        menuName : "cake",
+        menuPrice : 1000,
+        menuDesc : "test",
+        imageName : "b1ed377f-ad1d-4ad8-8795-4b988b96f906.png",
+        imageUrl : "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
       },
       {
         id: 3,
-        menuName: "보쌈",
-        menuPrice: 12000,
-        menuDesc: "메뉴설명~",
-        imageName: "menu-img2.png",
-        imageUrl: "./menu3.jpg"
+        menuName: "latte",
+        menuPrice: 2000,
+        menuDesc: "test",
+        imageName: "2be1c732-d3bc-4792-b598-dfd9e7a65954.png",
+        imageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
       }
     ],
     storeImageList: [
-      {
-        storeUrl: "url",
-        storeFilename: "./store3.jpeg"
-      }
-    ]
-  }
+        {
+          id: 1,
+          storeFilename: "b2746fe8-6db4-4dd6-b060-a64e1fa4a991.png",
+          storeImageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\b2746fe8-6db4-4dd6-b060-a64e1fa4a991.png"
+        },
+        {
+          id: 2,
+          storeFilename: "478f18a7-b56c-4b08-849f-f328c4c5c928.png",
+          storeImageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\478f18a7-b56c-4b08-849f-f328c4c5c928.png"
+        }
+    ],
+    categoryId: 1
+}
 ];
 
 // -------------------------------------------------------------------------
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
 $(document).ready(function () {
-  showStoreData();
-  showStoreImage(storeData);
-  renderReviewTable(mockDataReview); // 초기에는 모든 데이터를 테이블에 출력
-  showMenu(storeData);
+  loadStoresData();
+  loadReviewData()
 });
 
-function showStoreData() {
+function loadStoresData() {
+  const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
+  const data = mockDataStore[0]; // Mock 데이터에서 실제 데이터를 가져옴
+  showStoreData(data);
+  showStoreData(data);
+  showMenu(data);
+}
+
+function loadReviewData() {
+  const url = '/api/stores/{storeId}/reviews?sort=stars'
+  const data = mockDataReview[0].data;
+  renderReviewTable(data);
+}
+
+function showStoreData(data) {
   var storeName = document.getElementById("storeName");
   var storeDesc = document.getElementById("storeDesc");
   var storeTime = document.getElementById("storeTime");
   var storeTel = document.getElementById("storeTel");
 
-  storeName.textContent = storeData()[0].storeName;
-  storeDesc.textContent = storeData()[0].storeDesc;
-  storeTime.textContent = "영업시간: " + storeData()[0].storeTime;
-  storeTel.textContent = storeData()[0].storeTel;
+  storeName.textContent = data.storeName;
+  storeDesc.textContent = data.storeDesc;
+  storeTime.textContent = "영업시간: " + data.storeTime;
+  storeTel.textContent = data.storeTel;
 }
 
 function showStoreImage(data) {
@@ -297,7 +330,7 @@ function reviewPost(e) {
 function showMenu(data) {
   const menuListElement = document.getElementById("menuList");
   
-  data()[0].menuList.forEach((menu) => {
+  data.menuList.forEach((menu) => {
     const listItem = document.createElement("li");
     listItem.className = "menu_details";
     

@@ -5,6 +5,7 @@ document.querySelector('.login-button').addEventListener('click', function () {
 
 // 아래부터 작성해주세요
 
+// 저장된 리뷰 임시 mockdata
 const mockDataReview = [
   {
     code: 200,
@@ -63,7 +64,7 @@ const mockDataReview = [
 const mockDataStore = [
   {
     storeId: 8,
-    storeName: "수정중입니다2",
+    storeName: "수정중입니다4",
     storeDesc: "테스트중입니다.",
     storeAddress: "storeAddress입니다",
     storeTime: "storeTime",
