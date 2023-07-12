@@ -60,19 +60,24 @@ function onLoad(){
   fetchMenuList();
 }
 function fetchMenuList() {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://example.com/api/menus", true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        var menuData = JSON.parse(xhr.responseText);
-        displayMenuList(menuData);
-      } else {
-        alert("메뉴 정보를 가져오는 데 실패했습니다.");
-      }
+    $.ajax({
+      type: 'GET',
+      url: "http://127.0.0.1:8000/api/stores{obj.store_id}/menus",
+      contentType: 'application/json',
+      success: function(data){
+        if(data.code === 200 && data.httpStatus === "OK"){
+          alert("생성에 성공하였습니다.")
+          displayMenuList(data);
+        }
+      },
+      error: function(request, status, error) {
+        if (request.status === "Bad Request" && error === 400) {
+            alert("잘못된 요청입니다.");
+        } else if(request.status === "Forbidden" && error === 403){
+            alert("권한이 없습니다.");
+        }
     }
-  };
-  xhr.send();
+  })  
 }
 
 function displayMenuList(menuData) {
