@@ -24,7 +24,6 @@ function login() {
     headers: {
       'Content-Type': 'application/json',
     },
-    mode: 'cors',
     body: JSON.stringify(data),
   })
     .then((response) => response.json())
@@ -32,12 +31,13 @@ function login() {
       console.log(data);
       if (data.success == true) {
         alert(data.message);
-        // Save user information in localStorage
+        // Save user information and token in localStorage
         localStorage.setItem('user', JSON.stringify(data.data));
-        window.location = 'http://127.0.0.1:5500/html/main.html';
+        localStorage.setItem('token', data.token);
+        // Redirect to main page
+        window.location = 'http://example.com/main.html';
       } else {
         alert(data.message);
-        return null;
       }
     });
 }
@@ -59,22 +59,23 @@ function signUp() {
     role: role,
   };
 
-  $.ajax({
-    type: 'POST',
-    url: '/api/register',
-    data: JSON.stringify(data),
-    contentType: 'application/json',
-    success: function (response) {
-      // 회원가입 성공 시 처리 로직
-      console.log('회원가입 성공:', response);
-      window.location.href = '/LoginPage/login.html';
+  fetch('http://localhost:8080/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-    error: function (error) {
-      // 회원가입 실패 시 처리 로직
-      console.log('회원가입 실패:', error);
-      window.location.href = '/LoginPage/login.html';
-    },
-  });
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.success == true) {
+        alert('회원가입이 완료되었습니다.');
+        window.location.href = '/LoginPage/login.html';
+      } else {
+        alert(data.message);
+      }
+    });
 }
 
 // 가상의 데이터
@@ -85,3 +86,31 @@ const mockData = {
   confirmPassword: 'A123456789!',
   isAdmin: true,
 };
+
+// API 요청에 인증 토큰을 추가하는 함수
+function addAuthorizationHeader(headers) {
+  const token = localStorage.getItem('token');
+  if (token) {
+    headers['Authorization'] = 'Bearer ' + token;
+  }
+  return headers;
+}
+
+// 예시 API 요청
+function exampleApiRequest() {
+  const url = 'http://localhost:8080/api/example';
+  fetch(url, {
+    method: 'GET',
+    headers: addAuthorizationHeader({
+      'Content-Type': 'application/json',
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      // 처리할 로직 작성
+    })
+    .catch((error) => {
+      console.error('API 요청 에러:', error);
+    });
+}
