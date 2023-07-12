@@ -66,7 +66,7 @@ const mockDataStore = [
     storeId: 8,
     storeName: "수정중입니다4",
     storeDesc: "테스트중입니다.",
-    storeAddress: "storeAddress입니다",
+    storeAddress: "서울특별시 마포구 망원동 414-108",
     storeTime: "storeTime",
     storeTel: "storeTel",
     menuList: [
@@ -114,10 +114,14 @@ $(document).ready(function () {
 function loadStoresData() {
   const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
   const data = mockDataStore[0]; // Mock 데이터에서 실제 데이터를 가져옴
-  showStoreData(data);
-  showStoreData(data);
+  const storeAddressElement = document.getElementById("storeAddress");
+  const storeAddress = data.storeAddress;
+  showStoreData(data, storeAddressElement);
   showMenu(data);
 }
+
+var address = mockDataStore[0].storeAddress;
+searchAddressToCoordinate(address);
 
 function loadReviewData() {
   const url = '/api/stores/{storeId}/reviews?sort=stars'
@@ -125,17 +129,21 @@ function loadReviewData() {
   renderReviewTable(data);
 }
 
-function showStoreData(data) {
+function showStoreData(data, storeAddressElement) {
   var storeName = document.getElementById("storeName");
   var storeDesc = document.getElementById("storeDesc");
   var storeTime = document.getElementById("storeTime");
   var storeTel = document.getElementById("storeTel");
+  var storeAddress = document.getElementById("storeAddress");
 
   storeName.textContent = data.storeName;
   storeDesc.textContent = data.storeDesc;
   storeTime.textContent = "영업시간: " + data.storeTime;
   storeTel.textContent = data.storeTel;
-}
+  if (storeAddressElement) {
+    storeAddressElement.textContent = data.storeAddress;
+  }
+  }
 
 function showStoreImage(data) {
   const imageList = document.getElementById("storeImageList");
@@ -162,11 +170,13 @@ function showStoreImage(data) {
 //       const storeDesc = response.storeDesc;
 //       const storeTime = response.storeTime;
 //       const storeTel = response.storeTel;
+//       const storeAddress = response.storeAddress;
       
 //       $('#storeName').text(storeName);
 //       $('#storeDesc').text(storeDesc);
 //       $('#storeTime').text(storeTime);
 //       $('#storeTel').text(storeTel);
+//       $('#storeAddress').text(storeAddress);
 //     },
 //     error: function(error) {
 //       console.log('Error:', error);
@@ -388,3 +398,29 @@ function showMenu(data) {
 //   return menuData;
 // }
 // ——————————————————————————————————
+
+var mapContainer = document.getElementById('map');
+var mapOption = {
+  center: new kakao.maps.LatLng(33.450701, 126.570667),
+  level: 1,
+};
+
+var map = new kakao.maps.Map(mapContainer, mapOption);
+
+function searchAddressToCoordinate(address) {
+  var geocoder = new kakao.maps.services.Geocoder();
+
+  geocoder.addressSearch(address, function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      var marker = new kakao.maps.Marker({
+        map: map,
+        position: coords,
+      });
+      map.setCenter(coords);
+    }
+  });
+}
+
+var address = data.storeAddress;
+searchAddressToCoordinate(address);
