@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="admin2.css" />
     <script src="./admin2.js" defer></script>
   </head>
-  <body>
+  <body onload="onLoad()">
     <input type="checkbox" id="sidebar-toggle" />
     <div class="sidebar">
       <div class="sidebar-header">
@@ -40,7 +40,7 @@
             <a href="admin2.html">
               <span>점포 수정</span>
             </a>
-          </li>     
+          </li>   
         </ul>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <main>
         <div class = "owner-hi">
           <img class = "owner-img"src = '../img/owner.png'>
-          <p class id = 'owner-nickname' class = 'owner-nickname'>_____ 사장님</p>
+          <p class id = 'owner-nickname' class = 'owner-nickname'></p>
         </div>
 
         <div class = "input-content">
