@@ -1,3 +1,4 @@
+
 const mockData = [
   {
     code: 200,
@@ -177,6 +178,7 @@ function updateTableHeading(category) {
 }
 
 // 내가 추가한 부분
+
 $('#stores-table').on('click', 'tr', function () {
   var trNum = $(this).index();
   var storeArr = Array.from(
@@ -187,10 +189,10 @@ $('#stores-table').on('click', 'tr', function () {
 
   for (let i = 0; i<mockData[0].data.length; i++){
     var storeName = mockData[0].data[i].storeName;
-    console.log(storeName);
     if (storeArr[trNum].textContent === storeName){
-      var link = './JumpoPage/'+ storeName.toString() + '/store'+(i+1)+'.html';
-      window.open(link);
+      selectedStoreID = mockData[0].data[i].storeId;
+      var link = './JumpoPage/망원 닭강정/store1.html';
+      window.open(`./JumpoPage/망원 닭강정/store1.html?id=${selectedStoreID}`);
     }
   }
 });

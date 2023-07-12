@@ -4,7 +4,6 @@ document.querySelector('.login-button').addEventListener('click', function () {
 });
 
 // 아래부터 작성해주세요
-
 const mockDataReview = [
   {
     code: 200,
@@ -62,67 +61,150 @@ const mockDataReview = [
 
 const mockDataStore = [
   {
-    storeId: 8,
-    storeName: "수정중입니다6",
-    storeDesc: "테스트중입니다.",
-    storeAddress: "storeAddress입니다",
-    storeTime: "storeTime",
-    storeTel: "storeTel",
-    menuList: [
+    code: 200,
+    httpStatus: 'OK',
+    message: '요청에 성공하였습니다.',
+    data: [
       {
-        id : 2,
-        menuName : "cake",
-        menuPrice : 1000,
-        menuDesc : "test",
-        imageName : "b1ed377f-ad1d-4ad8-8795-4b988b96f906.png",
-        imageUrl : "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
+        storeId: 1,
+        storeName: '망원 닭강정',
+        storeDesc: '수정분식입니다.',
+        startTime: 'storeTime',
+        endTime: 'endtime',
+        roadAddress: 'roadAddress입니다.',
+        detailAddress: '상세주소',
+        storeTel: 'storeTel',
+        menuList: [],
+        storeImageList: [
+          {
+            id: 2,
+            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+            storeImageUrl:
+              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+          }
+        ],
+        averageStars: 4,
+        countReviews: 123,
+        userId: 1,
+        categoryName: '분식',
       },
       {
-        id: 3,
-        menuName: "latte",
-        menuPrice: 2000,
-        menuDesc: "test",
-        imageName: "2be1c732-d3bc-4792-b598-dfd9e7a65954.png",
-        imageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
+        storeId: 2,
+        storeName: '수정된반찬가게',
+        storeDesc: '수정반찬입니다.',
+        startTime: 'storeTime',
+        endTime: 'endtime',
+        roadAddress: 'roadAddress입니다.',
+        detailAddress: '상세주소',
+        storeTel: 'storeTel',
+        menuList: [],
+        storeImageList: [
+          {
+            id: 2,
+            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+            storeImageUrl:
+              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+          }
+        ],
+        averageStars: 4,
+        countReviews: 123,
+        userId: 1,
+        categoryName: '건어물/젓갈',
+      },
+      {
+        storeId: 3,
+        storeName: '수정된마트',
+        storeDesc: '수정마트입니다.',
+        startTime: 'storeTime',
+        endTime: 'endtime',
+        roadAddress: 'roadAddress입니다.',
+        detailAddress: '상세주소',
+        storeTel: 'storeTel',
+        menuList: [
+          {
+            id : 2,
+            menuName : "cake",
+            menuPrice : 1000,
+            menuDesc : "test",
+            imageName : "b1ed377f-ad1d-4ad8-8795-4b988b96f906.png",
+            imageUrl : "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
+          },
+          {
+            id: 3,
+            menuName: "latte",
+            menuPrice: 2000,
+            menuDesc: "test",
+            imageName: "2be1c732-d3bc-4792-b598-dfd9e7a65954.png",
+            imageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
+          }
+        ],
+        storeImageList: [
+          {
+            id: 2,
+            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+            storeImageUrl:
+              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+          }
+        ],
+        averageStars: 4,
+        countReviews: 123,
+        userId: 1,
+        categoryName: '마트',
+      },
+      {
+        storeId: 4,
+        storeName: '수정된분식집',
+        storeDesc: '수정과일입니다.',
+        startTime: 'storeTime',
+        endTime: 'endtime',
+        roadAddress: 'roadAddress입니다.',
+        detailAddress: '상세주소',
+        storeTel: 'storeTel',
+        menuList: [],
+        storeImageList: [
+          {
+            id: 2,
+            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+            storeImageUrl:
+              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+          }
+        ],
+        averageStars: 4,
+        countReviews: 123,
+        userId: 1,
+        categoryName: '과일',
       }
     ],
-    storeImageList: [
-        {
-          id: 1,
-          storeFilename: "b2746fe8-6db4-4dd6-b060-a64e1fa4a991.png",
-          storeImageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\b2746fe8-6db4-4dd6-b060-a64e1fa4a991.png"
-        },
-        {
-          id: 2,
-          storeFilename: "478f18a7-b56c-4b08-849f-f328c4c5c928.png",
-          storeImageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\478f18a7-b56c-4b08-849f-f328c4c5c928.png"
-        }
-    ],
-    categoryId: 1
-}
+  },
 ];
 
 // -------------------------------------------------------------------------
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
+const urlParams = new URLSearchParams(window.location.search);
+const selectedStoreID = urlParams.get('id');
+
+
 $(document).ready(function () {
-  loadStoresData();
-  loadReviewData()
+  showStoreData(loadStoresData());
+  showStoreImage(loadStoresData());
+  showMenu(loadStoresData());
+  renderReviewTable(loadReviewData());
 });
 
 function loadStoresData() {
   const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
-  const data = mockDataStore[0]; // Mock 데이터에서 실제 데이터를 가져옴
-  showStoreData(data);
-  showStoreData(data);
-  showMenu(data);
+  const selectedStoreData = mockDataStore[0].data[selectedStoreID-1]; // Mock 데이터에서 실제 데이터를 가져옴
+  return selectedStoreData;
 }
 
+
 function loadReviewData() {
-  const url = '/api/stores/{storeId}/reviews?sort=stars'
-  const data = mockDataReview[0].data;
-  renderReviewTable(data);
+  const url = '/api/stores/{storeId}/reviews?sort=stars';
+  const selectedReviewData = mockDataReview[0].data;
+  return selectedReviewData;
 }
+
 
 function showStoreData(data) {
   var storeName = document.getElementById("storeName");
@@ -139,7 +221,7 @@ function showStoreData(data) {
 function showStoreImage(data) {
   const imageList = document.getElementById("storeImageList");
 
-  data()[0].storeImageList.forEach((img) => {
+  data.storeImageList.forEach((img) => {
     const imageItem = document.createElement("li");
     
     const image = document.createElement("img");

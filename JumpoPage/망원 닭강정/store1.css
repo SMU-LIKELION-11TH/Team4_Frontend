@@ -157,6 +157,12 @@ main {
   border-radius: 10px;
 }
 
+#storeImageList {
+  overflow: hidden;
+  width: 708px;
+  height: 494px;
+}
+
 .store-info {
   display: flex;
   margin-bottom: 15px;
