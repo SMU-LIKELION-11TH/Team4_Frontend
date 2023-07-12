@@ -19,11 +19,11 @@ window.onload = function main() {
     const user = JSON.parse(userData);
     loginButton.textContent = '로그아웃';
     loginButton.addEventListener('click', logout);
-    // You can access the user properties as needed
+    // 유저 객체 사용
     console.log(user.id);
     console.log(user.email);
     console.log(user.nickname);
-    // ...
+    // 로그아웃 되면 버튼 내용 변경
   } else {
     // User is logged out
     loginButton.textContent = '로그인 / 회원가입';
@@ -36,15 +36,20 @@ window.onload = function main() {
 // 로그인 확인 시, 해당 유저의 이미지로 확인
 document.addEventListener('DOMContentLoaded', function () {
   const socialIconsDiv = document.querySelector('.social-icons div');
-
   // 로그인 되면 User 정보를 로컬스토리지에 저장
   const user = JSON.parse(localStorage.getItem('user'));
   if (user && user.imageUrl) {
     // 이미지 정보가 있으면, url보여줌
     socialIconsDiv.style.backgroundImage = `url(${user.imageUrl})`;
+    socialIconsDiv.addEventListener('click', function () {
+      window.location.href = './AdminPage/admin.html';
+    });
   } else {
     // null인 경우 빈 이미지로 설정
-    socialIconsDiv.style.backgroundImage = `none`;
+    socialIconsDiv.style.backgroundImage = 'url(./img/owner.png)';
+    socialIconsDiv.addEventListener('click', function () {
+      window.location.href = './AdminPage/admin.html';
+    });
   }
 });
 

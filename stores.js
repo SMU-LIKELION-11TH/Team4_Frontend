@@ -173,50 +173,50 @@ function updateTableHeading(category) {
 }
 
 // 내가 추가한 부분
-$("#stores-table").on("click", "tr", function () {
+$('#stores-table').on('click', 'tr', function () {
   var trNum = $(this).index();
-  var storeArr = Array.from(document.querySelectorAll('#stores-table tbody tr td:nth-child(2)'));
+  var storeArr = Array.from(
+    document.querySelectorAll('#stores-table tbody tr td:nth-child(2)')
+  );
 
   console.log(storeArr[trNum].textContent);
-  if (storeArr[trNum].textContent === "오공찬") {
+  if (storeArr[trNum].textContent === '오공찬') {
     var link = './JumpoPage/망원 닭강정/store1.html';
     // location.href = link;
     window.open(link);
   }
 });
 
+// // 실제 스프링 통신 예상
 
-// 실제 스프링 통신시 (Ajax)
-
-// 페이지가 로드되면 실행되는 함수
+// // 페이지가 로드되면 실행되는 함수
 // $(document).ready(function () {
-//   fetchAndRenderData(); // 데이터를 가져와서 테이블에 출력
-//   attachMenuClickEvent(); // 사이드바 메뉴 항목에 클릭 이벤트 연결
+//   loadStoresData(); // 가게 데이터 로드
+//   attachMenuClickEvent();
 // });
 
-// function fetchAndRenderData() {
-//   $.ajax({
-//     url: '/api/stores', // Spring 서버의 API 엔드포인트 URL
-//     method: 'GET',
-//     success: function (data) {
-//       renderTable(data); // 받아온 데이터를 테이블에 출력
-//     },
-//     error: function (error) {
-//       console.error('Error fetching data:', error);
-//     },
-//   });
+// function loadStoresData() {
+//   const url = '/api/stores'; // 가게 데이터를 불러올 엔드포인트 URL
+//   fetch(url)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       renderTable(data.data); // 데이터를 테이블에 렌더링
+//     })
+//     .catch((error) => {
+//       console.error('가게 데이터 로드 에러:', error);
+//     });
 // }
 
 // function renderTable(data) {
-//   var tableBody = $('#stores-table tbody');
+//   let tableBody = $('#stores-table tbody');
 //   tableBody.empty();
 
 //   data.forEach(function (store) {
-//     var row = $('<tr>');
-//     row.append($('<td>').text(store.category));
+//     let row = $('<tr>');
+//     row.append($('<td>').text(store.categoryName));
 //     row.append($('<td>').text(store.storeName));
-//     row.append($('<td>').text(store.storeRating));
-//     row.append($('<td>').text(store.reviewCount));
+//     row.append($('<td>').text(generateStarRating(store.averageStars)));
+//     row.append($('<td>').text(store.countReviews));
 //     row.append($('<td>').text(store.operatingStatus));
 //     tableBody.append(row);
 //   });
@@ -226,18 +226,37 @@ $("#stores-table").on("click", "tr", function () {
 //   $('.sidebar-menu ul li').on('click', function (event) {
 //     event.preventDefault(); // 기본 동작 중지
 
-//     var selectedCategory = $(this).find('span').text();
+//     let selectedCategory = $(this).find('span').text();
 
-//     $.ajax({
-//       url: '/api/stores', // Spring 서버의 API 엔드포인트 URL
-//       method: 'GET',
-//       data: { category: selectedCategory }, // 선택한 카테고리 전달
-//       success: function (data) {
-//         renderTable(data); // 받아온 필터링된 데이터를 테이블에 출력
-//       },
-//       error: function (error) {
-//         console.error('Error fetching filtered data:', error);
-//       },
+//     // 선택한 카테고리에 해당하는 데이터만 필터링
+//     let filteredData = mockData.filter(function (store) {
+//       return store.category === selectedCategory;
 //     });
+
+//     renderTable(filteredData); // 필터링된 데이터를 테이블에 출력
+//     updateTableHeading(selectedCategory); // 테이블 제목 업데이트
 //   });
 // }
+
+// function updateTableHeading(category) {
+//   if (category === '기타') {
+//     $('#table-heading').text('기타 카테고리의 HOT한 점포 정보');
+//   } else {
+//     $('#table-heading').text(`${category} 카테고리의 HOT한 점포 정보`);
+//   }
+// }
+
+// // 내가 추가한 부분
+// $('#stores-table').on('click', 'tr', function () {
+//   var trNum = $(this).index();
+//   var storeArr = Array.from(
+//     document.querySelectorAll('#stores-table tbody tr td:nth-child(2)')
+//   );
+
+//   console.log(storeArr[trNum].textContent);
+//   if (storeArr[trNum].textContent === '수정된분식집') {
+//     var link = './JumpoPage/망원 닭강정/store1.html';
+//     // location.href = link;
+//     window.open(link);
+//   }
+// });
