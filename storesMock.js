@@ -27,6 +27,29 @@ const mockData = [
         userId: 1,
         categoryName: '분식',
       },
+      {
+        storeId: 1,
+        storeName: '수정된분식집',
+        storeDesc: '수정분식입니다.',
+        startTime: 'storeTime',
+        endTime: 'endtime',
+        roadAddress: 'roadAddress입니다.',
+        detailAddress: '상세주소',
+        storeTel: 'storeTel',
+        menuList: [],
+        storeImageList: [
+          {
+            id: 2,
+            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+            storeImageUrl:
+              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
+          },
+        ],
+        averageStars: 4,
+        countReviews: 123,
+        userId: 1,
+        categoryName: '건어물/젓갈',
+      },
     ],
   },
 ];
