@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --main-color: #027581;
+  --color-dark: #1d2231;
+  --text-grey: #8390a2;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+#sidebar-toggle {
+  display: none;
+}
+
+.sidebar {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: var(--main-color);
+  color: #fff;
+  overflow-y: auto;
+  transition: width 500ms;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0rem 1rem;
+}
+
+.sidebar-menu {
+  padding: 1rem;
+}
+
+.sidebar li {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar a {
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.sidebar a i:last-child {
+  padding-left: 0.6rem;
+}
+
+#sidebar-toggle:checked ~ .sidebar {
+  width: 60px;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+#sidebar-toggle:checked ~ .sidebar li span:last-child {
+  display: none;
+}
+
+#sidebar-toggle:checked ~ .sidebar .sidebar-header,
+#sidebar-toggle:checked ~ .sidebar li {
+  display: flex;
+  justify-content: center;
+}
+
+#sidebar-toggle:checked ~ .main-content {
+  margin-left: 60px;
+}
+
+#sidebar-toggle:checked ~ .main-content header {
+  left: 60px;
+  width: calc(100% - 60px);
+}
+
+.main-content {
+  position: relative;
+  margin-left: 240px;
+  transition: margin-left 500ms;
+}
+
+header {
+  position: fixed;
+  left: 240px;
+  top: 0;
+  z-index: 100;
+  width: calc(100% - 240px);
+  background: #fff;
+  height: 60px;
+  padding: 0rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  transition: left 500ms;
+}
+
+.login-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  background-color: var(--main-color);
+  color: #fff;
+  font-size: 4px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #ff4f4f;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.social-icons span,
+.social-icons div {
+  margin-left: 1.2rem;
+}
+
+.social-icons div {
+  height: 38px;
+  width: 38px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+main {
+  margin-top: 60px;
+  background: #f1f5f9;
+  min-height: 90vh;
+  padding: 1rem 3rem;
+}
+
+/* 여기서부터 작성하시면 됩니다. */
+.store-img {
+  width: 708px;
+  height: 487px;
+  top: 79px;
+  left: 296px;
+  border-radius: 10px;
+}
+
+.store-info {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.store-image {
+  margin: 10px;
+  width: 708px;
+  height: 494px;
+}
+
+.store-details {
+  text-align: center;
+  display: grid;
+  align-self: center;
+  grid-row-gap: 5px;
+}
+
+.write-review {
+  text-align: -webkit-center;
+  margin-top: 10px;
+}
+
+.reviews {
+  height: 80px;
+  margin: 10px 10px 0px 10px;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: 117px 510px 153px;
+}
+
+.submit {
+  float: right;
+  margin-right: 180px;
+}
+
+.write-review #content {
+  margin: 10px;
+  padding: 10px;
+  width: -webkit-fill-available;
+  height: 80px;
+}
+
+#myStars {
+  position: relative;
+  width: 200px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+#review-table td:nth-child(2) {
+  text-align: left;
+  color: rgb(75 85 99);
+}
+
+#review-table td:nth-child(3) {
+  text-align: left;
+  color: rgb(75 85 99);
+}
+
+.rating_result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-10px) translateX(-5px);
+  z-index: -9;
+  font: 3em Arial, Helvetica, sans-serif;
+  color: #ebebeb8e;
+  pointer-events: none;
+}
+
+.rating_star {
+  cursor: pointer;
+  color: #dabd18b2;
+}
+
+#reviewSubmit {
+  border-radius: 50px;
+  border: none;
+  width: 50px;
+  height: 30px;
+  background-color: #027581;
+  color: white;
+}
+
+.menu_details {
+  display: flex;
+  box-shadow: gray;
+  border-radius: 10px;
+  background-color: rgb(229 229 229);
+  margin-bottom: 10px;
+}
+
+.menu_text {
+  margin: 10px;
+}
+
+.menu_image {
+  border-radius: 10px;
+  margin: 10px;
+  height: 150px;
+  width: 300px;
+}
+
+.menu_text {
+  display: grid;
+  grid-gap: 10px;
+  align-content: center;
+}
+
+/* 반응형 */
+@media only screen and (max-width: 1200px) {
+  .sidebar {
+    width: 60px;
+    z-index: 150;
+  }
+
+  .sidebar .sidebar-header h3 span,
+  .sidebar li span:last-child {
+    display: none;
+  }
+
+  .sidebar .sidebar-header,
+  .sidebar li {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-content {
+    margin-left: 60px;
+  }
+
+  .main-content header {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  #sidebar-toggle:checked ~ .sidebar {
+    width: 240px;
+  }
+
+  #sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+  #sidebar-toggle:checked ~ .sidebar li span:last-child {
+    display: inline;
+  }
+
+  #sidebar-toggle:checked ~ .sidebar .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #sidebar-toggle:checked ~ .sidebar li {
+    display: block;
+  }
+
+  #sidebar-toggle:checked ~ .main-content {
+    margin-left: 60px;
+  }
+
+  #sidebar-toggle:checked ~ .main-content header {
+    left: 60px;
+  }
+}
+
+/* 반응형 부분 */
+@media only screen and (max-width: 860px) {
+  .dash-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-single {
+    margin-bottom: 1rem;
+  }
+
+  .activity-grid {
+    display: block;
+  }
+
+  .summary {
+    margin-top: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dash-cards {
+    grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* 본인이 작성하신 코드 CSS 아래부터 작성해주시면 됩니다. 다른 부분은 건들이시면 안됩니다. */
+@media screen and (max-width: 1200px) {
+  .store-details {
+    float: none;
+    width: auto;
+  }
+  .menu-info {
+    float: none;
+    width: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .store-info {
+    flex: none;
+    display: grid;
+  }
+}

@@ -8,66 +8,74 @@ document.querySelector('.login-button').addEventListener('click', function () {
 // 저장된 리뷰 임시 mockdata
 const mockDataReview = [
   {
-    reviewer: 'soo',
+    reviewer: 'ㅇㅇ',
     stars: 5,
-    content: '친절해요',
+    content: '양이 많아요',
   },
   {
-    reviewer: '예에',
+    reviewer: 'ㅎㅎ',
     stars: 3,
-    content: '평범해요',
+    content: '쏘쏘',
   },
   {
-    reviewer: '야아',
+    reviewer: '아',
     stars: 4,
     content: '맛있어요',
   },
   {
-    reviewer: '아이디',
+    reviewer: '이',
     stars: 5,
-    content: '맛있는듯',
+    content: '굿굿',
   },
   {
-    reviewer: '뭐로',
+    reviewer: '디',
     stars: 5,
-    content: '튀김이 빠삭해요',
+    content: '좋아요',
   },
   {
-    reviewer: '하지',
+    reviewer: '??',
     stars: 2,
-    content: '양념 매워요',
+    content: '쫄깃해요',
   },
 ];
 
 const storeData = () => [
   {
-    storeId: 1,
-    storeName: "망원 닭강정",
-    storeDesc: "매일 새기름을 사용해서 건강한 닭강정을 만듭니다",
+    storeId: 2,
+    storeName: "고려왕족발",
+    storeDesc: "쫄깃하고 맛있는 족발",
     storeTime: "8:00-21:00",
     storeTel: "02-3142-9952",
     menuList: [
       {
         id: 1,
-        menuName: "간장 닭강정",
-        menuPrice: 10000,
+        menuName: "족발(대)",
+        menuPrice: 40000,
         menuDesc: "메뉴설명~",
         imageName: "menu-img1.png",
-        imageUrl: "./menu-img1.png"
+        imageUrl: "./menu1.jpeg"
       },
       {
         id: 2,
-        menuName: "매운 닭강정",
+        menuName: "족발(중)",
+        menuPrice: 28000,
+        menuDesc: "메뉴설명~",
+        imageName: "menu-img2.png",
+        imageUrl: "./menu1.jpeg"
+      },
+      {
+        id: 3,
+        menuName: "족발(소)",
         menuPrice: 12000,
         menuDesc: "메뉴설명~",
         imageName: "menu-img2.png",
-        imageUrl: "./menu-img2.png"
+        imageUrl: "./menu1.jpeg"
       }
     ],
     storeImageList: [
       {
         storeUrl: "url",
-        storeFilename: "./firstMarket.jpeg"
+        storeFilename: "./store2.jpeg"
       }
     ]
   }
@@ -120,7 +128,8 @@ function showStoreImage(data) {
 //       const storeDesc = response.storeDesc;
 //       const storeTime = response.storeTime;
 //       const storeTel = response.storeTel;
-      
+//       const storeImageList = response.storeImageList;
+//    
 //       $('#storeName').text(storeName);
 //       $('#storeDesc').text(storeDesc);
 //       $('#storeTime').text(storeTime);
@@ -131,7 +140,7 @@ function showStoreImage(data) {
 //     }
 //   });
 // });
-
+// 
 // function getStoreImage(data) {
 //   let imageList = []
 //   $.ajax({

@@ -8,9 +8,9 @@ document.querySelector('.login-button').addEventListener('click', function () {
 // 저장된 리뷰 임시 mockdata
 const mockDataReview = [
   {
-    reviewer: 'soo',
+    reviewer: '면킬러',
     stars: 5,
-    content: '친절해요',
+    content: '국물 맛있어요',
   },
   {
     reviewer: '예에',
@@ -30,7 +30,7 @@ const mockDataReview = [
   {
     reviewer: '뭐로',
     stars: 5,
-    content: '튀김이 빠삭해요',
+    content: '면이 맛있어요',
   },
   {
     reviewer: '하지',
@@ -42,32 +42,40 @@ const mockDataReview = [
 const storeData = () => [
   {
     storeId: 1,
-    storeName: "망원 닭강정",
-    storeDesc: "매일 새기름을 사용해서 건강한 닭강정을 만듭니다",
+    storeName: "망원시장손칼국수",
+    storeDesc: "국물이 시원합니다",
     storeTime: "8:00-21:00",
     storeTel: "02-3142-9952",
     menuList: [
       {
         id: 1,
-        menuName: "간장 닭강정",
-        menuPrice: 10000,
+        menuName: "손칼국수",
+        menuPrice: 9000,
         menuDesc: "메뉴설명~",
         imageName: "menu-img1.png",
-        imageUrl: "./menu-img1.png"
+        imageUrl: "./menu1.jpg"
       },
       {
         id: 2,
-        menuName: "매운 닭강정",
+        menuName: "콩국수",
+        menuPrice: 10000,
+        menuDesc: "메뉴설명~",
+        imageName: "menu-img2.png",
+        imageUrl: "./menu2.jpg"
+      },
+      {
+        id: 3,
+        menuName: "보쌈",
         menuPrice: 12000,
         menuDesc: "메뉴설명~",
         imageName: "menu-img2.png",
-        imageUrl: "./menu-img2.png"
+        imageUrl: "./menu3.jpg"
       }
     ],
     storeImageList: [
       {
         storeUrl: "url",
-        storeFilename: "./firstMarket.jpeg"
+        storeFilename: "./store3.jpeg"
       }
     ]
   }
