@@ -1,54 +1,58 @@
-let container = document.getElementById("container");
+let container = document.getElementById('container');
 
 toggle = () => {
-  container.classList.toggle("sign-in");
-  container.classList.toggle("sign-up");
+  container.classList.toggle('sign-in');
+  container.classList.toggle('sign-up');
 };
 
 setTimeout(() => {
-  container.classList.add("sign-in");
+  container.classList.add('sign-in');
 }, 200);
 
-// 로그인 기능
+// Login functionality
 function login() {
-  const email = document.querySelector("#signInUsername").value;
-  const password = document.querySelector("#signInPassword").value;
+  const email = document.querySelector('#signInUsername').value;
+  const password = document.querySelector('#signInPassword').value;
 
   const data = {
     email: email,
     password: password,
   };
 
-  fetch("http://127.0.0.1:8080/api/login", {
-    method: "POST",
+  fetch('http://127.0.0.1:8080/api/login', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   })
-  .then((response) => response.json())
-  .then((data) => {
-    window.location.href ='http://127.0.0.1:5500/main.html';
-    if (data.success == true) {
-      alert(data.message);
-      // Save user information and token in localStorage
-      // localStorage.setItem('user', JSON.stringify(data.data));
-      // localStorage.setItem('token', data.token);
-      // Redirect to main page
-    }
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      window.location.href = '/main.html';
+      localStorage.setItem('user', JSON.stringify(data.data));
+      localStorage.setItem('token', data.data.jwt);
+      if (data.success) {
+        alert(data.message);
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error('An error occurred during login:', error);
+    });
 }
 
 // 회원가입
 function signUp() {
-  console.log("hi");
-  const username = document.getElementById("signUpUsername").value;
-  const email = document.getElementById("signUpEmail").value;
-  const password = document.getElementById("signUpPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-  const isAdmin = document.getElementById("adminCheck").checked;
+  console.log('hi');
+  const username = document.getElementById('signUpUsername').value;
+  const email = document.getElementById('signUpEmail').value;
+  const password = document.getElementById('signUpPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const isAdmin = document.getElementById('adminCheck').checked;
 
-  const role = isAdmin ? "CEO" : "USER";
+  const role = isAdmin ? 'CEO' : 'USER';
 
   const data = {
     email: email,
@@ -57,10 +61,10 @@ function signUp() {
     role: role,
   };
 
-  fetch("http://127.0.0.1:8080/api/register", {
-    method: "POST",
+  fetch('http://127.0.0.1:8080/api/register', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   })
@@ -72,7 +76,7 @@ function signUp() {
     .then((data) => {
       console.log(data);
       if (data.success == true) {
-        alert("회원가입이 완료되었습니다.");
+        alert('회원가입이 완료되었습니다.');
         // window.location.href = "/LoginPage/login.html";
       } else {
         alert(data.message);
