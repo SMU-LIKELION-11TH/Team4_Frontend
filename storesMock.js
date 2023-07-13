@@ -3,6 +3,7 @@ $(document).ready(function () {
   attachMenuClickEvent();
 });
 
+const fetchdata = [];
 function generateStarRating(rating) {
   const maxRating = 5;
   const fullStar = '⭐️';
@@ -28,20 +29,24 @@ function generateStarRating(rating) {
 
   return starRating;
 }
-
+const url = 'http://127.0.0.1:8080/api/stores';
+const token = localStorage.getItem('token');
+var teadbear = 'Bearer ' + token;
+console.log(teadbear);
+var myHeaders = new Headers();
+myHeaders.append('Authorization', 'Bearer ' + token);
 function loadStoresData() {
-  const url = 'http://127.0.0.1:8080/api/stores';
-  const token = localStorage.getItem('token'); // Get the token value from localStorage
+
   console.log(token);
   fetch(url, {
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
+    "headers": myHeaders,
   })
     .then((response) => response.json())
     .then((data) => {
-      renderTable(data);
-      console.log(data);
+      let data1 = data.data;
+      console.log(data1);
+      fetchdata.push(data1);
+      renderTable(data1);
     })
     .catch((error) => {
       console.error('An error occurred while loading store data:', error);
@@ -72,16 +77,14 @@ function attachMenuClickEvent() {
     // Send request to the API to get filtered data based on selected category
     const url = `/api/stores?category=${encodeURIComponent(selectedCategory)}`;
     const token = localStorage.getItem('token'); // Get the token value from localStorage
-    console.log(token);
 
     fetch(url, {
       headers: {
-        Authorization: 'Bearer' + token,
+        Authorization: token, // Include the token in the request headers
       },
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         renderTable(data); // Render the filtered data in the table
         updateTableHeading(selectedCategory); // Update the table heading
       })
@@ -98,18 +101,19 @@ $('#stores-table').on('click', 'tr', function () {
     document.querySelectorAll('#stores-table tbody tr td:nth-child(2)')
   );
 
-  console.log(storeArr[trNum].textContent);
+  console.log(storeArr[trNum].textContent);  
+  console.log(fetchdata);
 
   // Get the store name from the clicked row
   var clickedStoreName = storeArr[trNum].textContent;
 
   // Find the store in the data array that matches the clicked store name
-  const clickedStore = mockData[0].data.find(
-    (store) => store.storeName === clickedStoreName
-  );
+  const clickedStore = fetchdata.find(
+    (store) => store.storeName === clickedStoreName );
 
   if (clickedStore) {
     const selectedStoreID = clickedStore.storeId;
+    console.log(selectedStoreID);
     window.open(`./JumpoPage/jumpo.html?id=${selectedStoreID}`);
   }
 });
