@@ -1,6 +1,6 @@
 // 로그인 로직은 건들이시면 안됩니다.
 document.querySelector('.login-button').addEventListener('click', function () {
-  window.location.href = 'http://localhost:5501/LoginPage/login.html';
+  window.location.href = './LoginPage/login.html';
 });
 
 function logout() {
@@ -28,10 +28,30 @@ window.onload = function main() {
     // User is logged out
     loginButton.textContent = '로그인 / 회원가입';
     loginButton.addEventListener('click', function () {
-      window.location.href = 'http://localhost:5501/LoginPage/login.html';
+      window.location.href = './LoginPage/login.html';
     });
   }
 };
+
+// 로그인 확인 시, 해당 유저의 이미지로 확인
+document.addEventListener('DOMContentLoaded', function () {
+  const socialIconsDiv = document.querySelector('.social-icons div');
+  // 로그인 되면 User 정보를 로컬스토리지에 저장
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user && user.imageUrl) {
+    // 이미지 정보가 있으면, url보여줌
+    socialIconsDiv.style.backgroundImage = `url(${user.imageUrl})`;
+    socialIconsDiv.addEventListener('click', function () {
+      window.location.href = './my.html';
+    });
+  } else {
+    // null인 경우 빈 이미지로 설정
+    socialIconsDiv.style.backgroundImage = 'url(../img/owner.png)';
+    socialIconsDiv.addEventListener('click', function () {
+      window.location.href = '/my.html';
+    });
+  }
+});
 let fetchdata = [];
 // 아래부터 작성해주세요
 // -------------------------------------------------------------------------
