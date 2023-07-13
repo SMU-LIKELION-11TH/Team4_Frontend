@@ -187,46 +187,7 @@ function showStoreImage(data) {
   });
 }
 
-//--------------------------------통신용------------------------------
-// $(document).ready(function() {
-//   $.ajax({
-//     url: '/api/data', // 백엔드에서 제공하는 url 넣는 곳
-//     method: 'GET',
-//     dataType: 'JSON',
-//     success: function(response) {
-//       const storeName = response.storeName;
-//       const storeDesc = response.storeDesc;
-//       const storeTime = response.storeTime;
-//       const storeTel = response.storeTel;
 
-//       $('#storeName').text(storeName);
-//       $('#storeDesc').text(storeDesc);
-//       $('#storeTime').text(storeTime);
-//       $('#storeTel').text(storeTel);
-//     },
-//     error: function(error) {
-//       console.log('Error:', error);
-//     }
-//   });
-// });
-
-// function getStoreImage(data) {
-//   let imageList = []
-//   $.ajax({
-//     //url:
-//     method: 'GET',
-//     async: false,
-//     contentType: 'application/json',
-//     success: function(response) {
-//       lmageList = response.storeImageList;
-//     },
-//     error: function(error){
-//       console.log("error:", error);
-//     }
-//   })
-//   return lmageList;
-// }
-//-----------------------------------------------------------------------
 
 // 2. 리뷰 정보 불러오기
 function renderReviewTable(data) {
@@ -249,36 +210,6 @@ function renderReviewTable(data) {
     tableBody.append(row);
   });
 }
-
-//----------------- 통신용 -----------------------------------------
-// let savedReview = getReview();
-
-// function getReview() {
-//   let reviewData = []
-//   $.ajax({
-//       type: "GET",
-//       //url: '???' ,
-//       async: false,
-//       contentType: 'application/json',
-//       success: function (response) {
-//           let reviews = response.reviews;
-//           for (let i = 0; i < reviews.length; i++) {
-//             let reviewer = reviews[i]['reviewer']
-//             let content = reviews[i]['content']
-//             let stars = reviews[i]['stars']
-
-//             reviewData.push(
-//               {
-//                 reviewer : reviewer,
-//                 content : content,
-//                 stars : stars
-//               })
-//           }
-//       }
-//   })
-//   return reviewData;
-// }
-//-----------------------------------------------------------------------
 
 // 리뷰 작성
 const ratingStars = [...document.getElementsByClassName('rating_star')];
@@ -317,8 +248,8 @@ function executeRating(stars) {
 const reviewForm = document.querySelector('.write-review');
 reviewForm.addEventListener('submit', reviewPost);
 
-function reviewPost(e) {
-  e.preventDefault(); // 기본 동작을 막음
+function reviewPost() {
+  event.preventDefault(); // 기본 동작을 막음
 
   const content = document.getElementById('content').value;
   const stars = parseInt(ratingResult.textContent);
@@ -328,13 +259,14 @@ function reviewPost(e) {
     stars: stars,
   };
 
+  mockDataReview[0].data.push(newReview);
   reviewData.push(newReview);
   console.log(reviewData);
 }
 
 //--------------------------------통신용------------------------------------
-// function reviewPost(e) {
-//    e.preventDefault();
+// function reviewPost() {
+//    event.preventDefault();
 //    const content = document.getElementById('content').value;
 //    const stars = parseInt(ratingResult.textContent);
 
@@ -396,31 +328,7 @@ function showMenu(data) {
     listItem.appendChild(menuText);
     menuListElement.appendChild(listItem);
   });
-}
-
-// —————————————통신용——————————————————
-// function getMenu() {
-//   var menuData = [];
-//   $.ajax({
-//       type: "GET",
-//       url: '???' , //백엔드에서 받아오기
-//       data: {},
-//       async: false,
-//       success: function (response) {
-//           let menu = response['menuList']
-//           for (let i = 0; i < menuList.length; i++) {
-//             let menuImg = menuList[i]['imageUrl']
-//             let menuName = menuList[i]['menuName']
-//             let menuPrice = menuList[i]['menuPrice']
-//             let menuDesc = menuList[i]['menuDesc']
-
-//             menuData = JSON.parse(menu.responseText);
-//           }
-//       }
-//   })
-//   return menuData;
-// }
-// ——————————————————————————————————
+};
 
 var mapContainer = document.getElementById('map');
 var mapOption = {
