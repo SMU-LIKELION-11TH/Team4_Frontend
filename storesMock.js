@@ -45,9 +45,10 @@ function loadStoresData() {
   })
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       let data1 = data.data;
       console.log(data1);
-      fetchdata = data1; // Assign fetched data to fetchdata array
+      fetchdata = data1; 
       renderTable(data1);
     })
     .catch((error) => {
@@ -65,9 +66,30 @@ function renderTable(data) {
     row.append($('<td>').text(store.storeName));
     row.append($('<td>').text(generateStarRating(store.averageStars)));
     row.append($('<td>').text(store.countReviews));
-    row.append($('<td>').text(store.operatingStatus));
+    row.append($('<td>').text(getOperatingStatus(store.startTime, store.endTime)));
     tableBody.append(row);
   });
+}
+
+function getOperatingStatus(startTime, endTime) {
+  // 현재 시간을 초로 변환
+  let currentTime = Math.floor(Date.now() / 1000);
+
+  // startTime과 endTime을 초로 변환
+  let start = convertToSeconds(startTime);
+  let end = convertToSeconds(endTime);
+
+  // 현재 시간이 운영 시간 내에 있는지 확인
+  if (currentTime >= start && currentTime <= end) {
+    return '운영 중';
+  } else {
+    return '미운영';
+  }
+}
+
+function convertToSeconds(time) {
+  let [hours, minutes] = time.split(':');
+  return parseInt(hours) * 3600 + parseInt(minutes) * 60;
 }
 
 function attachMenuClickEvent() {
