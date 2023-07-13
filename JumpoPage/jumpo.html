@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -16,7 +16,14 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="jumpo.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Team4_Frontend/storesMock.js" defer></script>
     <script src="./jumpo.js" defer></script>
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fdeb846f848ee28339377e99853e2028&libraries=services"
+    ></script>
+    <link rel="apple-touch-icon-precomposed" href="favicon.ico" />
   </head>
   <body>
     <input type="checkbox" id="sidebar-toggle" />
@@ -24,7 +31,7 @@
       <div class="sidebar-header">
         <h3 class="brand">
           <span class="ti-logo"></span>
-          <a href="../main.html"><span>시장에 가면</span></a>
+          <a href="/main.html"><span>시장에 가면</span></a>
         </h3>
         <label for="sidebar-toggle" class="ti-menu-alt"></label>
       </div>
@@ -130,9 +137,79 @@
           <button class="login-button">로그인 / 회원가입</button>
         </div>
       </header>
+      <!-- 1등 매장 세부 정보 -->
+      <main>
+        <!-- 북마크 부분 백엔드 DB에서 받아와야(관리자 페이지에서 입력한 사항이 유저 페이지에서 반영되도록) -->
 
-      <!-- 매장 정보 확인하기 누르면 해당하는 점포 설명 (수정) -->
-      <main></main>
+        <!-- 가게 정보 -->
+        <div class="store-info">
+          <!-- 점포 이미지 -->
+          <div class="store-image">
+            <ul id="storeImageList"></ul>
+          </div>
+
+          <div class="store-details">
+            <h1 id="storeName"></h1>
+            <!-- 별점 -->
+            <h2>⭐️⭐️⭐️⭐️⭐️</h2>
+            <p id="storeTel"></p>
+            <p id="storeTime">영업시간</p>
+            <p id="storeDesc"></p>
+            <!-- 리뷰 / id, reviewer, stars, content -->
+            <div class="reviews" style="overflow: auto">
+              <table id="review-table">
+                <thead style="display: none">
+                  <tr>
+                    <th id="stars">별점</th>
+                    <th>리뷰</th>
+                    <th>작성자</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <form class="write-review">
+              <!-- 리뷰 작성 / id: content에 push -->
+              <input
+                type="text"
+                id="content"
+                name="content"
+                placeholder="한 줄 리뷰를 작성해주세요!"
+              />
+              <!-- 별점 등록 / id: stars -->
+              <div class="myStars" id="myStars" name="myStars">
+                <span class="rating_result"></span>
+                <i class="rating_star far fa-star"></i>
+                <i class="rating_star far fa-star"></i>
+                <i class="rating_star far fa-star"></i>
+                <i class="rating_star far fa-star"></i>
+                <i class="rating_star far fa-star"></i>
+              </div>
+              <!-- 리뷰 저장 -->
+              <input
+                id="reviewSubmit"
+                type="submit"
+                onclick="reviewPost()"
+                value="저장"
+              />
+            </form>
+          </div>
+        </div>
+
+        <!-- 메뉴 정보 -->
+        <div class="menu-info">
+          <ul role="list" id="menuList" class="divide-y divide-gray-100">
+            <li class="menu_details"></li>
+          </ul>
+        </div>
+
+        <!-- 위치 정보(인겸님이 이 자리에 카카오맵 구현해 주시면 됩니다.) —> -->
+        <h2>위치 정보</h2>
+        <div class="summary">
+          <div class="summary-card" id="map"></div>
+        </div>
+      </main>
     </div>
   </body>
 </html>

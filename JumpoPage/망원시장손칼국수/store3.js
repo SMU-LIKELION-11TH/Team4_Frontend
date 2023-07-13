@@ -92,70 +92,78 @@ const mockDataReview = [
 
 const mockDataStore = [
   {
-    storeId: 8,
-    storeName: '수정중입니다3',
-    storeDesc: '테스트중입니다.',
-    storeAddress: 'storeAddress입니다',
-    storeTime: 'storeTime',
-    storeTel: 'storeTel',
-    menuList: [
-      {
-        id: 2,
-        menuName: 'cake',
-        menuPrice: 1000,
-        menuDesc: 'test',
-        imageName: 'b1ed377f-ad1d-4ad8-8795-4b988b96f906.png',
-        imageUrl:
-          'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
-      },
-      {
-        id: 3,
-        menuName: 'latte',
-        menuPrice: 2000,
-        menuDesc: 'test',
-        imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
-        imageUrl:
-          'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
-      },
-    ],
-    storeImageList: [
-      {
-        id: 1,
-        storeFilename: 'b2746fe8-6db4-4dd6-b060-a64e1fa4a991.png',
-        storeImageUrl:
-          'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\b2746fe8-6db4-4dd6-b060-a64e1fa4a991.png',
-      },
-      {
-        id: 2,
-        storeFilename: '478f18a7-b56c-4b08-849f-f328c4c5c928.png',
-        storeImageUrl:
-          'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\478f18a7-b56c-4b08-849f-f328c4c5c928.png',
-      },
-    ],
+    code: 200,
+    httpStatus: 'OK',
+    message: '요청에 성공하였습니다.',
+    data: {
+      storeId: 8,
+      storeName: '망원시장손칼국수',
+      storeDesc: '기름기없는 사골육수에 얇고 부드러운 면발이 일품인 망원시장 손칼국수입니다.',
+      storeAddress: 'storeAddress입니다',
+      startTime: '10:00',
+      endTime: '20:00',
+      storeTel: '02-333-3333',
+      menuList: [
+        {
+          id: 1,
+          menuName: '손칼국수',
+          menuPrice: 8000,
+          menuDesc: '좋은 재료로 직접 반죽하여 직접 썰은 면으로 만든 손칼국수',
+          imageName: 'b1ed377f-ad1d-4ad8-8795-4b988b96f906.png',
+          imageUrl:
+          './menu1.jpg',
+        },
+        {
+          id: 2,
+          menuName: '콩국수',
+          menuPrice: 9000,
+          menuDesc: '여름철 별미! 국물이 고소하고 시원해요',
+          imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
+          imageUrl:
+          './menu2.jpg',
+        },
+        {
+          id: 2,
+          menuName: '보쌈',
+          menuPrice: 15000,
+          menuDesc: '직접 담근 김치와 함께 나오는 보쌈',
+          imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
+          imageUrl:
+            './menu3.jpg',
+          }
+      ],
+      storeImageList: [
+        {
+          id: 2,
+          storeFilename: './store3.jpeg',
+          storeImageUrl:
+            './firstMarket.jpeg',
+        },
+    ],    
     categoryId: 1,
   },
-];
+}];
 
 // -------------------------------------------------------------------------
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
 $(document).ready(function () {
-  loadStoresData();
-  loadReviewData();
+  showStoreData(loadStoresData());
+  showStoreImage(loadStoresData());
+  showMenu(loadStoresData());
+  renderReviewTable(loadReviewData());
 });
 
 function loadStoresData() {
   const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
-  const data = mockDataStore[0]; // Mock 데이터에서 실제 데이터를 가져옴
-  showStoreData(data);
-  showStoreData(data);
-  showMenu(data);
+  const selectedStoreData = mockDataStore[0].data; // Mock 데이터에서 실제 데이터를 가져옴
+  return selectedStoreData;
 }
 
 function loadReviewData() {
   const url = '/api/stores/{storeId}/reviews?sort=stars';
-  const data = mockDataReview[0].data;
-  renderReviewTable(data);
+  const selectedReviewData = mockDataReview[0].data;
+  return selectedReviewData;
 }
 
 function showStoreData(data) {
@@ -166,14 +174,14 @@ function showStoreData(data) {
 
   storeName.textContent = data.storeName;
   storeDesc.textContent = data.storeDesc;
-  storeTime.textContent = '영업시간: ' + data.storeTime;
+  storeTime.textContent = '영업시간: ' + data.startTime +'-' + data.endTime;
   storeTel.textContent = data.storeTel;
 }
 
 function showStoreImage(data) {
   const imageList = document.getElementById('storeImageList');
 
-  data()[0].storeImageList.forEach((img) => {
+  data.storeImageList.forEach((img) => {
     const imageItem = document.createElement('li');
 
     const image = document.createElement('img');

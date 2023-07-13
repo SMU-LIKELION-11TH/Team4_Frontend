@@ -94,128 +94,54 @@ const mockDataStore = [
     code: 200,
     httpStatus: 'OK',
     message: '요청에 성공하였습니다.',
-    data: [
-      {
-        storeId: 1,
-        storeName: '망원 닭강정',
-        storeDesc: '수정분식입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '분식',
-      },
-      {
-        storeId: 2,
-        storeName: '수정된반찬가게',
-        storeDesc: '수정반찬입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '건어물/젓갈',
-      },
-      {
-        storeId: 3,
-        storeName: '수정된마트',
-        storeDesc: '수정마트입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [
-          {
-            id: 2,
-            menuName: 'cake',
-            menuPrice: 1000,
-            menuDesc: 'test',
-            imageName: 'b1ed377f-ad1d-4ad8-8795-4b988b96f906.png',
-            imageUrl:
-              'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
-          },
-          {
-            id: 3,
-            menuName: 'latte',
-            menuPrice: 2000,
-            menuDesc: 'test',
-            imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
-            imageUrl:
-              'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
-          },
-        ],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '마트',
-      },
-      {
-        storeId: 4,
-        storeName: '수정된분식집',
-        storeDesc: '수정과일입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '과일',
-      },
-    ],
+    data: {
+      storeId: 1,
+      storeName: '망원 닭강정',
+      storeDesc: '매일 새 기름을 사용하여 빠삭하게 튀깁니다',
+      startTime: '09:00',
+      endTime: '20:00',
+      roadAddress: 'roadAddress입니다.',
+      detailAddress: '상세주소',
+      storeTel: '02-111-1111',
+      menuList: [
+        {
+          id: 1,
+          menuName: '간장 닭강정',
+          menuPrice: 10000,
+          menuDesc: '일반 튀김기계가 아닌 가마솥에서 달궈진 180℃가 넘는 기름에서 튀겨진 바삭함이 일품인 후라이드',
+          imageName: 'b1ed377f-ad1d-4ad8-8795-4b988b96f906.png',
+          imageUrl:
+            './menu-img1.png',
+        },
+        {
+          id: 2,
+          menuName: '매운 닭강정',
+          menuPrice: 12000,
+          menuDesc: '자극적이지 않고 달콤하면서도 살짝 매콤한 맛이나 남녀노소 누구나 질리지 않게 즐길 수 있는 맛',
+          imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
+          imageUrl:
+            './menu-img2.png',
+        }
+      ],
+      storeImageList: [
+        {
+          id: 2,
+          storeFilename: './firstMarket.jpeg',
+          storeImageUrl:
+            './firstMarket.jpeg',
+        },
+      ],
+      averageStars: 4,
+      countReviews: 123,
+      userId: 1,
+      categoryName: '분식',
+    }      
   },
 ];
 
 // -------------------------------------------------------------------------
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
-const urlParams = new URLSearchParams(window.location.search);
-const selectedStoreID = urlParams.get('id');
-
 $(document).ready(function () {
   showStoreData(loadStoresData());
   showStoreImage(loadStoresData());
@@ -225,7 +151,7 @@ $(document).ready(function () {
 
 function loadStoresData() {
   const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
-  const selectedStoreData = mockDataStore[0].data[selectedStoreID - 1]; // Mock 데이터에서 실제 데이터를 가져옴
+  const selectedStoreData = mockDataStore[0].data; // Mock 데이터에서 실제 데이터를 가져옴
   return selectedStoreData;
 }
 
@@ -243,7 +169,7 @@ function showStoreData(data) {
 
   storeName.textContent = data.storeName;
   storeDesc.textContent = data.storeDesc;
-  storeTime.textContent = '영업시간: ' + data.storeTime;
+  storeTime.textContent = '영업시간: ' + data.startTime +'-' + data.endTime;
   storeTel.textContent = data.storeTel;
 }
 
