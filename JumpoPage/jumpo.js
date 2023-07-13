@@ -32,226 +32,69 @@ window.onload = function main() {
     });
   }
 };
-
+let fetchdata = [];
 // 아래부터 작성해주세요
-const mockDataReview = [
-  {
-    code: 200,
-    httpStatus: 'OK',
-    message: '요청에 성공하였습니다.',
-    data: [
-      {
-        id: 2,
-        stars: 5,
-        content: '최고에요요',
-        reviewer: 'ceo',
-        storeName: '윤가네',
-        createdAt: '2023-07-10 03:41:57',
-        updatedAt: '2023-07-10 03:41:57',
-      },
-      {
-        id: 4,
-        stars: 5,
-        content: '미쳤다 미쳤어',
-        reviewer: 'admin',
-        storeName: '윤가네',
-        createdAt: '2023-07-10 03:46:15',
-        updatedAt: '2023-07-10 03:46:15',
-      },
-      {
-        id: 3,
-        stars: 4,
-        content: '맛있어요',
-        reviewer: 'ceo',
-        storeName: '윤가네',
-        createdAt: '2023-07-10 03:42:15',
-        updatedAt: '2023-07-10 03:42:15',
-      },
-      {
-        id: 5,
-        stars: 4,
-        content: '미쳤다',
-        reviewer: 'admin',
-        storeName: '윤가네',
-        createdAt: '2023-07-10 03:48:15',
-        updatedAt: '2023-07-10 03:48:15',
-      },
-      {
-        id: 1,
-        stars: 3,
-        content: '보통이에요요',
-        reviewer: 'ceo',
-        storeName: '윤가네',
-        createdAt: '2023-07-10 03:39:07',
-        updatedAt: '2023-07-10 03:39:07',
-      },
-    ],
-  },
-];
-
-const mockDataStore = [
-  {
-    code: 200,
-    httpStatus: 'OK',
-    message: '요청에 성공하였습니다.',
-    data: [
-      {
-        storeId: 1,
-        storeName: '망원 닭강정',
-        storeDesc: '수정분식입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '분식',
-      },
-      {
-        storeId: 2,
-        storeName: '수정된반찬가게',
-        storeDesc: '수정반찬입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '건어물/젓갈',
-      },
-      {
-        storeId: 3,
-        storeName: '수정된마트',
-        storeDesc: '수정마트입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [
-          {
-            id: 2,
-            menuName: 'cake',
-            menuPrice: 1000,
-            menuDesc: 'test',
-            imageName: 'b1ed377f-ad1d-4ad8-8795-4b988b96f906.png',
-            imageUrl:
-              'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
-          },
-          {
-            id: 3,
-            menuName: 'latte',
-            menuPrice: 2000,
-            menuDesc: 'test',
-            imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
-            imageUrl:
-              'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
-          },
-        ],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '마트',
-      },
-      {
-        storeId: 4,
-        storeName: '수정된분식집',
-        storeDesc: '수정과일입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '과일',
-      },
-    ],
-  },
-];
-
 // -------------------------------------------------------------------------
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
-const urlParams = new URLSearchParams(window.location.search);
-const selectedStoreID = urlParams.get('id');
 
-$(document).ready(function () {
-  showStoreData(loadStoresData());
-  showStoreImage(loadStoresData());
-  showMenu(loadStoresData());
-  renderReviewTable(loadReviewData());
-});
+
+
+// $(document).ready(function () {
+// const urlParams = new URLSearchParams(window.location.search);
+// const selectedStoreID = urlParams.get('id');
+// loadStoresData();
+  // showStoreData(loadStoresData());
+  // showStoreImage(loadStoresData());
+  // showMenu(loadStoresData());
+  // renderReviewTable(loadReviewData());
+// });
+
+
 
 // function loadStoresData() {
 //   const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
 //   const selectedStoreData = mockDataStore[0].data[selectedStoreID - 1]; // Mock 데이터에서 실제 데이터를 가져옴
 //   return selectedStoreData;
-// }
-
+// } 
+const urlParams = new URLSearchParams(window.location.search);
+console.log(urlParams);
+const selectedStoreID = urlParams.get('id');
+const urls = `http://127.0.0.1:8080/api/stores/${selectedStoreID}`;
+console.log(urls);
+const token = localStorage.getItem('token');
+var teadbear = 'Bearer ' + token;
+console.log(teadbear);
+var myHeaders = new Headers();
+myHeaders.append('Authorization', 'Bearer ' + token);
+loadStoresData();
 //---------------------------통신용-------------------------------
 function loadStoresData() {
-  let selectedStoreData = [];
-  let url = '/api/stores/by-category/1'
-  $.ajax({
-    type: "GET",
-    url: url,
-    contentType : 'application/json', 
-    async: false,
-    success: function (response) {
-      selectedStoreData = response.data;
-    }
-
+  console.log(token);
+  fetch(urls, {
+    headers: myHeaders,
   })
-  return selectedStoreData;
+    .then((response) => response.json())
+    .then((data) => {
+      let data1 = data.data;
+      console.log(data.data);
+      fetchdata = data1;
+      showStoreData(fetchdata);
+      showStoreImage(fetchdata);
+      showMenu(fetchdata);
+    })
+    .catch((error) => {
+      console.error('An error occurred while loading store data:', error);
+    });
+  // return selectedStoreData;
 }
 //---------------------------------------------------------------
 
-function loadReviewData() {
-  const url = '/api/stores/{storeId}/reviews?sort=stars';
-  const selectedReviewData = mockDataReview[0].data;
-  return selectedReviewData;
-}
+// function loadReviewData() {  
+//   const url = '/api/stores/+'+selectedStoreID+'/reviews?sort=stars';
+//   const selectedReviewData = mockDataReview[0].data;
+//   return selectedReviewData;
+// }
 
 function showStoreData(data) {
   var storeName = document.getElementById('storeName');
@@ -261,7 +104,7 @@ function showStoreData(data) {
 
   storeName.textContent = data.storeName;
   storeDesc.textContent = data.storeDesc;
-  storeTime.textContent = '영업시간: ' + data.storeTime;
+  storeTime.textContent = '영업시간: ' + data.startTime + '-' + data.endTime;
   storeTel.textContent = data.storeTel;
 }
 
@@ -280,20 +123,20 @@ function showStoreImage(data) {
 }
 
 //---------------------------통신용-------------------------------
-// function loadReivewData() {
-//   let selectedReviewData = [];
-//   let url = '/api/stores/'+selectedStoreID+'/reviews?sort=stars' 
-//   $.ajax({
-//     type: "GET",
-//     url: url,
-//     contentType : 'application/json', 
-//     async: false,
-//     success: function (response) {
-//       selectedReviewData = response.data;
-//     }
-//   })
-//   return selectedReviewData;
-// }
+function loadReivewData() {
+  let selectedReviewData = [];
+  let url = '/api/stores/'+selectedStoreID+'/reviews?sort=stars' 
+  $.ajax({
+    type: "GET",
+    url: url,
+    contentType : 'application/json', 
+    async: false,
+    success: function (response) {
+      selectedReviewData = response.data;
+    }
+  })
+  return selectedReviewData;
+}
 //---------------------------------------------------------------
 
 // 2. 리뷰 정보 불러오기
@@ -383,6 +226,7 @@ function reviewPost(e) {
 
   const url = '/api/stores/'+ selectedStoreID + '/review';
   $.ajax({
+
     type: 'POST',
     url: url,
     contentType: 'application/json',
