@@ -146,7 +146,7 @@
           />
           <div id="user"></div>
           <p class="profilename" id="reviewer"></p>
-        </div>
+          </div>
         <div class="review">
           <div class="myreview">
             <p class="reviewdata">남긴 리뷰</p>
@@ -154,8 +154,11 @@
           </div>
         </div>
         <div class="imgbutton">
-          <label for="image" class="pb">(프로필 편집)</label>
-          <input type="file" id="image" class="image" />
+          <form action="" method="post">
+            <label for="image" class="pb">(프로필 편집)</label>
+            <input type="file" id="image" class="image" />
+            <input type="submit" id="submit">
+          </form>
         </div>
       </main>
     </div>
