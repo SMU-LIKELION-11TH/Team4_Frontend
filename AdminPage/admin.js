@@ -92,28 +92,28 @@ function onLoad() {
   //         obj.store_id=store_id;
   //     }
   // })
-  fetchMenuList();
+  // fetchMenuList();
 }
-function fetchMenuList() {
-  $.ajax({
-    type: 'GET',
-    url: 'http://127.0.0.1:8000/api/stores{obj.store_id}/menus',
-    contentType: 'application/json',
-    success: function (data) {
-      if (data.code === 200 && data.httpStatus === 'OK') {
-        alert('생성에 성공하였습니다.');
-        displayMenuList(data);
-      }
-    },
-    error: function (request, status, error) {
-      if (request.status === 'Bad Request' && error === 400) {
-        alert('잘못된 요청입니다.');
-      } else if (request.status === 'Forbidden' && error === 403) {
-        alert('권한이 없습니다.');
-      }
-    },
-  });
-}
+// function fetchMenuList() {
+//   $.ajax({
+//     type: 'GET',
+//     url: 'http://127.0.0.1:8000/api/stores{obj.store_id}/menus',
+//     contentType: 'application/json',
+//     success: function (data) {
+//       if (data.code === 200 && data.httpStatus === 'OK') {
+//         alert('생성에 성공하였습니다.');
+//         displayMenuList(data);
+//       }
+//     },
+//     error: function (request, status, error) {
+//       if (request.status === 'Bad Request' && error === 400) {
+//         alert('잘못된 요청입니다.');
+//       } else if (request.status === 'Forbidden' && error === 403) {
+//         alert('권한이 없습니다.');
+//       }
+//     },
+//   });
+// }
 
 function displayMenuList(menuData) {
   var storeMenuListBox = document.querySelector('.store_menu_list_box');
@@ -164,13 +164,13 @@ function displayMenuList(menuData) {
     return menuElement;
   }
 }
-
+//해당 점포의 id를 dataToSend에 붙여 새 페이지 load.
 function openPopup() {
   var popupWindow = window.open('popup.html', 'popup', 'width=400,height=680');
   var dataToSend = obj.store_id;
   popupWindow.dataToSend = dataToSend;
 
-  fetchMenuList();
+  // fetchMenuList();
 }
 
 function receiveDataFromPopup(store_id) {

@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-    />
-    <title>메뉴추가</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"
-    />
-    <script
-      src="https://kit.fontawesome.com/8e32291ca2.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="popup.css" />
-    <script src="./popup.js" defer></script>
-  </head>
-  <body>
-    <div class = "title-box">
-      <h3 class = tilte>메뉴 등록</h3>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" />
+  <title>메뉴추가</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" />
+  <script src="https://kit.fontawesome.com/8e32291ca2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="popup.css" />
+  <script src="./popup.js" defer></script>
+</head>
+
+<body>
+  <div class="title-box">
+    <h3 class=tilte>메뉴 등록</h3>
+  </div>
+  <form>
+    <div class="menu-name-box">
+      <p class="menu-option">메뉴 이름</p>
+      <input type="text" id="menu_name" class="field" reandonly><br>
     </div>
-    
-    <div class = "menu-name-box">
-      <p class = "menu-option">메뉴 이름</p>
-      <input type = "text" id = "menu_name" class = "field" reandonly><br>
+    <div class="menu-price-box">
+      <p class="menu-option">가격</p>
+      <input type="number" id="menu_price" class="field" reandonly><br>
     </div>
-    <div class = "menu-price-box">
-      <p class = "menu-option">가격</p>
-      <input type = "number" id = "menu_price" class = "field" reandonly><br>
+    <div class="menu-desc-box">
+      <p class="menu-option">메뉴설명</p>
+      <textarea id="menu_desc" class="menu_desc_field" rows="5"></textarea><br>
     </div>
-    <div class = "menu-desc-box">
-      <p class = "menu-option">메뉴설명</p>
-      <textarea id="menu_desc" class = "menu_desc_field" rows="5"></textarea><br>
-    </div>
-    <div class = "menu_image_box">
-      <p class = "menu-option">이미지등록</p>
+    <div class="menu_image_box">
+      <p class="menu-option">이미지등록</p>
       <div id="image_container" class="image_container"></div><br>
-      <label for = "menu_image" class = "upload-image">사진선택</label>
-      <input type = "file" id = "menu_image" class = "menu_image" name = "image" accenpt = "image/*" onchange="loadFile(event)" required><br>
+      <label for="menu_image" class="upload-image">사진선택</label>
+      <input type="file" id="menu_image" class="menu_image" name="image" accenpt="image/*" onchange="loadFile(event)"
+        required><br>
     </div><br>
-    <div class = "enroll_box">
-      <button type = "submit" class = "enroll" onclick="enroll()">등록하기</button>
+    <div class="enroll_box">
+      <input type="submit" class="enroll" onclick="enroll(event)"></button>
     </div>
-    
-  </body>
+  </form>
+</body>
+
 </html>
