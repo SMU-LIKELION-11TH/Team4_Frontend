@@ -22,10 +22,9 @@
     <input type="checkbox" id="sidebar-toggle" />
     <div class="sidebar">
       <div class="sidebar-header">
-        
         <h3 class="list">
           <span class="ti-logo"></span>
-          <span>점주 페이지</span>
+          <a href="/main.html"><span>시장에 가면</span></a>
         </h3>
         <label for="sidebar-toggle" class="ti-menu-alt"></label>
       </div>
@@ -40,7 +39,7 @@
             <a href="admin2.html">
               <span>점포 수정</span>
             </a>
-          </li>      
+          </li>
         </ul>
       </div>
     </div>
@@ -56,73 +55,124 @@
         </div>
       </header>
 
-    
       <!-- main태그 내부에서 담당하시는 파트 작업 진행해주시면 됩니다. -->
-      
+
       <main>
-        <div class = "owner-hi">
-          <img class = "owner-img"src = '../img/owner.png'>
-          <p class id = 'owner-nickname' class = 'owner-nickname'></p>
+        <div class="owner-hi">
+          <img class="owner-img" src="../img/owner.png" />
+          <p class id="owner-nickname" class="owner-nickname"></p>
         </div>
 
-        <div class = "input-content">
-          <div class = "input-content-box">
-            <div class = "store_title_box">
-              <p class = "store_title">점포명</p>
-              <input type = "text" id = "store_name" class = "field" reandonly><br>
+        <div class="input-content">
+          <div class="input-content-box">
+            <div class="store_title_box">
+              <p class="store_title">점포명</p>
+              <input
+                type="text"
+                id="store_name"
+                class="field"
+                reandonly
+              /><br />
             </div>
-           
+
             <!--<button type="button" class="search_postcode_button" onclick="openHomeSearch()">
                   <span class="search_postcode_button">우편번호검색</span>
             </button>
           -->
-            <div class = "store_address_box">
-              <p class = "store_title">점포 주소</p>
-              <input type="text" class = "sample4_postcode" id="sample4_postcode" placeholder="우편번호">
-              <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-              <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-              <span id="guide" style="color:#999;display:none"></span>
-              <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-              <input type="text" id="sample4_extraAddress" class = "sample4_extraAddress" placeholder="참고항목">
-              <input type="button" class="search_postcode_button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+            <div class="store_address_box">
+              <p class="store_title">점포 주소</p>
+              <input
+                type="text"
+                class="sample4_postcode"
+                id="sample4_postcode"
+                placeholder="우편번호"
+              />
+              <input
+                type="text"
+                id="sample4_roadAddress"
+                placeholder="도로명주소"
+              />
+              <input
+                type="text"
+                id="sample4_jibunAddress"
+                placeholder="지번주소"
+              />
+              <span id="guide" style="color: #999; display: none"></span>
+              <input
+                type="text"
+                id="sample4_detailAddress"
+                placeholder="상세주소"
+              />
+              <input
+                type="text"
+                id="sample4_extraAddress"
+                class="sample4_extraAddress"
+                placeholder="참고항목"
+              />
+              <input
+                type="button"
+                class="search_postcode_button"
+                onclick="sample4_execDaumPostcode()"
+                value="우편번호 찾기"
+              />
             </div>
-           
-            <div class = "store_desc_box">
-              <p class = "store_title">점포설명</p><!--<input type = "text" id = "store_desc" class = "store_desc_field" reandonly>-->
-              <textarea id="store_desc" class = "store_desc_field" rows="5"></textarea><br>
-            </div><br>
-            <div class = "store_time_box">
-              <p class = "store_title">영업시간</p>
-              <form class = store_time>
-                <input type = 'time' id = "store_time_start"> ~ <input type = 'time' id = "store_time_end">
+
+            <div class="store_desc_box">
+              <p class="store_title">점포설명</p>
+              <!--<input type = "text" id = "store_desc" class = "store_desc_field" reandonly>-->
+              <textarea
+                id="store_desc"
+                class="store_desc_field"
+                rows="5"
+              ></textarea
+              ><br />
+            </div>
+            <br />
+            <div class="store_time_box">
+              <p class="store_title">영업시간</p>
+              <form class="store_time">
+                <input type="time" id="store_time_start" /> ~
+                <input type="time" id="store_time_end" />
               </form>
             </div>
-            <div class = "store_phonenumber_box">
-              <p class = "store_title">전화번호</p>
-              <form id = "store_phonenumber" class = "store_phonenumber">
-                <input type='tel' id='store_phone1' /> -
-                <input type='tel' id='store_phone2' /> -
-                <input type='tel' id='store_phone3' />
+            <div class="store_phonenumber_box">
+              <p class="store_title">전화번호</p>
+              <form id="store_phonenumber" class="store_phonenumber">
+                <input type="tel" id="store_phone1" /> -
+                <input type="tel" id="store_phone2" /> -
+                <input type="tel" id="store_phone3" />
               </form>
             </div>
-            <div class = "store_menu_box">
-              <p class = "store_title">메뉴등록</p>
-              <label class = "popup" onclick="openPopup()">+메뉴추가</label>
-            </div><br>
+            <div class="store_menu_box">
+              <p class="store_title">메뉴등록</p>
+              <label class="popup" onclick="openPopup()">+메뉴추가</label>
+            </div>
+            <br />
             <!-- <div class = "1">
               <div class="menuimg"></div>
               <p class = "name">치킨</p><br><p class = "price">16000</p><br><br>
               <p class = "desc">djfldjslkfdklsajflkajdsfijewlkfdsljfnjdlskfkldsjfklsddsfs</p>
             </div> -->
-            <div class = "store_menu_list_box">
+            <div class="store_menu_list_box"></div>
+            <div class="store_image_box">
+              <p class="store_title">이미지등록</p>
+              <div id="image_container" class="image_container"></div>
+              <br /><br />
+              <label for="store_image" class="upload-image">사진선택</label>
+              <input
+                type="file"
+                id="store_image"
+                class="store_image"
+                name="image"
+                accenpt="image/*"
+                onchange="loadFile(event)"
+                required
+              /><br />
             </div>
-            <div class = "store_image_box">
-              <p class = "store_title">이미지등록</p>
-              <div id="image_container" class="image_container"></div><br><br>
-              <label for = "store_image" class = "upload-image">사진선택</label>
-              <input type = "file" id = "store_image" class = "store_image" name = "image" accenpt = "image/*" onchange="loadFile(event)" required><br>
-            </div><br>
-            <button type = "submit" class = "submit" onclick="submit()">저장하기</button>
+            <br />
+            <button type="submit" class="submit" onclick="submit()">
+              저장하기
+            </button>
           </div>
         </div>
       </main>

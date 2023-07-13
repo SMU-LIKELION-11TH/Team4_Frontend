@@ -1,4 +1,3 @@
-
 const mockData = [
   {
     code: 200,
@@ -96,7 +95,7 @@ const mockData = [
         countReviews: 123,
         userId: 1,
         categoryName: '과일',
-      }
+      },
     ],
   },
 ];
@@ -187,9 +186,9 @@ $('#stores-table').on('click', 'tr', function () {
 
   console.log(storeArr[trNum].textContent);
 
-  for (let i = 0; i<mockData[0].data.length; i++){
+  for (let i = 0; i < mockData[0].data.length; i++) {
     var storeName = mockData[0].data[i].storeName;
-    if (storeArr[trNum].textContent === storeName){
+    if (storeArr[trNum].textContent === storeName) {
       selectedStoreID = mockData[0].data[i].storeId;
       var link = './JumpoPage/망원 닭강정/store1.html';
       window.open(`./JumpoPage/망원 닭강정/store1.html?id=${selectedStoreID}`);

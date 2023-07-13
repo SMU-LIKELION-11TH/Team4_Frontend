@@ -1,63 +1,93 @@
-// Login 관련 로직입니다.
+// 로그인 로직은 건들이시면 안됩니다.
 document.querySelector('.login-button').addEventListener('click', function () {
-  window.location.href = '../LoginPage/login.html';
+  window.location.href = 'http://localhost:5501/LoginPage/login.html';
 });
+
+function logout() {
+  localStorage.removeItem('user');
+  window.location.reload();
+}
+
+// 로그인 되면 로그인 정보 로컬스토리지에서 확인하고, 로그아웃 버튼으로 변경하는 로직
+window.onload = function main() {
+  const loginButton = document.querySelector('.login-button');
+
+  // Check if user is logged in
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    // User is logged in
+    const user = JSON.parse(userData);
+    loginButton.textContent = '로그아웃';
+    loginButton.addEventListener('click', logout);
+    // 유저 객체 사용
+    console.log(user.id);
+    console.log(user.email);
+    console.log(user.nickname);
+    // 로그아웃 되면 버튼 내용 변경
+  } else {
+    // User is logged out
+    loginButton.textContent = '로그인 / 회원가입';
+    loginButton.addEventListener('click', function () {
+      window.location.href = 'http://localhost:5501/LoginPage/login.html';
+    });
+  }
+};
 
 // 아래부터 작성해주세요
 const mockDataReview = [
   {
     code: 200,
-    httpStatus: "OK",
-    message: "요청에 성공하였습니다.",
+    httpStatus: 'OK',
+    message: '요청에 성공하였습니다.',
     data: [
-		    {
-		        id: 2,
-		        stars: 5,
-		        content: "최고에요요",
-		        reviewer: "ceo",
-		        storeName: "윤가네",
-		        createdAt: "2023-07-10 03:41:57",
-		        updatedAt: "2023-07-10 03:41:57"
-		    },
-		    {
-		        id: 4,
-		        stars: 5,
-		        content: "미쳤다 미쳤어",
-		        reviewer: "admin",
-		        storeName: "윤가네",
-		        createdAt: "2023-07-10 03:46:15",
-		        updatedAt: "2023-07-10 03:46:15"
-		    },
-		    {
-		        id: 3,
-		        stars: 4,
-		        content: "맛있어요",
-		        reviewer: "ceo",
-		        storeName: "윤가네",
-		        createdAt: "2023-07-10 03:42:15",
-		        updatedAt: "2023-07-10 03:42:15"
-		    },
-		    {
-		        id: 5,
-		        stars: 4,
-		        content: "미쳤다",
-		        reviewer: "admin",
-		        storeName: "윤가네",
-		        createdAt: "2023-07-10 03:48:15",
-		        updatedAt: "2023-07-10 03:48:15"
-		    },
-		    {
-		        id: 1,
-		        stars: 3,
-		        content: "보통이에요요",
-		        reviewer: "ceo",
-		        storeName: "윤가네",
-		        createdAt: "2023-07-10 03:39:07",
-		        updatedAt: "2023-07-10 03:39:07"
-		    }
-		]
-}
-]
+      {
+        id: 2,
+        stars: 5,
+        content: '최고에요요',
+        reviewer: 'ceo',
+        storeName: '윤가네',
+        createdAt: '2023-07-10 03:41:57',
+        updatedAt: '2023-07-10 03:41:57',
+      },
+      {
+        id: 4,
+        stars: 5,
+        content: '미쳤다 미쳤어',
+        reviewer: 'admin',
+        storeName: '윤가네',
+        createdAt: '2023-07-10 03:46:15',
+        updatedAt: '2023-07-10 03:46:15',
+      },
+      {
+        id: 3,
+        stars: 4,
+        content: '맛있어요',
+        reviewer: 'ceo',
+        storeName: '윤가네',
+        createdAt: '2023-07-10 03:42:15',
+        updatedAt: '2023-07-10 03:42:15',
+      },
+      {
+        id: 5,
+        stars: 4,
+        content: '미쳤다',
+        reviewer: 'admin',
+        storeName: '윤가네',
+        createdAt: '2023-07-10 03:48:15',
+        updatedAt: '2023-07-10 03:48:15',
+      },
+      {
+        id: 1,
+        stars: 3,
+        content: '보통이에요요',
+        reviewer: 'ceo',
+        storeName: '윤가네',
+        createdAt: '2023-07-10 03:39:07',
+        updatedAt: '2023-07-10 03:39:07',
+      },
+    ],
+  },
+];
 
 const mockDataStore = [
   {
@@ -81,7 +111,7 @@ const mockDataStore = [
             storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
             storeImageUrl:
               'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          }
+          },
         ],
         averageStars: 4,
         countReviews: 123,
@@ -104,7 +134,7 @@ const mockDataStore = [
             storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
             storeImageUrl:
               'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          }
+          },
         ],
         averageStars: 4,
         countReviews: 123,
@@ -122,21 +152,23 @@ const mockDataStore = [
         storeTel: 'storeTel',
         menuList: [
           {
-            id : 2,
-            menuName : "cake",
-            menuPrice : 1000,
-            menuDesc : "test",
-            imageName : "b1ed377f-ad1d-4ad8-8795-4b988b96f906.png",
-            imageUrl : "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
+            id: 2,
+            menuName: 'cake',
+            menuPrice: 1000,
+            menuDesc: 'test',
+            imageName: 'b1ed377f-ad1d-4ad8-8795-4b988b96f906.png',
+            imageUrl:
+              'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
           },
           {
             id: 3,
-            menuName: "latte",
+            menuName: 'latte',
             menuPrice: 2000,
-            menuDesc: "test",
-            imageName: "2be1c732-d3bc-4792-b598-dfd9e7a65954.png",
-            imageUrl: "D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\"
-          }
+            menuDesc: 'test',
+            imageName: '2be1c732-d3bc-4792-b598-dfd9e7a65954.png',
+            imageUrl:
+              'D:\\likelionhackathon\\Traditional-Market\\src\\main\\resources\\images\\',
+          },
         ],
         storeImageList: [
           {
@@ -144,7 +176,7 @@ const mockDataStore = [
             storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
             storeImageUrl:
               'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          }
+          },
         ],
         averageStars: 4,
         countReviews: 123,
@@ -167,13 +199,13 @@ const mockDataStore = [
             storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
             storeImageUrl:
               'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          }
+          },
         ],
         averageStars: 4,
         countReviews: 123,
         userId: 1,
         categoryName: '과일',
-      }
+      },
     ],
   },
 ];
@@ -184,7 +216,6 @@ const mockDataStore = [
 const urlParams = new URLSearchParams(window.location.search);
 const selectedStoreID = urlParams.get('id');
 
-
 $(document).ready(function () {
   showStoreData(loadStoresData());
   showStoreImage(loadStoresData());
@@ -194,10 +225,9 @@ $(document).ready(function () {
 
 function loadStoresData() {
   const url = '/api/stores?storeid=1'; // 가게 데이터를 불러올 엔드포인트 URL
-  const selectedStoreData = mockDataStore[0].data[selectedStoreID-1]; // Mock 데이터에서 실제 데이터를 가져옴
+  const selectedStoreData = mockDataStore[0].data[selectedStoreID - 1]; // Mock 데이터에서 실제 데이터를 가져옴
   return selectedStoreData;
 }
-
 
 function loadReviewData() {
   const url = '/api/stores/{storeId}/reviews?sort=stars';
@@ -205,31 +235,30 @@ function loadReviewData() {
   return selectedReviewData;
 }
 
-
 function showStoreData(data) {
-  var storeName = document.getElementById("storeName");
-  var storeDesc = document.getElementById("storeDesc");
-  var storeTime = document.getElementById("storeTime");
-  var storeTel = document.getElementById("storeTel");
+  var storeName = document.getElementById('storeName');
+  var storeDesc = document.getElementById('storeDesc');
+  var storeTime = document.getElementById('storeTime');
+  var storeTel = document.getElementById('storeTel');
 
   storeName.textContent = data.storeName;
   storeDesc.textContent = data.storeDesc;
-  storeTime.textContent = "영업시간: " + data.storeTime;
+  storeTime.textContent = '영업시간: ' + data.storeTime;
   storeTel.textContent = data.storeTel;
 }
 
 function showStoreImage(data) {
-  const imageList = document.getElementById("storeImageList");
+  const imageList = document.getElementById('storeImageList');
 
   data.storeImageList.forEach((img) => {
-    const imageItem = document.createElement("li");
-    
-    const image = document.createElement("img");
+    const imageItem = document.createElement('li');
+
+    const image = document.createElement('img');
     image.src = img.storeFilename;
-    image.className = "store-img";
+    image.className = 'store-img';
     imageItem.appendChild(image);
     imageList.appendChild(imageItem);
-  })
+  });
 }
 
 //--------------------------------통신용------------------------------
@@ -243,7 +272,7 @@ function showStoreImage(data) {
 //       const storeDesc = response.storeDesc;
 //       const storeTime = response.storeTime;
 //       const storeTel = response.storeTel;
-      
+
 //       $('#storeName').text(storeName);
 //       $('#storeDesc').text(storeDesc);
 //       $('#storeTime').text(storeTime);
@@ -325,8 +354,6 @@ function renderReviewTable(data) {
 // }
 //-----------------------------------------------------------------------
 
-
-
 // 리뷰 작성
 const ratingStars = [...document.getElementsByClassName('rating_star')];
 const ratingResult = document.querySelector('.rating_result');
@@ -339,7 +366,7 @@ function executeRating(stars) {
   const starClassInactive = 'rating_star far fa-star';
   const starsLength = stars.length;
   let selectedStars = 0;
-  
+
   stars.forEach((star, index) => {
     star.onclick = () => {
       for (let i = 0; i < starsLength; i++) {
@@ -349,7 +376,7 @@ function executeRating(stars) {
           stars[i].className = starClassInactive;
         }
       }
-      
+
       selectedStars = index + 1;
       printRatingResult(selectedStars);
     };
@@ -404,47 +431,46 @@ function reviewPost(e) {
 //     error: function(request, status, error){
 //       alert('Error');
 //     }
-//   })  
+//   })
 // }
 //-------------------------------------------------------------------------
 
 // 3. 메뉴 사진, 메뉴 이름, 메뉴 설명
 function showMenu(data) {
-  const menuListElement = document.getElementById("menuList");
-  
+  const menuListElement = document.getElementById('menuList');
+
   data.menuList.forEach((menu) => {
-    const listItem = document.createElement("li");
-    listItem.className = "menu_details";
-    
-    const image = document.createElement("img");
-    image.className = "menu_image";
+    const listItem = document.createElement('li');
+    listItem.className = 'menu_details';
+
+    const image = document.createElement('img');
+    image.className = 'menu_image';
     image.src = menu.imageUrl;
     image.alt = menu.menuName;
     listItem.appendChild(image);
-    
-    const menuText = document.createElement("div");
-    menuText.className = "menu_text";
-    
-    const name = document.createElement("h2");
-    name.className = "menu_name";
+
+    const menuText = document.createElement('div');
+    menuText.className = 'menu_text';
+
+    const name = document.createElement('h2');
+    name.className = 'menu_name';
     name.textContent = menu.menuName;
     menuText.appendChild(name);
-    
-    const price = document.createElement("p");
-    price.className = "menu_price";
-    price.textContent = menu.menuPrice + "원";
+
+    const price = document.createElement('p');
+    price.className = 'menu_price';
+    price.textContent = menu.menuPrice + '원';
     menuText.appendChild(price);
-    
-    const description = document.createElement("p");
-    description.className = "menu_desc";
+
+    const description = document.createElement('p');
+    description.className = 'menu_desc';
     description.textContent = menu.menuDesc;
     menuText.appendChild(description);
-    
-    listItem.appendChild(menuText);
-    menuListElement.appendChild(listItem);    
-  })
-}
 
+    listItem.appendChild(menuText);
+    menuListElement.appendChild(listItem);
+  });
+}
 
 // —————————————통신용——————————————————
 // function getMenu() {
@@ -493,5 +519,5 @@ function searchAddressToCoordinate(address) {
   });
 }
 
-var address = '서울특별시 마포구 망원동 망원로8길 27'
+var address = '서울특별시 마포구 망원동 망원로8길 27';
 searchAddressToCoordinate(address);
