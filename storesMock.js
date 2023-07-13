@@ -190,8 +190,7 @@ $('#stores-table').on('click', 'tr', function () {
     var storeName = mockData[0].data[i].storeName;
     if (storeArr[trNum].textContent === storeName) {
       selectedStoreID = mockData[0].data[i].storeId;
-      var link = './JumpoPage/망원 닭강정/store1.html';
-      window.open(`./JumpoPage/망원 닭강정/store1.html?id=${selectedStoreID}`);
+      window.open(`./JumpoPage/jumpo.html?id=${selectedStoreID}`);
     }
   }
 });
