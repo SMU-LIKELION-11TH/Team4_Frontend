@@ -32,6 +32,8 @@ window.onload = function main() {
     });
   }
 };
+main2()
+
 
 const obj = {
   storeIamgeUrl: '',
@@ -69,26 +71,67 @@ function addPlaceholders() {
   element.textContent = obj.nickname;
 }
 
-function onLoad() {
-  addPlaceholders();
-  // $.ajax({
-  //     type: 'GET',
-  //     url: "http://127.0.0.1:8000/api/stores{obj.store_id}",
-  //     contentType: 'application/json',
-  //     success: function(data){
-  //         obj.storeIamgeUrl=storeIamgeUrl;
-  //         obj.imageUrl=imageUrl;
-  //         obj.storeDesc=storeDesc;
-  //         obj.roadAddress=roadAddress;
-  //         obj.detailAddress=detailAddress;
-  //         obj.startTime=startTime;
-  //         obj.endTime=endTime;
-  //         obj.storeTel=storeTel;
-  //         obj.categoryName=categoryName;
-  //         obj.nickname=nickname;
-  //         obj.store_id=store_id;
-  //     }
-  // })
+function main2() {
+  console.log("loading");
+
+  const url = 'http://127.0.0.1:8080/api/user';
+  const token = localStorage.getItem('token');
+  var teadbear = 'Bearer ' + token;
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', 'Bearer ' + token);
+  
+  fetch(url, {
+    headers: myHeaders,
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(data => {
+      obj.imageUrl=imageUrl;
+      obj.nickname=nickname;
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error('An error occurred while loading store data:', error);
+    });
+    
+    
+  const storeUrl = 'http://127.0.0.1:8080/api/user/stores';
+
+  fetch(storeUrl, {
+    headers: myHeaders,
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data.data);
+      if(data.data.length==0){
+        alert ("점포가 아직 등록되지 않았습니다.");
+        window.location.href = "./admin.html"
+      }else{
+        obj.storeName = data.data[0].storeName,
+        obj.storeDesc = data.data[0].storeDesc,
+        obj.store_id = data.data[0].storeId,
+        obj.startTime = data.data[0].startTime,
+        obj.endTime = data.data[0].endTime,
+        obj.startTime = data.data[0].startTime,
+        obj.endTime = data.data[0].endTime,
+        obj.roadAddress = data.data[0].roadAddress,
+        obj.detailAddress = data.data[0].detailAddress,
+        obj.storeTel = data.data[0].storeTel
+
+        console.log(obj.storeName);
+        console.log(obj);
+        addPlaceholders();
+      }
+    })
+    .catch((error) => {
+      console.error('An error occurred while loading store data:', error);
+    });
+    
 }
 
 function loadFile(event) {
@@ -164,13 +207,67 @@ function sample4_execDaumPostcode() {
     },
   }).open();
 }
+function displayMenuList(menuData) {
+  var storeMenuListBox = document.querySelector('.store_menu_list_box');
+  storeMenuListBox.innerHTML = '';
 
+  if (menuData.length === 0) {
+    var noMenuMsg = document.createElement('p');
+    noMenuMsg.textContent = '등록된 메뉴가 없습니다.';
+    storeMenuListBox.appendChild(noMenuMsg);
+    return;
+  }
+
+  menuData.forEach(function (menu) {
+    var menuElement = createMenuElement(
+      menu.menuName,
+      menu.menuPrice,
+      menu.menuDesc,
+      menu.menuImage
+    );
+    storeMenuListBox.appendChild(menuElement);
+  });
+  function createMenuElement(menuName, menuPrice, menuDesc, menuImage) {
+    var menuElement = document.createElement('div');
+    menuElement.setAttribute('class', 'menuElement');
+
+    var menuImageElem = document.createElement('img');
+    menuImageElem.setAttribute('class', 'menuImageElem');
+    menuImageElem.src = menuImage;
+    menuImageElem.alt = '메뉴 이미지';
+    menuElement.appendChild(menuImageElem);
+
+    var menuNameElem = document.createElement('p');
+    menuNameElem.textContent = '메뉴 이름: ' + menuName;
+    menuNameElem.setAttribute('class', 'menuNameElem');
+    menuElement.appendChild(menuNameElem);
+
+    var menuPriceElem = document.createElement('p');
+    menuPriceElem.setAttribute('class', 'menuPriceElem');
+    menuPriceElem.textContent = '메뉴 가격: ' + menuPrice + '원';
+    menuElement.appendChild(menuPriceElem);
+
+    var menuDescElem = document.createElement('p');
+    menuDescElem.setAttribute('class', 'menuDescElem');
+    menuDescElem.textContent = '메뉴 설명: ' + menuDesc;
+    menuElement.appendChild(menuDescElem);
+
+    return menuElement;
+  }
+}
+//해당 점포의 id를 dataToSend에 붙여 새 페이지 load.
+function openPopup() {
+  var popupWindow = window.open('popup.html?id=' + obj.store_id, 'popup', 'width=400,height=680');
+}
+
+function receiveDataFromPopup(store_id) {
+  console.log('부모 창에서 팝업 창으로부터 전달받은 데이터:', store_id);
+}
 function submit() {
   var storeName = document.getElementById('store_name').value;
   var storeDesc = document.getElementById('store_desc').value;
   var roadAddress = document.getElementById('sample4_roadAddress').value;
   var detailAddress = document.getElementById('sample4_detailAddress').value;
-  var categoryName = document.getElementById('store_select').value;
   var startTime = document.getElementById('store_time_start').value;
   var endTime = document.getElementById('store_time_end').value;
   var storeTel =
@@ -181,46 +278,51 @@ function submit() {
   startTime = String(startTime);
   endTime = String(endTime);
   var formData = new FormData();
+  const fileInput = document.getElementById("store_image")
 
-  formData.append('storeName', storeName);
-  formData.append('storeDesc', storeDesc);
-  // formData.append('storeIamgeUrl', obj.storeIamgeUrl);
-  formData.append(
-    'key',
-    new Blob([JSON.stringify(obj.storeIamgeUrl.info)], {
-      type: 'application/json',
-    })
-  );
-  formData.append('store_roadAddress', roadAddress);
-  formData.append('store_detailAddress', detailAddress);
-  formData.append('store_time_start', startTime);
-  formData.append('store_time_end', endTime);
-  formData.append('store_phone', storeTel);
-  // $.ajax({
-  //   type:'POST',
-  //   url : 'http://127.0.0.1:8000/api/stores{obj.store_id}',
-  //   contentType : 'application/json',
-  //   headers:{
-  //       'X-CSRFToken' : getCookie('csrftoken')
-  //   },
-  //   data:formData,
-  //   success: function(data){
-  //     if(data.code === 200 && data.httpStatus === "OK"){
-  //       alert("생성에 성공하였습니다.")
-  //     }
-  //   },
-  //   error: function(request, status, error) {
-  //     if (request.status === "Bad Request" && error === 400) {
-  //         alert("잘못된 요청입니다.");
-  //     } else if(request.status === "Forbidden" && error === 403){
-  //         alert("권한이 없습니다.");
-  //     }
-  // }
+  const storeRequestDto = {
+    'storeName': storeName,
+    'storeDesc': storeDesc,
+    'startTime': startTime,
+    'endTime': endTime,
+    'roadAddress': roadAddress,
+    'detailAddress': detailAddress,
+    'storeTel': storeTel
+ }
 
-  // })
+
+ formData.append('files', fileInput.files[0]);
+ formData.append(
+   'storeRequestDto',
+   new Blob([JSON.stringify(storeRequestDto)], {
+     type: 'application/json',
+   })
+ );
+  console.log(obj)
+
+  console.log(formData);
+  const url = `http://127.0.0.1:8080/api/stores/${obj.store_id}`
+  const token = localStorage.getItem('token');
+  var teadbear = 'Bearer ' + token;
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', 'Bearer ' + token);
+
+  fetch(url, {
+    headers: myHeaders,
+    body: formData,
+    method: "PUT"
+  })
+    .then((response) => response.json())
+    .then((result)=>console.log(result))
+    .catch((error) => {
+      console.error('An error occurred while loading store data:', error);
+    });
+
   for (var pair of formData.entries()) {
     console.log(pair[1]);
   }
-  alert('수정이 완료되었습니다.');
+
+  // alert('수정이 완료되었습니다.');
   // location.reload();
+
 }

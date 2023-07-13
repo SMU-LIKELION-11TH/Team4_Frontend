@@ -11,8 +11,8 @@ setTimeout(() => {
 
 // Login functionality
 function login() {
-  const email = document.querySelector('#signInUsername').value;
-  const password = document.querySelector('#signInPassword').value;
+  const email= document.querySelector('#signInUsername').value;
+  const password= document.querySelector('#signInPassword').value;
 
   const data = {
     email: email,

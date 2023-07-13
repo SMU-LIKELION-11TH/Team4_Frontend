@@ -143,7 +143,12 @@ function showStoreImage(data) {
     const imageItem = document.createElement('li');
 
     const image = document.createElement('img');
-    image.src = img.storeFilename;
+    
+    var imurl = JSON.stringify(img.storeFilename)
+    var finalimurl = imurl.split("\\") // 최종 발표자가 슬래시 하나 out 해야할듯
+    var ff = finalimurl[finalimurl.length-1]
+    var ff = ff.replaceAll('"',"")
+    image.src = "../files/"+ff;
     image.className = 'store-img';
     imageItem.appendChild(image);
     imageList.appendChild(imageItem);
@@ -309,7 +314,14 @@ function showMenu(data) {
 
     const image = document.createElement('img');
     image.className = 'menu_image';
-    image.src = menu.imageUrl;
+    //{data.data.imageUrl} <= db객체에서 get요청을 했을때 json에서 가져오는 imageurl 경로
+    var imurl = JSON.stringify(menu.imageUrl)
+    var finalimurl = imurl.split("/")
+    var ff = finalimurl[finalimurl.length-1]
+    var ff = ff.replace('"',"")
+    image.src = "../files/"+ff;
+    alert(ff)
+    
     image.alt = menu.menuName;
     listItem.appendChild(image);
 
@@ -358,5 +370,4 @@ function searchAddressToCoordinate(address) {
     }
   });
 }
-
 

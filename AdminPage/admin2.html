@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="admin2.css" />
     <script src="./admin2.js" defer></script>
   </head>
-  <body onload="onLoad()">
+  <body>
     <input type="checkbox" id="sidebar-toggle" />
     <div class="sidebar">
       <div class="sidebar-header">
@@ -32,12 +32,17 @@
       <div class="sidebar-menu">
         <ul>
           <li>
+            <a href="../my.html">
+              <span>마이페이지</span>
+            </a>
+          </li>
+          <li>
             <a href="admin.html">
               <span>점포 추가 등록</span>
             </a>
           </li>
           <li>
-            <a href="admin2.html">
+            <a id = "modify-page" href="admin2.html">
               <span>점포 수정</span>
             </a>
           </li>   
@@ -105,9 +110,14 @@
                 <input type='tel' id='store_phone3' />
               </form>
             </div>
+            <div class="store_menu_box">
+              <p class="store_title">메뉴등록</p>
+              <label class="popup" onclick="openPopup()">+메뉴추가</label>
+            </div>
+            <br />
             <div class = "store_image_box">
               <p class = "store_title">이미지등록</p>
-              <img id="image_element" class="image_container" src="" alt="Image"><br>
+              <div id="image_container" class="image_container"></div>
               <label for = "store_image" class = "upload-image">사진선택</label>
               <input type = "file" id = "store_image" class = "store_image" name = "image" accenpt = "image/*" onchange="loadFile(event)" required><br>
             </div><br>
