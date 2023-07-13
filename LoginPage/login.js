@@ -1,58 +1,54 @@
-let container = document.getElementById('container');
+let container = document.getElementById("container");
 
 toggle = () => {
-  container.classList.toggle('sign-in');
-  container.classList.toggle('sign-up');
+  container.classList.toggle("sign-in");
+  container.classList.toggle("sign-up");
 };
 
 setTimeout(() => {
-  container.classList.add('sign-in');
+  container.classList.add("sign-in");
 }, 200);
 
 // 로그인 기능
 function login() {
-  const email = document.querySelector('#signInUsername').value;
-  const password = document.querySelector('#signInPassword').value;
+  const email = document.querySelector("#signInUsername").value;
+  const password = document.querySelector("#signInPassword").value;
 
   const data = {
-    username: email,
+    email: email,
     password: password,
   };
 
-  fetch('http://localhost:8080/login', {
-    method: 'POST',
+  fetch("http://127.0.0.1:8080/api/login", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   })
-  console.log(data)
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log(data);
-    //   if (data.success == true) {
-    //     alert(data.message);
-    //     // Save user information and token in localStorage
-    //     localStorage.setItem('user', JSON.stringify(data.data));
-    //     localStorage.setItem('token', data.token);
-    //     // Redirect to main page
-    //     window.location = 'http://example.com/main.html';
-    //   } else {
-    //     alert(data.message);
-    //   }
-    // });
+  .then((response) => response.json())
+  .then((data) => {
+    window.location.href ='http://127.0.0.1:5500/main.html';
+    if (data.success == true) {
+      alert(data.message);
+      // Save user information and token in localStorage
+      // localStorage.setItem('user', JSON.stringify(data.data));
+      // localStorage.setItem('token', data.token);
+      // Redirect to main page
+    }
+  });
 }
 
 // 회원가입
 function signUp() {
   console.log("hi");
-  const username = document.getElementById('signUpUsername').value;
-  const email = document.getElementById('signUpEmail').value;
-  const password = document.getElementById('signUpPassword').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const isAdmin = document.getElementById('adminCheck').checked;
+  const username = document.getElementById("signUpUsername").value;
+  const email = document.getElementById("signUpEmail").value;
+  const password = document.getElementById("signUpPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const isAdmin = document.getElementById("adminCheck").checked;
 
-  const role = isAdmin ? 'CEO' : 'USER';
+  const role = isAdmin ? "CEO" : "USER";
 
   const data = {
     email: email,
@@ -61,25 +57,28 @@ function signUp() {
     role: role,
   };
 
-  fetch('http://localhost:8080/register', {
-    method: 'POST',
+  fetch("http://127.0.0.1:8080/api/register", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      console.log(response.json());
+      response.json();
+    })
     .then((data) => {
       console.log(data);
       if (data.success == true) {
-        alert('회원가입이 완료되었습니다.');
-        // window.location.href = '/LoginPage/login.html';
+        alert("회원가입이 완료되었습니다.");
+        // window.location.href = "/LoginPage/login.html";
       } else {
         alert(data.message);
       }
     });
 }
-
 
 // // API 요청에 인증 토큰을 추가하는 함수
 // function addAuthorizationHeader(headers) {
@@ -109,7 +108,6 @@ function signUp() {
 //     });
 // }
 
-
 // 1. 로그인 id / pw 보내고
-// 2. 백엔드에서 토큰을 받고 
-// 3. 다시 토큰을 보냄 => response 
+// 2. 백엔드에서 토큰을 받고
+// 3. 다시 토큰을 보냄 => response
