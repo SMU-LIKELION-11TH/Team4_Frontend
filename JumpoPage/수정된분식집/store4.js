@@ -205,7 +205,6 @@ function showStoreImage(data) {
 //       const storeTime = response.storeTime;
 //       const storeTel = response.storeTel;
 //       const storeAddress = response.storeAddress;
-
 //       $('#storeName').text(storeName);
 //       $('#storeDesc').text(storeDesc);
 //       $('#storeTime').text(storeTime);

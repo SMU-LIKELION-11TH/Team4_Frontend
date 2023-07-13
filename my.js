@@ -119,6 +119,7 @@ fetch('/api/user/reviews', {
   });
 
 const reviewbox = document.getElementById('reviewbox');
+const user = document.getElementById('user');
 
 responseData.data.forEach((review) => {
   const reviewElement = document.createElement('div');
@@ -141,3 +142,8 @@ responseData.data.forEach((review) => {
   reviewElement.appendChild(reviewdate);
   reviewbox.appendChild(reviewElement);
 });
+
+const reviewer = responseData.data[0].reviewer;
+const add = '님';
+const reviewerElement = document.getElementById('reviewer');
+reviewerElement.textContent = reviewer + add;
