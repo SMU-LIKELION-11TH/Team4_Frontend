@@ -1,107 +1,5 @@
-const mockData = [
-  {
-    code: 200,
-    httpStatus: 'OK',
-    message: '요청에 성공하였습니다.',
-    data: [
-      {
-        storeId: 1,
-        storeName: '망원 닭강정',
-        storeDesc: '수정분식입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '분식',
-      },
-      {
-        storeId: 2,
-        storeName: '수정된반찬가게',
-        storeDesc: '수정반찬입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '건어물/젓갈',
-      },
-      {
-        storeId: 3,
-        storeName: '수정된마트',
-        storeDesc: '수정마트입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '마트',
-      },
-      {
-        storeId: 4,
-        storeName: '수정된분식집',
-        storeDesc: '수정과일입니다.',
-        startTime: 'storeTime',
-        endTime: 'endtime',
-        roadAddress: 'roadAddress입니다.',
-        detailAddress: '상세주소',
-        storeTel: 'storeTel',
-        menuList: [],
-        storeImageList: [
-          {
-            id: 2,
-            storeFilename: 'bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-            storeImageUrl:
-              'D:\\finallikelion_team4\\Traditional-Market/files/bccf59bd-89cf-4ec1-a9a4-108561c98218.PNG',
-          },
-        ],
-        averageStars: 4,
-        countReviews: 123,
-        userId: 1,
-        categoryName: '과일',
-      },
-    ],
-  },
-];
-
 $(document).ready(function () {
-  loadStoresData(); // 가게 데이터 로드
+  loadStoresData(); // Load store data from API
   attachMenuClickEvent();
 });
 
@@ -132,9 +30,22 @@ function generateStarRating(rating) {
 }
 
 function loadStoresData() {
-  const url = '/api/stores'; // 가게 데이터를 불러올 엔드포인트 URL
-  const data = mockData[0].data; // Mock 데이터에서 실제 데이터를 가져옴
-  renderTable(data); // 데이터를 테이블에 렌더링
+  const url = 'http://127.0.0.1:8080/api/stores';
+  const token = localStorage.getItem('token');
+
+  fetch(url, {
+    headers: {
+      Authorization: token, // Include the token in the request headers
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      renderTable(data);
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error('An error occurred while loading store data:', error);
+    });
 }
 
 function renderTable(data) {
@@ -154,30 +65,31 @@ function renderTable(data) {
 
 function attachMenuClickEvent() {
   $('.sidebar-menu ul li').on('click', function (event) {
-    event.preventDefault(); // 기본 동작 중지
+    event.preventDefault(); // Prevent default action
 
     let selectedCategory = $(this).find('span').text();
 
-    // 선택한 카테고리에 해당하는 데이터만 필터링
-    let filteredData = mockData[0].data.filter(function (store) {
-      return store.categoryName === selectedCategory;
-    });
+    // Send request to the API to get filtered data based on selected category
+    const url = `/api/stores?category=${encodeURIComponent(selectedCategory)}`;
+    const token = localStorage.getItem('token'); // Get the token value from localStorage
 
-    renderTable(filteredData); // 필터링된 데이터를 테이블에 출력
-    updateTableHeading(selectedCategory); // 테이블 제목 업데이트
+    fetch(url, {
+      headers: {
+        Authorization: token, // Include the token in the request headers
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        renderTable(data); // Render the filtered data in the table
+        updateTableHeading(selectedCategory); // Update the table heading
+      })
+      .catch((error) => {
+        console.error('An error occurred while filtering store data:', error);
+      });
   });
 }
 
-function updateTableHeading(category) {
-  if (category === '기타') {
-    $('#table-heading').text('기타 카테고리의 HOT한 점포 정보');
-  } else {
-    $('#table-heading').text(`${category} 카테고리의 HOT한 점포 정보`);
-  }
-}
-
-// 내가 추가한 부분
-
+// Event handler for clicking on a table row
 $('#stores-table').on('click', 'tr', function () {
   var trNum = $(this).index();
   var storeArr = Array.from(
@@ -186,11 +98,16 @@ $('#stores-table').on('click', 'tr', function () {
 
   console.log(storeArr[trNum].textContent);
 
-  for (let i = 0; i < mockData[0].data.length; i++) {
-    var storeName = mockData[0].data[i].storeName;
-    if (storeArr[trNum].textContent === storeName) {
-      selectedStoreID = mockData[0].data[i].storeId;
-      window.open(`./JumpoPage/jumpo.html?id=${selectedStoreID}`);
-    }
+  // Get the store name from the clicked row
+  var clickedStoreName = storeArr[trNum].textContent;
+
+  // Find the store in the data array that matches the clicked store name
+  const clickedStore = mockData[0].data.find(
+    (store) => store.storeName === clickedStoreName
+  );
+
+  if (clickedStore) {
+    const selectedStoreID = clickedStore.storeId;
+    window.open(`./JumpoPage/jumpo.html?id=${selectedStoreID}`);
   }
 });
