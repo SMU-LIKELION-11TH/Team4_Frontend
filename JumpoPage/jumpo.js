@@ -38,8 +38,6 @@ let fetchdata = [];
 // 페이지 시작 시 정보 불러오기
 // 1. 가게 이름, 가게 번호, 가게 별점, 가게 설명
 
-
-
 // $(document).ready(function () {
 // const urlParams = new URLSearchParams(window.location.search);
 // const selectedStoreID = urlParams.get('id');
@@ -82,6 +80,7 @@ function loadStoresData() {
       showStoreData(fetchdata);
       showStoreImage(fetchdata);
       showMenu(fetchdata);
+      createStar(fetchdata);
       var address = fetchdata.roadAddress;
       searchAddressToCoordinate(address);
     })
@@ -92,11 +91,18 @@ function loadStoresData() {
 }
 //---------------------------------------------------------------
 
-// function loadReviewData() {  
-//   const url = '/api/stores/+'+selectedStoreID+'/reviews?sort=stars';
-//   const selectedReviewData = mockDataReview[0].data;
-//   return selectedReviewData;
-// }
+function createStar(data) {
+  let showStar = Math.round(data.averageStars);
+  const viewStar = document.getElementById("viewStar");
+
+  let test="";
+  for (let i =0; i<showStar; i++){
+    test += "⭐️";
+  }
+
+  console.log(test);
+  viewStar.innerHTML = test;
+}
 
 function showStoreData(data) {
   var storeName = document.getElementById('storeName');
@@ -124,22 +130,9 @@ function showStoreImage(data) {
   });
 }
 
-//---------------------------통신용-------------------------------
-function loadReivewData() {
-  let selectedReviewData = [];
-  let url = '/api/stores/'+selectedStoreID+'/reviews?sort=stars' 
-  $.ajax({
-    type: "GET",
-    url: url,
-    contentType : 'application/json', 
-    async: false,
-    success: function (response) {
-      selectedReviewData = response.data;
-    }
-  })
-  return selectedReviewData;
-}
-//---------------------------------------------------------------
+let reviewFetchData = [];
+console.log(myHeaders);
+console.log(selectedStoreID);
 
 // 2. 리뷰 정보 불러오기
 function renderReviewTable(data) {
@@ -155,13 +148,33 @@ function renderReviewTable(data) {
     for (let i = 0; i < starRating; i++) {
       stars.append($('<i>').addClass('fas fa-star').css('color', '#ffd700'));
     }
-
+    
     row.append($(stars));
     row.append($('<td>').text(review.content));
     row.append($('<td>').text('(' + review.reviewer + ')'));
     tableBody.append(row);
   });
 }
+  //---------------------------통신용-------------------------------
+function loadReivewData() {
+  let url = `http://127.0.0.1:8080/api/stores/${selectedStoreID}/reviews?sort=stars`;
+  console.log(url);
+  fetch(url, {
+    headers: myHeaders,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      let data1 = data.data;
+      console.log(data.data);
+      reviewFetchData = data1;
+      renderReviewTable(reviewFetchData);
+    })
+    .catch((error) => {
+      console.error('An error occurred while loading store data:', error);
+    });  
+}
+loadReivewData();
+//---------------------------------------------------------------
 
 // 리뷰 작성
 const ratingStars = [...document.getElementsByClassName('rating_star')];
@@ -216,34 +229,54 @@ reviewForm.addEventListener('submit', reviewPost);
 // }
 
 //--------------------------------통신용------------------------------------
-function reviewPost(e) {
-   e.preventDefault();
+var postHeaders = new Headers();
+postHeaders.append('Authorization', 'Bearer ' + token);
+postHeaders.append('Content-Type', 'application/json');
+function reviewPost() {
+   event.preventDefault();
    const content = document.getElementById('content').value;
    const stars = parseInt(ratingResult.textContent);
+   let url = `http://127.0.0.1:8080/api/stores/${selectedStoreID}/review`;
+  //  document.getElementById("reviewForm").action = url;   
 
    const newReview = {
     content: content,
     stars: stars,
   };
 
-  const url = '/api/stores/'+ selectedStoreID + '/review';
-  $.ajax({
+  console.log(newReview);
+  console.log(newReview.content);
+  console.log(newReview.stars);
+  console.log(url);
 
-    type: 'POST',
-    url: url,
-    contentType: 'application/json',
-    data: JSON.stringify({
-      'content': newReview.content,
-      'stars': newReview.stars
+  fetch(url , {
+    headers: postHeaders,
+    method: 'post',
+    body: JSON.stringify({
+      content: newReview.content,
+      stars: newReview.stars
     }),
-    success: function(data){
-      alert('Success');
-    },
-    error: function(request, status, error){
-      alert('Error');
-    }
   })
-}
+    .then((response) => response.json())
+    .then((result) => console.log(result))  
+  }
+
+  // $.ajax({    
+  //   headers: myHeaders,
+  //   type: 'POST',
+  //   url: url,
+  //   contentType: 'application/json',
+  //   data: JSON.stringify({
+  //     'content': newReview.content.text,
+  //     'stars': parseInt(newReview.stars)
+  //   }),
+  //   success: function(data){
+  //     alert('Success');
+  //   },
+  //   error: function(request, status, error){
+  //     alert('Error');
+  //   }
+  // })
 //-------------------------------------------------------------------------
 
 // 3. 메뉴 사진, 메뉴 이름, 메뉴 설명
