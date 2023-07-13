@@ -75,43 +75,13 @@ function signUp() {
     })
     .then((data) => {
       console.log(data);
+        window.location.href = "/LoginPage/login.html";
       if (data.success == true) {
         alert('회원가입이 완료되었습니다.');
-        // window.location.href = "/LoginPage/login.html";
+     
       } else {
         alert(data.message);
       }
     });
 }
 
-// // API 요청에 인증 토큰을 추가하는 함수
-// function addAuthorizationHeader(headers) {
-//   const token = localStorage.getItem('token');
-//   if (token) {
-//     headers['Authorization'] = 'Bearer ' + token;
-//   }
-//   return headers;
-// }
-
-// // 예시 API 요청
-// function exampleApiRequest() {
-//   const url = 'http://localhost:8080/api/example';
-//   fetch(url, {
-//     method: 'GET',
-//     headers: addAuthorizationHeader({
-//       'Content-Type': 'application/json',
-//     }),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data);
-//       // 처리할 로직 작성
-//     })
-//     .catch((error) => {
-//       console.error('API 요청 에러:', error);
-//     });
-// }
-
-// 1. 로그인 id / pw 보내고
-// 2. 백엔드에서 토큰을 받고
-// 3. 다시 토큰을 보냄 => response

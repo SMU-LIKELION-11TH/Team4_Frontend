@@ -42,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // 이미지 정보가 있으면, url보여줌
     socialIconsDiv.style.backgroundImage = `url(${user.imageUrl})`;
     socialIconsDiv.addEventListener('click', function () {
-      window.location.href = './AdminPage/admin.html';
+      window.location.href = './my.html';
     });
   } else {
     // null인 경우 빈 이미지로 설정
     socialIconsDiv.style.backgroundImage = 'url(./img/owner.png)';
     socialIconsDiv.addEventListener('click', function () {
-      window.location.href = './AdminPage/admin.html';
+      window.location.href = './my.html';
     });
   }
 });
