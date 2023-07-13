@@ -150,7 +150,7 @@
           <div class="store-details">
             <h1 id="storeName"></h1>
             <!-- 별점 -->
-            <h2>⭐️⭐️⭐️⭐️⭐️</h2>
+            <h2 id="viewStar"></h2>
             <p id="storeTel"></p>
             <p id="storeTime">영업시간</p>
             <p id="storeDesc"></p>
@@ -168,7 +168,7 @@
               </table>
             </div>
 
-            <form class="write-review">
+            <form class="write-review" method="post" id="reviewForm">
               <!-- 리뷰 작성 / id: content에 push -->
               <input
                 type="text"
