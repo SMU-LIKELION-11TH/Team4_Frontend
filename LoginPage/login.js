@@ -11,11 +11,11 @@ setTimeout(() => {
 
 // 로그인 기능
 function login() {
-  const id = document.querySelector('#signInUsername').value;
+  const email = document.querySelector('#signInUsername').value;
   const password = document.querySelector('#signInPassword').value;
 
   const data = {
-    id: id,
+    username: email,
     password: password,
   };
 
@@ -26,24 +26,26 @@ function login() {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      if (data.success == true) {
-        alert(data.message);
-        // Save user information and token in localStorage
-        localStorage.setItem('user', JSON.stringify(data.data));
-        localStorage.setItem('token', data.token);
-        // Redirect to main page
-        window.location = 'http://example.com/main.html';
-      } else {
-        alert(data.message);
-      }
-    });
+  console.log(data)
+    // .then((response) => response.json())
+    // .then((data) => {
+    //   console.log(data);
+    //   if (data.success == true) {
+    //     alert(data.message);
+    //     // Save user information and token in localStorage
+    //     localStorage.setItem('user', JSON.stringify(data.data));
+    //     localStorage.setItem('token', data.token);
+    //     // Redirect to main page
+    //     window.location = 'http://example.com/main.html';
+    //   } else {
+    //     alert(data.message);
+    //   }
+    // });
 }
 
 // 회원가입
 function signUp() {
+  console.log("hi");
   const username = document.getElementById('signUpUsername').value;
   const email = document.getElementById('signUpEmail').value;
   const password = document.getElementById('signUpPassword').value;
@@ -71,46 +73,43 @@ function signUp() {
       console.log(data);
       if (data.success == true) {
         alert('회원가입이 완료되었습니다.');
-        window.location.href = '/LoginPage/login.html';
+        // window.location.href = '/LoginPage/login.html';
       } else {
         alert(data.message);
       }
     });
 }
 
-// 가상의 데이터
-const mockData = {
-  username: 'pmsu2008',
-  email: 'pmsu2008@gmail.com',
-  password: 'A123456789!',
-  confirmPassword: 'A123456789!',
-  isAdmin: true,
-};
 
-// API 요청에 인증 토큰을 추가하는 함수
-function addAuthorizationHeader(headers) {
-  const token = localStorage.getItem('token');
-  if (token) {
-    headers['Authorization'] = 'Bearer ' + token;
-  }
-  return headers;
-}
+// // API 요청에 인증 토큰을 추가하는 함수
+// function addAuthorizationHeader(headers) {
+//   const token = localStorage.getItem('token');
+//   if (token) {
+//     headers['Authorization'] = 'Bearer ' + token;
+//   }
+//   return headers;
+// }
 
-// 예시 API 요청
-function exampleApiRequest() {
-  const url = 'http://localhost:8080/api/example';
-  fetch(url, {
-    method: 'GET',
-    headers: addAuthorizationHeader({
-      'Content-Type': 'application/json',
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      // 처리할 로직 작성
-    })
-    .catch((error) => {
-      console.error('API 요청 에러:', error);
-    });
-}
+// // 예시 API 요청
+// function exampleApiRequest() {
+//   const url = 'http://localhost:8080/api/example';
+//   fetch(url, {
+//     method: 'GET',
+//     headers: addAuthorizationHeader({
+//       'Content-Type': 'application/json',
+//     }),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data);
+//       // 처리할 로직 작성
+//     })
+//     .catch((error) => {
+//       console.error('API 요청 에러:', error);
+//     });
+// }
+
+
+// 1. 로그인 id / pw 보내고
+// 2. 백엔드에서 토큰을 받고 
+// 3. 다시 토큰을 보냄 => response 
