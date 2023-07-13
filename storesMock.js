@@ -31,11 +31,11 @@ function generateStarRating(rating) {
 
 function loadStoresData() {
   const url = 'http://127.0.0.1:8080/api/stores';
-  const token = localStorage.getItem('token');
-
+  const token = localStorage.getItem('token'); // Get the token value from localStorage
+  console.log(token);
   fetch(url, {
     headers: {
-      Authorization: token, // Include the token in the request headers
+      Authorization: 'Bearer ' + token,
     },
   })
     .then((response) => response.json())
@@ -72,14 +72,16 @@ function attachMenuClickEvent() {
     // Send request to the API to get filtered data based on selected category
     const url = `/api/stores?category=${encodeURIComponent(selectedCategory)}`;
     const token = localStorage.getItem('token'); // Get the token value from localStorage
+    console.log(token);
 
     fetch(url, {
       headers: {
-        Authorization: token, // Include the token in the request headers
+        Authorization: 'Bearer' + token,
       },
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         renderTable(data); // Render the filtered data in the table
         updateTableHeading(selectedCategory); // Update the table heading
       })
