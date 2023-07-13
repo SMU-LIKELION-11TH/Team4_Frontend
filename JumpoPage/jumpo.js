@@ -82,6 +82,8 @@ function loadStoresData() {
       showStoreData(fetchdata);
       showStoreImage(fetchdata);
       showMenu(fetchdata);
+      var address = fetchdata.roadAddress;
+      searchAddressToCoordinate(address);
     })
     .catch((error) => {
       console.error('An error occurred while loading store data:', error);
@@ -304,5 +306,4 @@ function searchAddressToCoordinate(address) {
   });
 }
 
-var address = '서울특별시 마포구 망원동 망원로8길 27';
-searchAddressToCoordinate(address);
+

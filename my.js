@@ -101,14 +101,29 @@ const responseData = {
   ],
 };
 
-const jsonData = JSON.stringify(responseData);
+const profileData = {
+  "code": 200,
+  "httpStatus": "OK",
+  "message": "요청에 성공하였습니다.",
+  "data": {
+      "id": 1,
+      "email": "ceo",
+      "nickname": "점주",
+      "role": "CEO",
+      "imageUrl": "/img/owner.png",
+      "createdAt": "2023-07-10 03:21:30",
+      "updatedAt": "2023-07-10 03:21:30"
+  }
+}
 
-fetch('/api/user/reviews', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: jsonData,
+const url = 'http://127.0.0.1:8080/api/user/reviews';
+const token = localStorage.getItem('token');
+var teadbear = 'Bearer ' + token;
+var myHeaders = new Headers();
+myHeaders.append('Authorization', 'Bearer ' + token);
+//myHeaders.append('Content-Type', "multipart/form-data")
+fetch(url, {
+  headers: myHeaders,
 })
   .then((response) => response.json())
   .then((data) => {
@@ -143,7 +158,56 @@ responseData.data.forEach((review) => {
   reviewbox.appendChild(reviewElement);
 });
 
-const reviewer = responseData.data[0].reviewer;
+fetch('http://127.0.0.1:8080/api/user', {
+  method: 'get',
+  headers: myHeaders,
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+  const profilebox = document.getElementById('profile');
+
+  responseData.data.forEach((review) => {
+
+  });
+
+const nickname = profileData.data.nickname;
 const add = '님';
 const reviewerElement = document.getElementById('reviewer');
-reviewerElement.textContent = reviewer + add;
+reviewerElement.textContent = nickname + add;
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  const imageInput = document.getElementById('image');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault(); // 기본 폼 제출 동작 방지
+
+    const file = imageInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const url = 'http://127.0.0.1:8080/api/user'; // 이미지를 업로드할 URL
+
+    fetch(url, {
+      method: 'put',
+      headers: myHeaders,
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('이미지가 성공적으로 전송되었습니다.');
+        } else {
+          console.error('이미지 전송에 실패하였습니다.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  });
+});
