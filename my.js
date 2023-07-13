@@ -165,6 +165,17 @@ fetch('http://127.0.0.1:8080/api/user', {
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
+    const profileImage = document.getElementById('profileimg');
+    //이미지 데이터 넣는 곳
+    //{data.data.imageUrl} <= db객체에서 get요청을 했을때 json에서 가져오는 imageurl 경로
+    var imurl = JSON.stringify(data.data.imageUrl)
+    var finalimurl = imurl.split("/")
+    var ff = finalimurl[finalimurl.length-1]
+    var ff = ff.replace('"',"")
+    alert("files/"+ff)
+    profileImage.src = "files/"+ff;
+
+
   })
   .catch((error) => {
     console.error('Error:', error);
