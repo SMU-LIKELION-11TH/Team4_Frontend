@@ -15,7 +15,7 @@ function login() {
   const password = document.querySelector('#signInPassword').value;
 
   // Check if the entered credentials match the mock data
-  if (id === mockData.username && password === mockData.password) {
+  if (id === data.username && password === data.password) {
     // Simulate a successful login response
     const data = {
       code: 200,
