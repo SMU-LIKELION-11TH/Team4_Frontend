@@ -10,7 +10,9 @@ const obj = {
     console.log(receiveData);
     obj.store_id = receiveData;
   }
-function enroll(){
+function enroll(event){
+  event.preventDefault();
+  console.log("enroll");
     var formData = new FormData();
 
     var menuName = document.getElementById("menu_name").value;
@@ -51,9 +53,10 @@ function enroll(){
         
     
     //   })
-    setTimeout(function() {
-        window.close();
-    }, 2000);
+    // Ajax 요청이 완료되면 페이지를 자동닫기. 안되면 수동닫기.
+    // setTimeout(function() {
+    //     window.close();
+    // }, 2000);
 }
 
 function loadFile(event){
